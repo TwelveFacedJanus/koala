@@ -1,3 +1,9 @@
+<div align='center'>
+  <img src="https://github.com/TwelveFacedJanus/koala/blob/main/images/Dark%20Theme.svg#gh-dark-mode-only">
+  <img src="https://github.com/TwelveFacedJanus/koala/blob/main/images/White%20Theme.svg#gh-light-mode-only">
+</div>
+
+
 # Koala
 
 Koala is a lightweight C/C++ library that provides asynchronous event loop functionality with a clean API for both C and C++ developers. The library enables developers to create responsive applications that can handle concurrent operations efficiently.
@@ -152,5 +158,10 @@ gcc -o myapp myapp.c koala/core/async.c koala/core/types.c -lpthread
 
 ## License
 
-Koala is released under the MIT License. See the LICENSE file for details.
+Koala is released under the BSD License. See the LICENSE file for details.
+
+<div align='center'>
+  <img src="https://github.com/TwelveFacedJanus/koala/blob/main/images/Dark%20Theme.png#gh-dark-mode-only" width = "100px">
+  <img src="https://github.com/TwelveFacedJanus/koala/blob/main/images/White%20Theme.png#gh-light-mode-only" width = "100px">
+</div>
 
