@@ -1,0 +1,51 @@
+\doxysection{types.\+c}
+\hypertarget{types_8c_source}{}\label{types_8c_source}\index{core/types.c@{core/types.c}}
+\mbox{\hyperlink{types_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00004}\mbox{\hyperlink{types_8c_a23864e11484aca063fa48537ce48c047}{00004}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{types_8c_a23864e11484aca063fa48537ce48c047}{result\_free}}(\mbox{\hyperlink{struct_result}{Result}}*\ r)\ \{}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00005}00005\ \ \ \ \ \textcolor{comment}{//\ Пользователь\ должен\ явно\ освобождать\ ok/err,\ если\ это\ динамические\ данные}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00006}00006\ \ \ \ \ \textcolor{comment}{//\ Здесь\ можно\ добавить\ кастомную\ логику,\ если\ есть\ поле\ type\ в\ Generic}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00007}00007\ \ \ \ \ \textcolor{comment}{//\ Пример:}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00008}00008\ \ \ \ \ \textcolor{comment}{//\ if\ (r-\/>is\_ok\ \&\&\ r-\/>ok.value)\ free(r-\/>ok.value);}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00009}00009\ \ \ \ \ \textcolor{comment}{//\ else\ if\ (!r-\/>is\_ok\ \&\&\ r-\/>err.value)\ free(r-\/>err.value);}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00010}00010\ \ \ \ \ \textcolor{comment}{//\ По\ умолчанию\ ничего\ не\ делаем}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00011}00011\ \}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00013}\mbox{\hyperlink{types_8c_af9008be1931af48f08a85957cb3e2d39}{00013}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{types_8c_af9008be1931af48f08a85957cb3e2d39}{function\_params\_free}}(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ p)\ \{}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ \&\&\ p-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}})\ \{}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Если\ argv\ был\ выделен\ через\ malloc}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00016}00016\ \ \ \ \ \ \ \ \ free(p-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}});}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00017}00017\ \ \ \ \ \ \ \ \ p-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00018}00018\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00021}\mbox{\hyperlink{types_8c_a8c5d4a6d10f02803638f982c3b567ccb}{00021}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{types_8c_a8c5d4a6d10f02803638f982c3b567ccb}{function\_pipeline\_free}}(\mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ fp)\ \{}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{while}\ (fp)\ \{}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ next\ =\ fp-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}};}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00024}00024\ \ \ \ \ \ \ \ \ free(fp);}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00025}00025\ \ \ \ \ \ \ \ \ fp\ =\ next;}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00026}00026\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00027}00027\ \}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00029}\mbox{\hyperlink{types_8c_ab347e09152d07525622b731e0df0cc6b}{00029}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{types_8c_ab347e09152d07525622b731e0df0cc6b}{function\_pipeline\_validate}}(\mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ head)\ \{}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//\ Проверка\ на\ циклы\ (алгоритм\ Флойда)}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ slow\ =\ head;}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ fast\ =\ head;}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{while}\ (fast\ \&\&\ fast-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}})\ \{}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!slow-\/>\mbox{\hyperlink{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2}{func}})\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00035}00035\ \ \ \ \ \ \ \ \ slow\ =\ slow-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}};}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00036}00036\ \ \ \ \ \ \ \ \ fast\ =\ fast-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}}-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}};}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (slow\ ==\ fast\ \&\&\ slow\ !=\ NULL)\ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ цикл}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00038}00038\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00039}00039\ \ \ \ \ \textcolor{comment}{//\ Проверка,\ что\ все\ func\ !=\ NULL}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{while}\ (head)\ \{}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!head-\/>\mbox{\hyperlink{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2}{func}})\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00042}00042\ \ \ \ \ \ \ \ \ head\ =\ head-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}};}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{types_8c_source_l00045}00045\ \}\ }
+
+\end{DoxyCode}

@@ -1,0 +1,11 @@
+digraph "Асинхронные примитивы"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir=LR;
+  Node1 [id="Node000001",label="Асинхронные\l примитивы",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Event loop, Future, Promise для FunctionPipeline/Result."];
+  Node2 [id="Node000002",label="Примеры использования\l асинхронных примитивов",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$group___async_usage.html",tooltip=" "];
+  Node1->Node2 [shape=plaintext, dir="back", style="solid"];
+}

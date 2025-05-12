@@ -1,0 +1,145 @@
+\doxysection{Async\+Event\+Loop Struct Reference}
+\hypertarget{struct_async_event_loop}{}\label{struct_async_event_loop}\index{AsyncEventLoop@{AsyncEventLoop}}
+
+
+Event loop для асинхронных задач с пулом потоков  
+
+
+
+
+{\ttfamily \#include $<$async.\+h$>$}
+
+
+
+Collaboration diagram for Async\+Event\+Loop\+:
+% FIG 0
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+pthread\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}}
+\item 
+int \mbox{\hyperlink{struct_async_event_loop_afe98cfc82203b9e70b13bcc492bf5324}{num\+\_\+workers}}
+\item 
+pthread\+\_\+mutex\+\_\+t \mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\+\_\+mtx}}
+\item 
+pthread\+\_\+cond\+\_\+t \mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\+\_\+cv}}
+\item 
+\mbox{\hyperlink{struct_async_task_node}{Async\+Task\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\+\_\+head}}
+\item 
+\mbox{\hyperlink{struct_async_task_node}{Async\+Task\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_async_event_loop_a6529c6586ab3adcfe1d640f4ca3a2efe}{queue\+\_\+tail}}
+\item 
+int \mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Event loop для асинхронных задач с пулом потоков 
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00111}{111}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_async_event_loop_afe98cfc82203b9e70b13bcc492bf5324}\index{AsyncEventLoop@{AsyncEventLoop}!num\_workers@{num\_workers}}
+\index{num\_workers@{num\_workers}!AsyncEventLoop@{AsyncEventLoop}}
+\doxysubsubsection{\texorpdfstring{num\_workers}{num\_workers}}
+{\footnotesize\ttfamily \label{struct_async_event_loop_afe98cfc82203b9e70b13bcc492bf5324} 
+int Async\+Event\+Loop\+::num\+\_\+workers}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00121}{121}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00010}{async\+\_\+event\+\_\+loop\+\_\+init()}}, and \mbox{\hyperlink{async_8c_source_l00072}{async\+\_\+event\+\_\+loop\+\_\+stop()}}.
+
+\Hypertarget{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}\index{AsyncEventLoop@{AsyncEventLoop}!queue\_cv@{queue\_cv}}
+\index{queue\_cv@{queue\_cv}!AsyncEventLoop@{AsyncEventLoop}}
+\doxysubsubsection{\texorpdfstring{queue\_cv}{queue\_cv}}
+{\footnotesize\ttfamily \label{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5} 
+pthread\+\_\+cond\+\_\+t Async\+Event\+Loop\+::queue\+\_\+cv}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00123}{123}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00010}{async\+\_\+event\+\_\+loop\+\_\+init()}}, \mbox{\hyperlink{async_8c_source_l00072}{async\+\_\+event\+\_\+loop\+\_\+stop()}}, \mbox{\hyperlink{async_8c_source_l00101}{async\+\_\+run()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+\Hypertarget{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}\index{AsyncEventLoop@{AsyncEventLoop}!queue\_head@{queue\_head}}
+\index{queue\_head@{queue\_head}!AsyncEventLoop@{AsyncEventLoop}}
+\doxysubsubsection{\texorpdfstring{queue\_head}{queue\_head}}
+{\footnotesize\ttfamily \label{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22} 
+\mbox{\hyperlink{struct_async_task_node}{Async\+Task\+Node}}\texorpdfstring{$\ast$}{*} Async\+Event\+Loop\+::queue\+\_\+head}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00124}{124}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00010}{async\+\_\+event\+\_\+loop\+\_\+init()}}, \mbox{\hyperlink{async_8c_source_l00072}{async\+\_\+event\+\_\+loop\+\_\+stop()}}, \mbox{\hyperlink{async_8c_source_l00101}{async\+\_\+run()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+\Hypertarget{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}\index{AsyncEventLoop@{AsyncEventLoop}!queue\_mtx@{queue\_mtx}}
+\index{queue\_mtx@{queue\_mtx}!AsyncEventLoop@{AsyncEventLoop}}
+\doxysubsubsection{\texorpdfstring{queue\_mtx}{queue\_mtx}}
+{\footnotesize\ttfamily \label{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d} 
+pthread\+\_\+mutex\+\_\+t Async\+Event\+Loop\+::queue\+\_\+mtx}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00122}{122}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00010}{async\+\_\+event\+\_\+loop\+\_\+init()}}, \mbox{\hyperlink{async_8c_source_l00072}{async\+\_\+event\+\_\+loop\+\_\+stop()}}, \mbox{\hyperlink{async_8c_source_l00101}{async\+\_\+run()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+\Hypertarget{struct_async_event_loop_a6529c6586ab3adcfe1d640f4ca3a2efe}\index{AsyncEventLoop@{AsyncEventLoop}!queue\_tail@{queue\_tail}}
+\index{queue\_tail@{queue\_tail}!AsyncEventLoop@{AsyncEventLoop}}
+\doxysubsubsection{\texorpdfstring{queue\_tail}{queue\_tail}}
+{\footnotesize\ttfamily \label{struct_async_event_loop_a6529c6586ab3adcfe1d640f4ca3a2efe} 
+\mbox{\hyperlink{struct_async_task_node}{Async\+Task\+Node}}\texorpdfstring{$\ast$}{*} Async\+Event\+Loop\+::queue\+\_\+tail}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00125}{125}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00010}{async\+\_\+event\+\_\+loop\+\_\+init()}}, \mbox{\hyperlink{async_8c_source_l00101}{async\+\_\+run()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+\Hypertarget{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}\index{AsyncEventLoop@{AsyncEventLoop}!running@{running}}
+\index{running@{running}!AsyncEventLoop@{AsyncEventLoop}}
+\doxysubsubsection{\texorpdfstring{running}{running}}
+{\footnotesize\ttfamily \label{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f} 
+int Async\+Event\+Loop\+::running}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00126}{126}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00010}{async\+\_\+event\+\_\+loop\+\_\+init()}}, \mbox{\hyperlink{async_8c_source_l00072}{async\+\_\+event\+\_\+loop\+\_\+stop()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+\Hypertarget{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}\index{AsyncEventLoop@{AsyncEventLoop}!workers@{workers}}
+\index{workers@{workers}!AsyncEventLoop@{AsyncEventLoop}}
+\doxysubsubsection{\texorpdfstring{workers}{workers}}
+{\footnotesize\ttfamily \label{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b} 
+pthread\+\_\+t\texorpdfstring{$\ast$}{*} Async\+Event\+Loop\+::workers}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00120}{120}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00010}{async\+\_\+event\+\_\+loop\+\_\+init()}}, and \mbox{\hyperlink{async_8c_source_l00072}{async\+\_\+event\+\_\+loop\+\_\+stop()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+core/\mbox{\hyperlink{async_8h}{async.\+h}}\end{DoxyCompactItemize}

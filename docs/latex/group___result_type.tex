@@ -1,0 +1,52 @@
+\doxysection{Result Type}
+\hypertarget{group___result_type}{}\label{group___result_type}\index{Result Type@{Result Type}}
+
+
+Упрощённый аналог типа \doxylink{struct_result}{Result} из Rust для C и C++.  
+
+
+Упрощённый аналог типа \doxylink{struct_result}{Result} из Rust для C и C++. 
+
+Хранит либо Generic-\/значение (ok), либо Generic-\/ошибку (err).
+
+Примеры использования\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ C:\ Использование\ структуры\ Result}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ x\ =\ 42;}
+\DoxyCodeLine{res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ 1;}
+\DoxyCodeLine{\mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}},\ \&x);\ \textcolor{comment}{//\ Сохраняем\ указатель\ на\ int}}
+\DoxyCodeLine{\textcolor{comment}{//\ ...}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}*\ px\ =\ \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}});}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}},\ *px);}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ err\ =\ \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ res.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}});}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Ошибка:\ \%s\(\backslash\)n"{}},\ err);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ C++:\ Использование\ структуры\ Result}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ x\ =\ 42;}
+\DoxyCodeLine{res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}\ =\ \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic<int*>}}(\&x);}
+\DoxyCodeLine{\textcolor{comment}{//\ ...}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}*\ px\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}*\textcolor{keyword}{>}(res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}.\mbox{\hyperlink{struct_generic_a07a04db966cf03fd44abfc8f94b46179}{value}});}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ *px\ <<\ std::endl;}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ err\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(res.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}}.\mbox{\hyperlink{struct_generic_a07a04db966cf03fd44abfc8f94b46179}{value}});}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Ошибка:\ "{}}\ <<\ err\ <<\ std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

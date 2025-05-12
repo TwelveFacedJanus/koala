@@ -1,0 +1,516 @@
+\doxysection{core/async.c File Reference}
+\hypertarget{async_8c}{}\label{async_8c}\index{core/async.c@{core/async.c}}
+{\ttfamily \#include "{}async.\+h"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+Include dependency graph for async.\+c\+:
+% FIG 0
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{async_8c_abecd2b1dac9ce4465e96fc6b4f5316e4}{worker\+\_\+thread\+\_\+func}} (void \texorpdfstring{$\ast$}{*}arg)
+\item 
+\mbox{\hyperlink{struct_async_event_loop}{Async\+Event\+Loop}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{async_8c_a8b2d94236ddb1c56e1c7f887e8cd1614}{async\+\_\+event\+\_\+loop\+\_\+init}} (int num\+\_\+workers)
+\item 
+void \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\+\_\+event\+\_\+loop\+\_\+stop}} (\mbox{\hyperlink{struct_async_event_loop}{Async\+Event\+Loop}} \texorpdfstring{$\ast$}{*}loop)
+\begin{DoxyCompactList}\small\item\em Остановить event loop и освободить ресурсы \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_async_task}{Async\+Task}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\+\_\+run}} (\mbox{\hyperlink{struct_async_event_loop}{Async\+Event\+Loop}} \texorpdfstring{$\ast$}{*}loop, \mbox{\hyperlink{struct_function_pipeline}{Function\+Pipeline}} \texorpdfstring{$\ast$}{*}func, \mbox{\hyperlink{struct_function_params}{Function\+Params}} \texorpdfstring{$\ast$}{*}params)
+\begin{DoxyCompactList}\small\item\em Запустить функцию из \doxylink{struct_function_pipeline}{Function\+Pipeline} асинхронно через event loop. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_result}{Result}} \mbox{\hyperlink{async_8c_a9be1c41fab44175790073cb7ffb83722}{async\+\_\+await}} (\mbox{\hyperlink{struct_async_task}{Async\+Task}} \texorpdfstring{$\ast$}{*}task)
+\begin{DoxyCompactList}\small\item\em Ожидать завершения асинхронной задачи и получить \doxylink{struct_result}{Result}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_result}{Result}} \mbox{\hyperlink{async_8c_af23c830c05972076fed61c782b2cd7ed}{async\+\_\+await\+\_\+timeout}} (\mbox{\hyperlink{struct_async_task}{Async\+Task}} \texorpdfstring{$\ast$}{*}task, int timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Ожидать завершения асинхронной задачи с таймаутом (мс) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{async_8c_a50e869118636fbb76259be2551c8a8e7}{async\+\_\+cancel}} (\mbox{\hyperlink{struct_async_task}{Async\+Task}} \texorpdfstring{$\ast$}{*}task)
+\begin{DoxyCompactList}\small\item\em Отменить асинхронную задачу (установить флаг cancel) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{async_8c_a9be1c41fab44175790073cb7ffb83722}\index{async.c@{async.c}!async\_await@{async\_await}}
+\index{async\_await@{async\_await}!async.c@{async.c}}
+\doxysubsubsection{\texorpdfstring{async\_await()}{async\_await()}}
+{\footnotesize\ttfamily \label{async_8c_a9be1c41fab44175790073cb7ffb83722} 
+\mbox{\hyperlink{struct_result}{Result}} async\+\_\+await (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_async_task}{Async\+Task}} \texorpdfstring{$\ast$}{*}}]{task}{}\end{DoxyParamCaption})}
+
+
+
+Ожидать завершения асинхронной задачи и получить \doxylink{struct_result}{Result}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & Async\+Task\texorpdfstring{$\ast$}{*} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_result}{Result} 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{async_8c_source_l00158}{158}} of file \mbox{\hyperlink{async_8c_source}{async.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res\ =\ \{0\};}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{if}\ (!task)\ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ task\ to\ complete}}
+\DoxyCodeLine{00163\ \ \ \ \ pthread\_mutex\_lock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{while}\ (!task-\/>\mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}})\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ pthread\_cond\_wait(\&task-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}},\ \&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ Copy\ the\ result}}
+\DoxyCodeLine{00169\ \ \ \ \ res\ =\ task-\/>\mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{result}};}
+\DoxyCodeLine{00170\ \ \ \ \ pthread\_mutex\_unlock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//\ Clean\ up\ task\ resources}}
+\DoxyCodeLine{00173\ \ \ \ \ pthread\_mutex\_destroy(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00174\ \ \ \ \ pthread\_cond\_destroy(\&task-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}});}
+\DoxyCodeLine{00175\ \ \ \ \ free(task);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00178\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{async_8h_source_l00091}{Async\+Task\+::cv}}, \mbox{\hyperlink{async_8h_source_l00090}{Async\+Task\+::mtx}}, \mbox{\hyperlink{async_8h_source_l00092}{Async\+Task\+::ready}}, and \mbox{\hyperlink{async_8h_source_l00094}{Async\+Task\+::result}}.
+
+\Hypertarget{async_8c_af23c830c05972076fed61c782b2cd7ed}\index{async.c@{async.c}!async\_await\_timeout@{async\_await\_timeout}}
+\index{async\_await\_timeout@{async\_await\_timeout}!async.c@{async.c}}
+\doxysubsubsection{\texorpdfstring{async\_await\_timeout()}{async\_await\_timeout()}}
+{\footnotesize\ttfamily \label{async_8c_af23c830c05972076fed61c782b2cd7ed} 
+\mbox{\hyperlink{struct_result}{Result}} async\+\_\+await\+\_\+timeout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_async_task}{Async\+Task}} \texorpdfstring{$\ast$}{*}}]{task}{, }\item[{int}]{timeout\+\_\+ms}{}\end{DoxyParamCaption})}
+
+
+
+Ожидать завершения асинхронной задачи с таймаутом (мс) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & Async\+Task\texorpdfstring{$\ast$}{*} \\
+\hline
+{\em timeout\+\_\+ms} & Таймаут в миллисекундах \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_result}{Result} 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{async_8c_source_l00180}{180}} of file \mbox{\hyperlink{async_8c_source}{async.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res\ =\ \{0\};}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (!task)\ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00183\ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ Calculate\ absolute\ timeout\ time}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{struct\ }timespec\ ts;}
+\DoxyCodeLine{00186\ \ \ \ \ clock\_gettime(CLOCK\_REALTIME,\ \&ts);}
+\DoxyCodeLine{00187\ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{//\ Convert\ timeout\ from\ milliseconds\ to\ seconds\ and\ nanoseconds}}
+\DoxyCodeLine{00189\ \ \ \ \ ts.tv\_sec\ +=\ timeout\_ms\ /\ 1000;}
+\DoxyCodeLine{00190\ \ \ \ \ ts.tv\_nsec\ +=\ (timeout\_ms\ \%\ 1000)\ *\ 1000000;}
+\DoxyCodeLine{00191\ \ \ \ \ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{comment}{//\ Handle\ nanosecond\ overflow}}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{if}\ (ts.tv\_nsec\ >=\ 1000000000)\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ ts.tv\_sec\ +=\ 1;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ ts.tv\_nsec\ -\/=\ 1000000000;}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ task\ completion\ with\ timeout}}
+\DoxyCodeLine{00199\ \ \ \ \ pthread\_mutex\_lock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{int}\ timedout\ =\ 0;}
+\DoxyCodeLine{00201\ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{while}\ (!task-\/>\mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}})\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ret\ =\ pthread\_cond\_timedwait(\&task-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}},\ \&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}},\ \&ts);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ ETIMEDOUT)\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ timedout\ =\ 1;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \ \ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{if}\ (timedout)\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Timeout\ occurred}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ 0;}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ error\ message\ using\ the\ correct\ macro\ from\ types.h}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{types_8h_a4d7090f7df18ebdd1a99e2fcde6e2902}{GENERIC\_SET\_TYPED}}(res.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}},\ \textcolor{stringliteral}{"{}Timeout"{}},\ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481}{GENERIC\_TYPE\_STR}});}
+\DoxyCodeLine{00215\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Task\ completed\ within\ timeout}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ res\ =\ task-\/>\mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{result}};}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ pthread\_mutex\_unlock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{comment}{//\ Clean\ up\ task\ resources}}
+\DoxyCodeLine{00223\ \ \ \ \ pthread\_mutex\_destroy(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00224\ \ \ \ \ pthread\_cond\_destroy(\&task-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}});}
+\DoxyCodeLine{00225\ \ \ \ \ free(task);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00228\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{async_8h_source_l00091}{Async\+Task\+::cv}}, \mbox{\hyperlink{types_8h_source_l00169}{Result\+::err}}, \mbox{\hyperlink{types_8h_source_l00289}{GENERIC\+\_\+\+SET\+\_\+\+TYPED}}, \mbox{\hyperlink{types_8h_source_l00274}{GENERIC\+\_\+\+TYPE\+\_\+\+STR}}, \mbox{\hyperlink{types_8h_source_l00167}{Result\+::is\+\_\+ok}}, \mbox{\hyperlink{async_8h_source_l00090}{Async\+Task\+::mtx}}, \mbox{\hyperlink{async_8h_source_l00092}{Async\+Task\+::ready}}, and \mbox{\hyperlink{async_8h_source_l00094}{Async\+Task\+::result}}.
+
+\Hypertarget{async_8c_a50e869118636fbb76259be2551c8a8e7}\index{async.c@{async.c}!async\_cancel@{async\_cancel}}
+\index{async\_cancel@{async\_cancel}!async.c@{async.c}}
+\doxysubsubsection{\texorpdfstring{async\_cancel()}{async\_cancel()}}
+{\footnotesize\ttfamily \label{async_8c_a50e869118636fbb76259be2551c8a8e7} 
+void async\+\_\+cancel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_async_task}{Async\+Task}} \texorpdfstring{$\ast$}{*}}]{task}{}\end{DoxyParamCaption})}
+
+
+
+Отменить асинхронную задачу (установить флаг cancel) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & Async\+Task\texorpdfstring{$\ast$}{*} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{async_8c_source_l00230}{230}} of file \mbox{\hyperlink{async_8c_source}{async.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{if}\ (!task)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00232\ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ pthread\_mutex\_lock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00234\ \ \ \ \ task-\/>\mbox{\hyperlink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{cancel}}\ =\ 1;}
+\DoxyCodeLine{00235\ \ \ \ \ pthread\_mutex\_unlock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00236\ \ \ \ \ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{comment}{//\ If\ task\ is\ already\ being\ processed,\ this\ flag\ will\ be\ checked}}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{comment}{//\ If\ it's\ still\ in\ the\ queue,\ the\ worker\ will\ check\ before\ processing}}
+\DoxyCodeLine{00239\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{async_8h_source_l00093}{Async\+Task\+::cancel}}, and \mbox{\hyperlink{async_8h_source_l00090}{Async\+Task\+::mtx}}.
+
+\Hypertarget{async_8c_a8b2d94236ddb1c56e1c7f887e8cd1614}\index{async.c@{async.c}!async\_event\_loop\_init@{async\_event\_loop\_init}}
+\index{async\_event\_loop\_init@{async\_event\_loop\_init}!async.c@{async.c}}
+\doxysubsubsection{\texorpdfstring{async\_event\_loop\_init()}{async\_event\_loop\_init()}}
+{\footnotesize\ttfamily \label{async_8c_a8b2d94236ddb1c56e1c7f887e8cd1614} 
+\mbox{\hyperlink{struct_async_event_loop}{Async\+Event\+Loop}} \texorpdfstring{$\ast$}{*} async\+\_\+event\+\_\+loop\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+workers}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{async_8c_source_l00010}{10}} of file \mbox{\hyperlink{async_8c_source}{async.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_workers\ <=\ 0)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ num\_workers\ =\ 1;\ \textcolor{comment}{//\ Default\ to\ at\ least\ one\ worker}}
+\DoxyCodeLine{00013\ \ \ \ \ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ the\ event\ loop\ structure}}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ (\mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}));}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (!loop)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00019\ \ \ \ \ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ structure}}
+\DoxyCodeLine{00022\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_afe98cfc82203b9e70b13bcc492bf5324}{num\_workers}}\ =\ num\_workers;}
+\DoxyCodeLine{00023\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}}\ =\ 1;}
+\DoxyCodeLine{00024\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}}\ =\ NULL;}
+\DoxyCodeLine{00025\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a6529c6586ab3adcfe1d640f4ca3a2efe}{queue\_tail}}\ =\ NULL;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Initialize\ mutex\ and\ condition\ variable}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{if}\ (pthread\_mutex\_init(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}},\ NULL)\ !=\ 0)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ free(loop);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (pthread\_cond\_init(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}},\ NULL)\ !=\ 0)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ pthread\_mutex\_destroy(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ free(loop);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ worker\ threads}}
+\DoxyCodeLine{00040\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}}\ =\ (pthread\_t*)malloc(\textcolor{keyword}{sizeof}(pthread\_t)\ *\ num\_workers);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (!loop-\/>\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}})\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ pthread\_mutex\_destroy(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ pthread\_cond\_destroy(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ free(loop);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Create\ worker\ threads}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_workers;\ i++)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pthread\_create(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}}[i],\ NULL,\ \mbox{\hyperlink{async_8c_abecd2b1dac9ce4465e96fc6b4f5316e4}{worker\_thread\_func}},\ loop)\ !=\ 0)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Error\ creating\ thread,\ clean\ up\ already\ created\ threads}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}}\ =\ 0;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_cond\_broadcast(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}});\ \textcolor{comment}{//\ Wake\ up\ any\ threads\ that\ might\ be\ waiting}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Join\ already\ created\ threads}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ i;\ j++)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_join(loop-\/>\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}}[j],\ NULL);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clean\ up\ resources}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_mutex\_destroy(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_cond\_destroy(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ free(loop-\/>\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ free(loop);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ loop;}
+\DoxyCodeLine{00070\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{async_8h_source_l00121}{Async\+Event\+Loop\+::num\+\_\+workers}}, \mbox{\hyperlink{async_8h_source_l00123}{Async\+Event\+Loop\+::queue\+\_\+cv}}, \mbox{\hyperlink{async_8h_source_l00124}{Async\+Event\+Loop\+::queue\+\_\+head}}, \mbox{\hyperlink{async_8h_source_l00122}{Async\+Event\+Loop\+::queue\+\_\+mtx}}, \mbox{\hyperlink{async_8h_source_l00125}{Async\+Event\+Loop\+::queue\+\_\+tail}}, \mbox{\hyperlink{async_8h_source_l00126}{Async\+Event\+Loop\+::running}}, \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}, and \mbox{\hyperlink{async_8h_source_l00120}{Async\+Event\+Loop\+::workers}}.
+
+Here is the call graph for this function\+:
+% FIG 1
+\Hypertarget{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}\index{async.c@{async.c}!async\_event\_loop\_stop@{async\_event\_loop\_stop}}
+\index{async\_event\_loop\_stop@{async\_event\_loop\_stop}!async.c@{async.c}}
+\doxysubsubsection{\texorpdfstring{async\_event\_loop\_stop()}{async\_event\_loop\_stop()}}
+{\footnotesize\ttfamily \label{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de} 
+void async\+\_\+event\+\_\+loop\+\_\+stop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_async_event_loop}{Async\+Event\+Loop}} \texorpdfstring{$\ast$}{*}}]{loop}{}\end{DoxyParamCaption})}
+
+
+
+Остановить event loop и освободить ресурсы 
+
+
+\begin{DoxyParams}{Parameters}
+{\em loop} & Async\+Event\+Loop\texorpdfstring{$\ast$}{*} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{async_8c_source_l00072}{72}} of file \mbox{\hyperlink{async_8c_source}{async.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (!loop)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ Signal\ all\ workers\ to\ stop}}
+\DoxyCodeLine{00076\ \ \ \ \ pthread\_mutex\_lock(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00077\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}}\ =\ 0;}
+\DoxyCodeLine{00078\ \ \ \ \ pthread\_cond\_broadcast(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}});}
+\DoxyCodeLine{00079\ \ \ \ \ pthread\_mutex\_unlock(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ Join\ all\ worker\ threads}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ loop-\/>\mbox{\hyperlink{struct_async_event_loop_afe98cfc82203b9e70b13bcc492bf5324}{num\_workers}};\ i++)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ pthread\_join(loop-\/>\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}}[i],\ NULL);}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ Free\ remaining\ tasks\ in\ the\ queue}}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}*\ current\ =\ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}};}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{while}\ (current)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}*\ next\ =\ current-\/>\mbox{\hyperlink{struct_async_task_node_a20481c06ac4deff534ac15c8960b9a51}{next}};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ free(current);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ current\ =\ next;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Destroy\ synchronization\ primitives\ and\ free\ memory}}
+\DoxyCodeLine{00095\ \ \ \ \ pthread\_mutex\_destroy(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00096\ \ \ \ \ pthread\_cond\_destroy(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}});}
+\DoxyCodeLine{00097\ \ \ \ \ free(loop-\/>\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}});}
+\DoxyCodeLine{00098\ \ \ \ \ free(loop);}
+\DoxyCodeLine{00099\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{async_8h_source_l00105}{Async\+Task\+Node\+::next}}, \mbox{\hyperlink{async_8h_source_l00121}{Async\+Event\+Loop\+::num\+\_\+workers}}, \mbox{\hyperlink{async_8h_source_l00123}{Async\+Event\+Loop\+::queue\+\_\+cv}}, \mbox{\hyperlink{async_8h_source_l00124}{Async\+Event\+Loop\+::queue\+\_\+head}}, \mbox{\hyperlink{async_8h_source_l00122}{Async\+Event\+Loop\+::queue\+\_\+mtx}}, \mbox{\hyperlink{async_8h_source_l00126}{Async\+Event\+Loop\+::running}}, and \mbox{\hyperlink{async_8h_source_l00120}{Async\+Event\+Loop\+::workers}}.
+
+\Hypertarget{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}\index{async.c@{async.c}!async\_run@{async\_run}}
+\index{async\_run@{async\_run}!async.c@{async.c}}
+\doxysubsubsection{\texorpdfstring{async\_run()}{async\_run()}}
+{\footnotesize\ttfamily \label{async_8c_a07b659d1096ebc8c902a9a5e63ad4925} 
+\mbox{\hyperlink{struct_async_task}{Async\+Task}} \texorpdfstring{$\ast$}{*} async\+\_\+run (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_async_event_loop}{Async\+Event\+Loop}} \texorpdfstring{$\ast$}{*}}]{loop}{, }\item[{\mbox{\hyperlink{struct_function_pipeline}{Function\+Pipeline}} \texorpdfstring{$\ast$}{*}}]{func}{, }\item[{\mbox{\hyperlink{struct_function_params}{Function\+Params}} \texorpdfstring{$\ast$}{*}}]{params}{}\end{DoxyParamCaption})}
+
+
+
+Запустить функцию из \doxylink{struct_function_pipeline}{Function\+Pipeline} асинхронно через event loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em loop} & Async\+Event\+Loop\texorpdfstring{$\ast$}{*} \\
+\hline
+{\em func} & Function\+Pipeline\texorpdfstring{$\ast$}{*} \\
+\hline
+{\em params} & Function\+Params\texorpdfstring{$\ast$}{*} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Async\+Task\texorpdfstring{$\ast$}{*} дескриптор задачи 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{async_8c_source_l00101}{101}} of file \mbox{\hyperlink{async_8c_source}{async.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}\ (!loop\ ||\ !func)\ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ Allocate\ and\ initialize\ AsyncTask\ structure}}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ (\mbox{\hyperlink{struct_async_task}{AsyncTask}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_async_task}{AsyncTask}}));}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{if}\ (!task)\ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ task-\/>\mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}}\ =\ 0;}
+\DoxyCodeLine{00109\ \ \ \ \ task-\/>\mbox{\hyperlink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{cancel}}\ =\ 0;}
+\DoxyCodeLine{00110\ \ \ \ \ memset(\&task-\/>\mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{result}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_result}{Result}}));}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ Initialize\ task\ mutex\ and\ condition\ variable}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{if}\ (pthread\_mutex\_init(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}},\ NULL)\ !=\ 0)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ free(task);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{if}\ (pthread\_cond\_init(\&task-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}},\ NULL)\ !=\ 0)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ pthread\_mutex\_destroy(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ free(task);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ Allocate\ and\ initialize\ queue\ node}}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}*\ node\ =\ (\mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}));}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (!node)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ pthread\_mutex\_destroy(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ pthread\_cond\_destroy(\&task-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}});}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ free(task);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_adee2cf38d7faf2a7dcc8af3088a125db}{func}}\ =\ func;}
+\DoxyCodeLine{00134\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_a75e616f4250ff818abd5a7d67611c576}{params}}\ =\ params;}
+\DoxyCodeLine{00135\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}}\ =\ task;}
+\DoxyCodeLine{00136\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_a20481c06ac4deff534ac15c8960b9a51}{next}}\ =\ NULL;}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ Add\ task\ to\ the\ queue}}
+\DoxyCodeLine{00139\ \ \ \ \ pthread\_mutex\_lock(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00140\ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (!loop-\/>\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}})\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ is\ empty}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}}\ =\ node;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a6529c6586ab3adcfe1d640f4ca3a2efe}{queue\_tail}}\ =\ node;}
+\DoxyCodeLine{00145\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Append\ to\ the\ end\ of\ the\ queue}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a6529c6586ab3adcfe1d640f4ca3a2efe}{queue\_tail}}-\/>\mbox{\hyperlink{struct_async_task_node_a20481c06ac4deff534ac15c8960b9a51}{next}}\ =\ node;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a6529c6586ab3adcfe1d640f4ca3a2efe}{queue\_tail}}\ =\ node;}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//\ Signal\ one\ worker\ to\ process\ the\ new\ task}}
+\DoxyCodeLine{00152\ \ \ \ \ pthread\_cond\_signal(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}});}
+\DoxyCodeLine{00153\ \ \ \ \ pthread\_mutex\_unlock(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{return}\ task;}
+\DoxyCodeLine{00156\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{async_8h_source_l00093}{Async\+Task\+::cancel}}, \mbox{\hyperlink{async_8h_source_l00091}{Async\+Task\+::cv}}, \mbox{\hyperlink{async_8h_source_l00102}{Async\+Task\+Node\+::func}}, \mbox{\hyperlink{async_8h_source_l00090}{Async\+Task\+::mtx}}, \mbox{\hyperlink{async_8h_source_l00105}{Async\+Task\+Node\+::next}}, \mbox{\hyperlink{async_8h_source_l00103}{Async\+Task\+Node\+::params}}, \mbox{\hyperlink{async_8h_source_l00123}{Async\+Event\+Loop\+::queue\+\_\+cv}}, \mbox{\hyperlink{async_8h_source_l00124}{Async\+Event\+Loop\+::queue\+\_\+head}}, \mbox{\hyperlink{async_8h_source_l00122}{Async\+Event\+Loop\+::queue\+\_\+mtx}}, \mbox{\hyperlink{async_8h_source_l00125}{Async\+Event\+Loop\+::queue\+\_\+tail}}, \mbox{\hyperlink{async_8h_source_l00092}{Async\+Task\+::ready}}, \mbox{\hyperlink{async_8h_source_l00094}{Async\+Task\+::result}}, and \mbox{\hyperlink{async_8h_source_l00104}{Async\+Task\+Node\+::task}}.
+
+\Hypertarget{async_8c_abecd2b1dac9ce4465e96fc6b4f5316e4}\index{async.c@{async.c}!worker\_thread\_func@{worker\_thread\_func}}
+\index{worker\_thread\_func@{worker\_thread\_func}!async.c@{async.c}}
+\doxysubsubsection{\texorpdfstring{worker\_thread\_func()}{worker\_thread\_func()}}
+{\footnotesize\ttfamily \label{async_8c_abecd2b1dac9ce4465e96fc6b4f5316e4} 
+static void \texorpdfstring{$\ast$}{*} worker\+\_\+thread\+\_\+func (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{async_8c_source_l00242}{242}} of file \mbox{\hyperlink{async_8c_source}{async.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ (\mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*)arg;}
+\DoxyCodeLine{00244\ \ \ \ \ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ a\ task\ from\ the\ queue}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}*\ node\ =\ NULL;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ pthread\_mutex\_lock(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ until\ there's\ a\ task\ or\ the\ loop\ is\ stopping}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (loop-\/>\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}}\ ==\ NULL\ \&\&\ loop-\/>\mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}})\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_cond\_wait(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}},\ \&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ should\ exit}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!loop-\/>\mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}}\ \&\&\ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}}\ ==\ NULL)\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_mutex\_unlock(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dequeue\ a\ task}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loop-\/>\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}})\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ node\ =\ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}};}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}}\ =\ node-\/>\mbox{\hyperlink{struct_async_task_node_a20481c06ac4deff534ac15c8960b9a51}{next}};}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ tail\ if\ queue\ is\ now\ empty}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loop-\/>\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}}\ ==\ NULL)\ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a6529c6586ab3adcfe1d640f4ca3a2efe}{queue\_tail}}\ =\ NULL;}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ pthread\_mutex\_unlock(\&loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ the\ task}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node)\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ node-\/>\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}};}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ cancellation}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cancelled\ =\ 0;}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_mutex\_lock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ cancelled\ =\ task-\/>\mbox{\hyperlink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{cancel}};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_mutex\_unlock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!cancelled)\ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Execute\ the\ function}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ result\ =\ node-\/>\mbox{\hyperlink{struct_async_task_node_adee2cf38d7faf2a7dcc8af3088a125db}{func}}-\/>\mbox{\hyperlink{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2}{func}}(node-\/>\mbox{\hyperlink{struct_async_task_node_a75e616f4250ff818abd5a7d67611c576}{params}});}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ task\ with\ result}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_mutex\_lock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{result}}\ =\ result;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}}\ =\ 1;}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_cond\_broadcast(\&task-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}});}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_mutex\_unlock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Task\ was\ cancelled,\ mark\ as\ ready\ without\ executing}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_mutex\_lock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}}\ =\ 1;}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_cond\_broadcast(\&task-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}});}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pthread\_mutex\_unlock(\&task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Free\ the\ task\ node\ (but\ not\ the\ task\ itself,\ which\ is\ freed\ after\ await)}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ free(node);}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ }
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00309\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{async_8h_source_l00093}{Async\+Task\+::cancel}}, \mbox{\hyperlink{async_8h_source_l00091}{Async\+Task\+::cv}}, \mbox{\hyperlink{async_8h_source_l00102}{Async\+Task\+Node\+::func}}, \mbox{\hyperlink{types_8h_source_l00205}{Function\+Pipeline\+::func}}, \mbox{\hyperlink{async_8h_source_l00090}{Async\+Task\+::mtx}}, \mbox{\hyperlink{async_8h_source_l00105}{Async\+Task\+Node\+::next}}, \mbox{\hyperlink{async_8h_source_l00103}{Async\+Task\+Node\+::params}}, \mbox{\hyperlink{async_8h_source_l00123}{Async\+Event\+Loop\+::queue\+\_\+cv}}, \mbox{\hyperlink{async_8h_source_l00124}{Async\+Event\+Loop\+::queue\+\_\+head}}, \mbox{\hyperlink{async_8h_source_l00122}{Async\+Event\+Loop\+::queue\+\_\+mtx}}, \mbox{\hyperlink{async_8h_source_l00125}{Async\+Event\+Loop\+::queue\+\_\+tail}}, \mbox{\hyperlink{async_8h_source_l00092}{Async\+Task\+::ready}}, \mbox{\hyperlink{async_8h_source_l00094}{Async\+Task\+::result}}, \mbox{\hyperlink{async_8h_source_l00126}{Async\+Event\+Loop\+::running}}, and \mbox{\hyperlink{async_8h_source_l00104}{Async\+Task\+Node\+::task}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00010}{async\+\_\+event\+\_\+loop\+\_\+init()}}.
+
+Here is the caller graph for this function\+:
+% FIG 2

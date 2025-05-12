@@ -1,0 +1,360 @@
+\chapter{Документация по core/async.h}
+\hypertarget{md_core_2async_8doc}{}\label{md_core_2async_8doc}\index{Документация по core/async.h@{Документация по core/async.h}}
+\label{md_core_2async_8doc_autotoc_md0}%
+\Hypertarget{md_core_2async_8doc_autotoc_md0}%
+\hypertarget{md_core_2async_8doc_autotoc_md1}{}\doxysection{\texorpdfstring{Описание}{Описание}}\label{md_core_2async_8doc_autotoc_md1}
+{\ttfamily \doxylink{async_8h}{core/async.\+h}} реализует асинхронные примитивы (event loop, future, promise) для запуска функций из \doxylink{struct_function_pipeline}{Function\+Pipeline} с поддержкой универсального результата (\doxylink{struct_result}{Result}). Поддерживается как C, так и C++ (с использованием std\+::thread/std\+::mutex/std\+::condition\+\_\+variable или pthread).
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2async_8doc_autotoc_md3}{}\doxysection{\texorpdfstring{Основные структуры}{Основные структуры}}\label{md_core_2async_8doc_autotoc_md3}
+\hypertarget{md_core_2async_8doc_autotoc_md4}{}\doxysubsection{\texorpdfstring{Async\+Task}{Async\+Task}}\label{md_core_2async_8doc_autotoc_md4}
+Дескриптор асинхронной задачи (future/promise). Позволяет ожидать результат выполнения функции.
+
+
+\begin{DoxyItemize}
+\item В C++\+:
+\begin{DoxyItemize}
+\item {\ttfamily std\+::mutex mtx;}
+\item {\ttfamily std\+::condition\+\_\+variable cv;}
+\item {\ttfamily bool ready;}
+\item {\ttfamily \doxylink{struct_result}{Result} result;}
+\end{DoxyItemize}
+\item В C\+:
+\begin{DoxyItemize}
+\item {\ttfamily pthread\+\_\+mutex\+\_\+t mtx;}
+\item {\ttfamily pthread\+\_\+cond\+\_\+t cv;}
+\item {\ttfamily int ready;}
+\item {\ttfamily \doxylink{struct_result}{Result} result;}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_core_2async_8doc_autotoc_md5}{}\doxysubsection{\texorpdfstring{Async\+Task\+Node}{Async\+Task\+Node}}\label{md_core_2async_8doc_autotoc_md5}
+Внутренняя структура для очереди задач event loop.
+\begin{DoxyItemize}
+\item {\ttfamily Function\+Pipeline\texorpdfstring{$\ast$}{*} func;}
+\item {\ttfamily Function\+Params\texorpdfstring{$\ast$}{*} params;}
+\item {\ttfamily Async\+Task\texorpdfstring{$\ast$}{*} task;}
+\item {\ttfamily Async\+Task\+Node\texorpdfstring{$\ast$}{*} next;}
+\end{DoxyItemize}\hypertarget{md_core_2async_8doc_autotoc_md6}{}\doxysubsection{\texorpdfstring{Async\+Event\+Loop}{Async\+Event\+Loop}}\label{md_core_2async_8doc_autotoc_md6}
+Event loop для асинхронного исполнения задач.
+\begin{DoxyItemize}
+\item В C++\+:
+\begin{DoxyItemize}
+\item {\ttfamily std\+::thread\texorpdfstring{$\ast$}{*} worker;}
+\item {\ttfamily std\+::mutex queue\+\_\+mtx;}
+\item {\ttfamily std\+::condition\+\_\+variable queue\+\_\+cv;}
+\item {\ttfamily std\+::queue\texorpdfstring{$<$}{<}Async\+Task\+Node\texorpdfstring{$\ast$}{*}\texorpdfstring{$>$}{>} queue;}
+\item {\ttfamily bool running;}
+\end{DoxyItemize}
+\item В C\+:
+\begin{DoxyItemize}
+\item {\ttfamily pthread\+\_\+t worker;}
+\item {\ttfamily pthread\+\_\+mutex\+\_\+t queue\+\_\+mtx;}
+\item {\ttfamily pthread\+\_\+cond\+\_\+t queue\+\_\+cv;}
+\item {\ttfamily Async\+Task\+Node\texorpdfstring{$\ast$}{*} queue\+\_\+head, \texorpdfstring{$\ast$}{*}queue\+\_\+tail;}
+\item {\ttfamily int running;}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2async_8doc_autotoc_md8}{}\doxysection{\texorpdfstring{Основные функции}{Основные функции}}\label{md_core_2async_8doc_autotoc_md8}
+\hypertarget{md_core_2async_8doc_autotoc_md9}{}\doxysubsection{\texorpdfstring{Async\+Event\+Loop\texorpdfstring{$\ast$}{*} async\+\_\+event\+\_\+loop\+\_\+init();}{Async\+Event\+Loop\texorpdfstring{$\ast$}{*} async\+\_\+event\+\_\+loop\+\_\+init();}}\label{md_core_2async_8doc_autotoc_md9}
+Создаёт и запускает event loop. Возвращает указатель на структуру event loop.\hypertarget{md_core_2async_8doc_autotoc_md10}{}\doxysubsection{\texorpdfstring{void async\+\_\+event\+\_\+loop\+\_\+stop(\+Async\+Event\+Loop\texorpdfstring{$\ast$}{*} loop);}{void async\+\_\+event\+\_\+loop\+\_\+stop(\+Async\+Event\+Loop\texorpdfstring{$\ast$}{*} loop);}}\label{md_core_2async_8doc_autotoc_md10}
+Останавливает event loop, освобождает ресурсы.\hypertarget{md_core_2async_8doc_autotoc_md11}{}\doxysubsection{\texorpdfstring{Async\+Task\texorpdfstring{$\ast$}{*} async\+\_\+run(\+Async\+Event\+Loop\texorpdfstring{$\ast$}{*} loop, Function\+Pipeline\texorpdfstring{$\ast$}{*} func, Function\+Params\texorpdfstring{$\ast$}{*} params);}{Async\+Task\texorpdfstring{$\ast$}{*} async\+\_\+run(\+Async\+Event\+Loop\texorpdfstring{$\ast$}{*} loop, Function\+Pipeline\texorpdfstring{$\ast$}{*} func, Function\+Params\texorpdfstring{$\ast$}{*} params);}}\label{md_core_2async_8doc_autotoc_md11}
+Добавляет задачу в event loop для асинхронного исполнения. Возвращает дескриптор задачи (future).\hypertarget{md_core_2async_8doc_autotoc_md12}{}\doxysubsection{\texorpdfstring{Result async\+\_\+await(\+Async\+Task\texorpdfstring{$\ast$}{*} task);}{Result async\+\_\+await(\+Async\+Task\texorpdfstring{$\ast$}{*} task);}}\label{md_core_2async_8doc_autotoc_md12}
+Блокирует вызывающий поток до завершения задачи, возвращает результат (\doxylink{struct_result}{Result}). Освобождает ресурсы задачи.
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2async_8doc_autotoc_md14}{}\doxysection{\texorpdfstring{Интеграция с Function\+Pipeline и Result}{Интеграция с Function\+Pipeline и Result}}\label{md_core_2async_8doc_autotoc_md14}
+
+\begin{DoxyItemize}
+\item Любая функция, совместимая с \doxylink{struct_function_pipeline}{Function\+Pipeline} (принимает {\ttfamily Function\+Params\texorpdfstring{$\ast$}{*}}, возвращает {\ttfamily \doxylink{struct_result}{Result}}), может быть запущена асинхронно через event loop.
+\item Результат выполнения всегда возвращается в виде структуры \doxylink{struct_result}{Result} (см. \doxylink{types_8h}{core/types.\+h}).
+\item Аргументы для функции передаются через структуру \doxylink{struct_function_params}{Function\+Params} (argc, argv).
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2async_8doc_autotoc_md16}{}\doxysection{\texorpdfstring{Новые возможности (v2)}{Новые возможности (v2)}}\label{md_core_2async_8doc_autotoc_md16}
+\hypertarget{md_core_2async_8doc_autotoc_md17}{}\doxysubsection{\texorpdfstring{Пул потоков}{Пул потоков}}\label{md_core_2async_8doc_autotoc_md17}
+
+\begin{DoxyItemize}
+\item Event loop теперь поддерживает несколько воркеров (потоков).
+\item При инициализации можно указать число воркеров\+: {\ttfamily async\+\_\+event\+\_\+loop\+\_\+init(num\+\_\+workers)} (C/\+C++).
+\item Все задачи из очереди распределяются между воркерами.
+\end{DoxyItemize}\hypertarget{md_core_2async_8doc_autotoc_md18}{}\doxysubsection{\texorpdfstring{Отмена задач}{Отмена задач}}\label{md_core_2async_8doc_autotoc_md18}
+
+\begin{DoxyItemize}
+\item В структуре \doxylink{struct_async_task}{Async\+Task} появился флаг cancel.
+\item Для отмены задачи вызовите {\ttfamily async\+\_\+cancel(task)}.
+\item Если задача не была начата, она не будет выполнена; если уже выполняется — отмена не гарантируется (зависит от реализации).
+\end{DoxyItemize}\hypertarget{md_core_2async_8doc_autotoc_md19}{}\doxysubsection{\texorpdfstring{Таймауты}{Таймауты}}\label{md_core_2async_8doc_autotoc_md19}
+
+\begin{DoxyItemize}
+\item Для ожидания результата с таймаутом используйте {\ttfamily async\+\_\+await\+\_\+timeout(task, timeout\+\_\+ms)}.
+\item Если задача не завершилась за указанное время, возвращается \doxylink{struct_result}{Result} с ошибкой (например, err = "{}\+Timeout"{}).
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2async_8doc_autotoc_md21}{}\doxysection{\texorpdfstring{Примеры использования}{Примеры использования}}\label{md_core_2async_8doc_autotoc_md21}
+\hypertarget{md_core_2async_8doc_autotoc_md22}{}\doxysubsection{\texorpdfstring{Простой пример (C)}{Простой пример (C)}}\label{md_core_2async_8doc_autotoc_md22}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{async_8h}{async.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ hello\_func(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\ \ \ \ res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}},\ \textcolor{stringliteral}{"{}Hello\ from\ async!"{}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ hello\_func,\ NULL\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 0,\ NULL\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(loop,\ \&fp,\ \&params);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ r\ =\ \mbox{\hyperlink{async_8c_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(task);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ printf(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ (\textcolor{keywordtype}{char}*)\mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{char}*,\ r.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(loop);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md23}{}\doxysubsection{\texorpdfstring{Пример с аргументами (C)}{Пример с аргументами (C)}}\label{md_core_2async_8doc_autotoc_md23}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{async_8h}{async.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ sum\_func(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (params-\/>\mbox{\hyperlink{struct_function_params_abec2b9a3d56da4074bd803c48dadba8e}{argc}}\ <\ 2)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(res.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}},\ \textcolor{stringliteral}{"{}Need\ 2\ args"{}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ a\ =\ *(\textcolor{keywordtype}{int}*)\mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}[0]);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ b\ =\ *(\textcolor{keywordtype}{int}*)\mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}[1]);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}*\ sum\ =\ malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{\ \ \ \ *sum\ =\ a\ +\ b;}
+\DoxyCodeLine{\ \ \ \ res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}},\ sum);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ 2,\ y\ =\ 3;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_generic}{Generic}}\ argv[2];}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(argv[0],\ \&x);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(argv[1],\ \&y);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 2,\ argv\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ sum\_func,\ NULL\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(loop,\ \&fp,\ \&params);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ r\ =\ \mbox{\hyperlink{async_8c_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(task);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ sum\ =\ \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ r.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Sum:\ \%d\(\backslash\)n"{}},\ *sum);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ free(sum);}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Error:\ \%s\(\backslash\)n"{}},\ (\textcolor{keywordtype}{char}*)\mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{char}*,\ r.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}}));}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(loop);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md24}{}\doxysubsection{\texorpdfstring{Пример с несколькими задачами (C++)}{Пример с несколькими задачами (C++)}}\label{md_core_2async_8doc_autotoc_md24}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{async_8h}{async.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ hello\_func(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\ \ \ \ res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}\ =\ \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic<const\ char*>}}(\textcolor{stringliteral}{"{}Hello\ from\ async!"{}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ hello\_func,\ \textcolor{keyword}{nullptr}\ \};}
+\DoxyCodeLine{\ \ \ \ std::vector<AsyncTask*>\ tasks;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 0,\ \textcolor{keyword}{nullptr}\ \};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ tasks.push\_back(\mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(loop,\ \&fp,\ \&params));}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ task\ :\ tasks)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ r\ =\ \mbox{\hyperlink{async_8c_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(task);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ std::cout\ <<\ static\_cast<const\ char*>(r.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}.\mbox{\hyperlink{struct_generic_a07a04db966cf03fd44abfc8f94b46179}{value}})\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(loop);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md25}{}\doxysubsection{\texorpdfstring{Пример обработки ошибок (C++)}{Пример обработки ошибок (C++)}}\label{md_core_2async_8doc_autotoc_md25}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{async_8h}{async.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ fail\_func(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\ \ \ \ res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ res.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}}\ =\ \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic<const\ char*>}}(\textcolor{stringliteral}{"{}Something\ went\ wrong"{}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ fail\_func,\ \textcolor{keyword}{nullptr}\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 0,\ \textcolor{keyword}{nullptr}\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(loop,\ \&fp,\ \&params);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ r\ =\ \mbox{\hyperlink{async_8c_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(task);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ std::cout\ <<\ \textcolor{stringliteral}{"{}Error:\ "{}}\ <<\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(r.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}}.\mbox{\hyperlink{struct_generic_a07a04db966cf03fd44abfc8f94b46179}{value}})\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(loop);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md26}{}\doxysubsection{\texorpdfstring{Пул потоков (C++)}{Пул потоков (C++)}}\label{md_core_2async_8doc_autotoc_md26}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}(4);\ \textcolor{comment}{//\ 4\ воркера}}
+\DoxyCodeLine{\textcolor{comment}{//\ ...\ запуск\ задач\ ...}}
+\DoxyCodeLine{\mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(loop);}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md27}{}\doxysubsection{\texorpdfstring{Ожидание с таймаутом (C++)}{Ожидание с таймаутом (C++)}}\label{md_core_2async_8doc_autotoc_md27}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(loop,\ \&fp,\ \&params);}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ r\ =\ \mbox{\hyperlink{async_8c_af23c830c05972076fed61c782b2cd7ed}{async\_await\_timeout}}(task,\ 1000);\ \textcolor{comment}{//\ ждать\ максимум\ 1\ секунду}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (!r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ std::cout\ <<\ \textcolor{stringliteral}{"{}Timeout\ or\ error:\ "{}}\ <<\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(r.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}}.\mbox{\hyperlink{struct_generic_a07a04db966cf03fd44abfc8f94b46179}{value}})\ <<\ std::endl;}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md28}{}\doxysubsection{\texorpdfstring{Отмена задачи (C++)}{Отмена задачи (C++)}}\label{md_core_2async_8doc_autotoc_md28}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(loop,\ \&fp,\ \&params);}
+\DoxyCodeLine{\mbox{\hyperlink{async_8c_a50e869118636fbb76259be2551c8a8e7}{async\_cancel}}(task);\ \textcolor{comment}{//\ попытка\ отменить\ задачу}}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ r\ =\ \mbox{\hyperlink{async_8c_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(task);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (!r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ std::cout\ <<\ \textcolor{stringliteral}{"{}Cancelled\ or\ error:\ "{}}\ <<\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(r.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}}.\mbox{\hyperlink{struct_generic_a07a04db966cf03fd44abfc8f94b46179}{value}})\ <<\ std::endl;}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2async_8doc_autotoc_md30}{}\doxysection{\texorpdfstring{Потокобезопасность}{Потокобезопасность}}\label{md_core_2async_8doc_autotoc_md30}
+
+\begin{DoxyItemize}
+\item Все операции с очередью задач и состоянием event loop защищены mutex\textquotesingle{}ами.
+\item async\+\_\+await потокобезопасен для каждого отдельного \doxylink{struct_async_task}{Async\+Task}.
+\end{DoxyItemize}\hypertarget{md_core_2async_8doc_autotoc_md31}{}\doxysection{\texorpdfstring{Ограничения и замечания}{Ограничения и замечания}}\label{md_core_2async_8doc_autotoc_md31}
+
+\begin{DoxyItemize}
+\item В C++ реализация полностью header-\/only. В C требуется реализация функций в .c-\/файле.
+\item Освобождение памяти для аргументов и результатов (если выделялись динамически) ложится на пользователя.
+\item Event loop однопоточный (один worker). Для расширения до пула потоков — модифицируйте \doxylink{struct_async_event_loop}{Async\+Event\+Loop}.
+\item После async\+\_\+await дескриптор задачи освобождается автоматически (в C++). В C — рекомендуется явно вызывать free, если реализация выделяет память.
+\end{DoxyItemize}\hypertarget{md_core_2async_8doc_autotoc_md32}{}\doxysection{\texorpdfstring{Расширяемость}{Расширяемость}}\label{md_core_2async_8doc_autotoc_md32}
+
+\begin{DoxyItemize}
+\item Можно реализовать несколько event loop\textquotesingle{}ов для разных задач.
+\item Можно расширить \doxylink{struct_function_params}{Function\+Params} для передачи дополнительных данных.
+\item Для поддержки отмены задач — добавить флаг отмены в \doxylink{struct_async_task}{Async\+Task} и проверку в worker.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2async_8doc_autotoc_md34}{}\doxysection{\texorpdfstring{См. также}{См. также}}\label{md_core_2async_8doc_autotoc_md34}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{types_8h}{core/types.\+h}} — описание \doxylink{struct_function_pipeline}{Function\+Pipeline}, \doxylink{struct_result}{Result}, \doxylink{struct_generic}{Generic}.
+\item Примеры в Doxygen-\/блоках внутри \doxylink{async_8h}{async.\+h}.
+\end{DoxyItemize}\hypertarget{md_core_2async_8doc_autotoc_md35}{}\doxysection{\texorpdfstring{Иллюстрированные схемы}{Иллюстрированные схемы}}\label{md_core_2async_8doc_autotoc_md35}
+\hypertarget{md_core_2async_8doc_autotoc_md36}{}\doxysubsection{\texorpdfstring{Архитектура Event Loop}{Архитектура Event Loop}}\label{md_core_2async_8doc_autotoc_md36}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ AsyncEventLoop\ \ \ \ |}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ worker\ (thread)\ \ \ |}
+\DoxyCodeLine{|\ queue\ (tasks)\ \ \ \ \ |}
+\DoxyCodeLine{|\ running\ (flag)\ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{\ \ \ [Worker\ Thread]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ AsyncTaskNode\ \ \ \ \ |}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ func,\ params,\ ...\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md37}{}\doxysubsection{\texorpdfstring{Очередь задач (C++)}{Очередь задач (C++)}}\label{md_core_2async_8doc_autotoc_md37}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ AsyncTaskNode\ \ \ \ \ |-\/-\/-\/>|\ AsyncTaskNode\ \ \ \ \ |-\/-\/-\/>|\ AsyncTaskNode\ \ \ \ \ |-\/-\/-\/>\ NULL}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md38}{}\doxysubsection{\texorpdfstring{Взаимодействие async\+\_\+run и async\+\_\+await}{Взаимодействие async\+\_\+run и async\+\_\+await}}\label{md_core_2async_8doc_autotoc_md38}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[main\ thread]}
+\DoxyCodeLine{\ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ |\ async\_run(loop,\ \&fp,\ \&params)}
+\DoxyCodeLine{\ \ \ \ v}
+\DoxyCodeLine{[AsyncEventLoop]\ (кладёт\ задачу\ в\ очередь)}
+\DoxyCodeLine{\ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ v}
+\DoxyCodeLine{[Worker\ Thread]\ -\/-\/(выполняет)-\/>\ [FunctionPipeline.func]}
+\DoxyCodeLine{\ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ v}
+\DoxyCodeLine{[AsyncTask]\ (готов)}
+\DoxyCodeLine{\ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ v}
+\DoxyCodeLine{[main\ thread]\ -\/-\/\ async\_await\ -\/-\/>\ [Result]}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md39}{}\doxysubsection{\texorpdfstring{Структура Async\+Task}{Структура Async\+Task}}\label{md_core_2async_8doc_autotoc_md39}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ \ \ \ AsyncTask\ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ mtx/cv\ (sync)\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ ready\ (bool/int)\ \ \ \ \ \ |}
+\DoxyCodeLine{|\ result\ (Result)\ \ \ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md40}{}\doxysubsection{\texorpdfstring{Поток данных через Event Loop}{Поток данных через Event Loop}}\label{md_core_2async_8doc_autotoc_md40}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[FunctionParams]}
+\DoxyCodeLine{\ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ v}
+\DoxyCodeLine{[FunctionPipeline.func]\ -\/-\/(Result)-\/-\/>\ [AsyncTask]}
+\DoxyCodeLine{\ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string^}
+\DoxyCodeLine{\ \ \ \ \ v\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{[FunctionPipeline.next]\ ...\ \ \ \ \ \ \ \ \ [async\_await]}
+
+\end{DoxyCode}
+\hypertarget{md_core_2async_8doc_autotoc_md41}{}\doxysection{\texorpdfstring{Пояснения по новым полям структур}{Пояснения по новым полям структур}}\label{md_core_2async_8doc_autotoc_md41}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{struct_async_event_loop_afe98cfc82203b9e70b13bcc492bf5324}{Async\+Event\+Loop\+::num\+\_\+workers}} — количество потоков-\/воркеров.
+\item {\ttfamily \doxylink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{Async\+Event\+Loop\+::workers}} — массив/вектор потоков.
+\item {\ttfamily \doxylink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{Async\+Task\+::cancel}} — флаг отмены задачи. 
+\end{DoxyItemize}

@@ -1,0 +1,117 @@
+\doxysection{Async\+Task Struct Reference}
+\hypertarget{struct_async_task}{}\label{struct_async_task}\index{AsyncTask@{AsyncTask}}
+
+
+Дескриптор асинхронной задачи (future/promise)  
+
+
+
+
+{\ttfamily \#include $<$async.\+h$>$}
+
+
+
+Collaboration diagram for Async\+Task\+:
+% FIG 0
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+pthread\+\_\+mutex\+\_\+t \mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}}
+\item 
+pthread\+\_\+cond\+\_\+t \mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}}
+\item 
+int \mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}}
+\item 
+int \mbox{\hyperlink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{cancel}}
+\begin{DoxyCompactList}\small\item\em Флаг отмены задачи \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_result}{Result}} \mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{result}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Дескриптор асинхронной задачи (future/promise) 
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00082}{82}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}\index{AsyncTask@{AsyncTask}!cancel@{cancel}}
+\index{cancel@{cancel}!AsyncTask@{AsyncTask}}
+\doxysubsubsection{\texorpdfstring{cancel}{cancel}}
+{\footnotesize\ttfamily \label{struct_async_task_ae5a06ee0b5735ffb7df240751a541378} 
+int Async\+Task\+::cancel}
+
+
+
+Флаг отмены задачи 
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00093}{93}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00230}{async\+\_\+cancel()}}, \mbox{\hyperlink{async_8c_source_l00101}{async\+\_\+run()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+\Hypertarget{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}\index{AsyncTask@{AsyncTask}!cv@{cv}}
+\index{cv@{cv}!AsyncTask@{AsyncTask}}
+\doxysubsubsection{\texorpdfstring{cv}{cv}}
+{\footnotesize\ttfamily \label{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e} 
+pthread\+\_\+cond\+\_\+t Async\+Task\+::cv}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00091}{91}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00158}{async\+\_\+await()}}, \mbox{\hyperlink{async_8c_source_l00180}{async\+\_\+await\+\_\+timeout()}}, \mbox{\hyperlink{async_8c_source_l00101}{async\+\_\+run()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+\Hypertarget{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}\index{AsyncTask@{AsyncTask}!mtx@{mtx}}
+\index{mtx@{mtx}!AsyncTask@{AsyncTask}}
+\doxysubsubsection{\texorpdfstring{mtx}{mtx}}
+{\footnotesize\ttfamily \label{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8} 
+pthread\+\_\+mutex\+\_\+t Async\+Task\+::mtx}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00090}{90}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00158}{async\+\_\+await()}}, \mbox{\hyperlink{async_8c_source_l00180}{async\+\_\+await\+\_\+timeout()}}, \mbox{\hyperlink{async_8c_source_l00230}{async\+\_\+cancel()}}, \mbox{\hyperlink{async_8c_source_l00101}{async\+\_\+run()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+\Hypertarget{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}\index{AsyncTask@{AsyncTask}!ready@{ready}}
+\index{ready@{ready}!AsyncTask@{AsyncTask}}
+\doxysubsubsection{\texorpdfstring{ready}{ready}}
+{\footnotesize\ttfamily \label{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9} 
+int Async\+Task\+::ready}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00092}{92}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00158}{async\+\_\+await()}}, \mbox{\hyperlink{async_8c_source_l00180}{async\+\_\+await\+\_\+timeout()}}, \mbox{\hyperlink{async_8c_source_l00101}{async\+\_\+run()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+\Hypertarget{struct_async_task_afbc4252477e47f4610b929023db0d21e}\index{AsyncTask@{AsyncTask}!result@{result}}
+\index{result@{result}!AsyncTask@{AsyncTask}}
+\doxysubsubsection{\texorpdfstring{result}{result}}
+{\footnotesize\ttfamily \label{struct_async_task_afbc4252477e47f4610b929023db0d21e} 
+\mbox{\hyperlink{struct_result}{Result}} Async\+Task\+::result}
+
+
+
+Definition at line \mbox{\hyperlink{async_8h_source_l00094}{94}} of file \mbox{\hyperlink{async_8h_source}{async.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00158}{async\+\_\+await()}}, \mbox{\hyperlink{async_8c_source_l00180}{async\+\_\+await\+\_\+timeout()}}, \mbox{\hyperlink{async_8c_source_l00101}{async\+\_\+run()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+core/\mbox{\hyperlink{async_8h}{async.\+h}}\end{DoxyCompactItemize}

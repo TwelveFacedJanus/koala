@@ -1,0 +1,67 @@
+\doxysection{Function\+Pipeline Struct Reference}
+\hypertarget{struct_function_pipeline}{}\label{struct_function_pipeline}\index{FunctionPipeline@{FunctionPipeline}}
+
+
+Элемент цепочки функций (pipeline).  
+
+
+
+
+{\ttfamily \#include $<$types.\+h$>$}
+
+
+
+Collaboration diagram for Function\+Pipeline\+:
+% FIG 0
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_result}{Result}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2}{func}} )(\mbox{\hyperlink{struct_function_params}{Function\+Params}} \texorpdfstring{$\ast$}{*}params)
+\item 
+struct \mbox{\hyperlink{struct_function_pipeline}{Function\+Pipeline}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Элемент цепочки функций (pipeline). 
+
+func\+: функция, принимающая указатель на \doxylink{struct_function_params}{Function\+Params} и возвращающая \doxylink{struct_result}{Result}. next\+: следующий элемент цепочки (или NULL). 
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00204}{204}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2}\index{FunctionPipeline@{FunctionPipeline}!func@{func}}
+\index{func@{func}!FunctionPipeline@{FunctionPipeline}}
+\doxysubsubsection{\texorpdfstring{func}{func}}
+{\footnotesize\ttfamily \label{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2} 
+\mbox{\hyperlink{struct_result}{Result}}(\texorpdfstring{$\ast$}{*} Function\+Pipeline\+::func) (\mbox{\hyperlink{struct_function_params}{Function\+Params}} \texorpdfstring{$\ast$}{*}params)}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00205}{205}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{types_8c_source_l00029}{function\+\_\+pipeline\+\_\+validate()}}, and \mbox{\hyperlink{async_8c_source_l00242}{worker\+\_\+thread\+\_\+func()}}.
+
+\Hypertarget{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}\index{FunctionPipeline@{FunctionPipeline}!next@{next}}
+\index{next@{next}!FunctionPipeline@{FunctionPipeline}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \label{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659} 
+struct \mbox{\hyperlink{struct_function_pipeline}{Function\+Pipeline}}\texorpdfstring{$\ast$}{*} Function\+Pipeline\+::next}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00206}{206}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{types_8c_source_l00021}{function\+\_\+pipeline\+\_\+free()}}, and \mbox{\hyperlink{types_8c_source_l00029}{function\+\_\+pipeline\+\_\+validate()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+core/\mbox{\hyperlink{types_8h}{types.\+h}}\end{DoxyCompactItemize}

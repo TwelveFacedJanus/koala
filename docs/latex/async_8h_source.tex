@@ -1,0 +1,197 @@
+\doxysection{async.\+h}
+\hypertarget{async_8h_source}{}\label{async_8h_source}\index{core/async.h@{core/async.h}}
+\mbox{\hyperlink{async_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ KOALA\_ASYNC\_H}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ KOALA\_ASYNC\_H}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00004}00004\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00011}00011\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <pthread.h>}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00013}00013\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00075}00075\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00076}00076\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00077}00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00082}\mbox{\hyperlink{struct_async_task}{00082}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_async_task}{AsyncTask}}\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00083}00083\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00084}00084\ \ \ \ \ std::mutex\ \mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00085}00085\ \ \ \ \ std::condition\_variable\ \mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00086}00086\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00087}00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{cancel}};\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00088}00088\ \ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ \mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{result}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00089}00089\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00090}\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{00090}}\ \ \ \ \ pthread\_mutex\_t\ \mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00091}\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{00091}}\ \ \ \ \ pthread\_cond\_t\ \mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00092}\mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{00092}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00093}\mbox{\hyperlink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{00093}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{cancel}};\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00094}\mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{00094}}\ \ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ \mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{result}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00095}00095\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00096}\mbox{\hyperlink{async_8h_a933bcc4ebbe0ef0cf5f3a2e3f244c9d0}{00096}}\ \}\ \mbox{\hyperlink{struct_async_task}{AsyncTask}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00101}\mbox{\hyperlink{struct_async_task_node}{00101}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00102}\mbox{\hyperlink{struct_async_task_node_adee2cf38d7faf2a7dcc8af3088a125db}{00102}}\ \ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ \mbox{\hyperlink{struct_async_task_node_adee2cf38d7faf2a7dcc8af3088a125db}{func}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00103}\mbox{\hyperlink{struct_async_task_node_a75e616f4250ff818abd5a7d67611c576}{00103}}\ \ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ \mbox{\hyperlink{struct_async_task_node_a75e616f4250ff818abd5a7d67611c576}{params}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00104}\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{00104}}\ \ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ \mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00105}\mbox{\hyperlink{struct_async_task_node_a20481c06ac4deff534ac15c8960b9a51}{00105}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}*\ \mbox{\hyperlink{struct_async_task_node_a20481c06ac4deff534ac15c8960b9a51}{next}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00106}\mbox{\hyperlink{async_8h_ae5558cc110217d1354586c2ca318e8d9}{00106}}\ \}\ \mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00111}\mbox{\hyperlink{struct_async_event_loop}{00111}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00112}00112\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00113}00113\ \ \ \ \ std::vector<std::thread*>\ \mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}};\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00114}00114\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_async_event_loop_afe98cfc82203b9e70b13bcc492bf5324}{num\_workers}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00115}00115\ \ \ \ \ std::mutex\ \mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00116}00116\ \ \ \ \ std::condition\_variable\ \mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00117}00117\ \ \ \ \ std::queue<AsyncTaskNode*>\ queue;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00118}00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00119}00119\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00120}\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{00120}}\ \ \ \ \ pthread\_t*\ \mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00121}\mbox{\hyperlink{struct_async_event_loop_afe98cfc82203b9e70b13bcc492bf5324}{00121}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_async_event_loop_afe98cfc82203b9e70b13bcc492bf5324}{num\_workers}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00122}\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{00122}}\ \ \ \ \ pthread\_mutex\_t\ \mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00123}\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{00123}}\ \ \ \ \ pthread\_cond\_t\ \mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00124}\mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{00124}}\ \ \ \ \ \mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}*\ \mbox{\hyperlink{struct_async_event_loop_a76d073a345e3df6e1bfe80ae62c40c22}{queue\_head}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00125}\mbox{\hyperlink{struct_async_event_loop_a6529c6586ab3adcfe1d640f4ca3a2efe}{00125}}\ \ \ \ \ \mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}*\ \mbox{\hyperlink{struct_async_event_loop_a6529c6586ab3adcfe1d640f4ca3a2efe}{queue\_tail}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00126}\mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{00126}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00127}00127\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00128}\mbox{\hyperlink{async_8h_ad628e66c4f4298abd7ddfb6233a312b2}{00128}}\ \}\ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00134}\mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{00134}}\ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00140}00140\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{async_8h_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(\mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop);}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00149}00149\ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ \mbox{\hyperlink{async_8h_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(\mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop,\ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ func,\ \mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params);}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00156}00156\ \mbox{\hyperlink{struct_result}{Result}}\ \mbox{\hyperlink{async_8h_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(\mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task);}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00162}00162\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{async_8h_a50e869118636fbb76259be2551c8a8e7}{async\_cancel}}(\mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task);}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00170}00170\ \mbox{\hyperlink{struct_result}{Result}}\ \mbox{\hyperlink{async_8h_af23c830c05972076fed61c782b2cd7ed}{async\_await\_timeout}}(\mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task,\ \textcolor{keywordtype}{int}\ timeout\_ms);}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00172}00172\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00173}00173\ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00174}00174\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00176}00176\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00177}00177\ \textcolor{comment}{//\ =====================}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00178}00178\ \textcolor{comment}{//\ C++\ inline\ implementation\ (header-\/only)}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00179}00179\ \textcolor{comment}{//\ =====================}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00180}00180\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00181}00181\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00183}00183\ \textcolor{keyword}{namespace\ }koala\_async\_detail\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00184}00184\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ event\_loop\_worker(\mbox{\hyperlink{async_8h_ad628e66c4f4298abd7ddfb6233a312b2}{AsyncEventLoop}}*\ loop)\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00185}00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{async_8h_ae5558cc110217d1354586c2ca318e8d9}{AsyncTaskNode}}*\ node\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::unique\_lock<std::mutex>\ lock(loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}}.wait(lock,\ [\&]\{\ \textcolor{keywordflow}{return}\ !loop-\/>queue.empty()\ ||\ !loop-\/>\mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}};\ \});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!loop-\/>\mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}}\ \&\&\ loop-\/>queue.empty())\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!loop-\/>queue.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node\ =\ loop-\/>queue.front();}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ loop-\/>queue.pop();}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node)\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node-\/>\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}}-\/>\mbox{\hyperlink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{cancel}})\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Отмена\ задачи}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(node-\/>\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}}-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}}-\/>\mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{types_8h_ade7e53b8ed7380705cbd1225db23cd5a}{Result}}\ res\ =\ node-\/>\mbox{\hyperlink{struct_async_task_node_adee2cf38d7faf2a7dcc8af3088a125db}{func}}-\/>\mbox{\hyperlink{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2}{func}}(node-\/>\mbox{\hyperlink{struct_async_task_node_a75e616f4250ff818abd5a7d67611c576}{params}});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(node-\/>\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}}-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}}-\/>\mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{result}}\ =\ res;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}}-\/>\mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}}-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}}.notify\_all();}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ node;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00212}00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00213}00213\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00214}00214\ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00216}00216\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}(\textcolor{keywordtype}{int}\ num\_workers\ =\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00217}00217\ \ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00218}00218\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00219}00219\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_afe98cfc82203b9e70b13bcc492bf5324}{num\_workers}}\ =\ num\_workers;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00220}00220\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_workers;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00221}00221\ \ \ \ \ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}}.push\_back(\textcolor{keyword}{new}\ std::thread(koala\_async\_detail::event\_loop\_worker,\ loop));}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00222}00222\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00223}00223\ \ \ \ \ \textcolor{keywordflow}{return}\ loop;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00224}00224\ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00226}00226\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{async_8h_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(\mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop)\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00227}00227\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00228}00228\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00229}00229\ \ \ \ \ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_ae51517ca0aaf958b5dbddd128d0e025f}{running}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00230}00230\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00231}00231\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}}.notify\_all();}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00232}00232\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ worker\ :\ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}})\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (worker\ \&\&\ worker-\/>joinable())\ worker-\/>join();}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ worker;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00235}00235\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00236}00236\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_a365d1baf0fe0f83229de1e08e320d22b}{workers}}.clear();}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00237}00237\ \ \ \ \ \textcolor{keyword}{delete}\ loop;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00238}00238\ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00240}00240\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ \mbox{\hyperlink{async_8h_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(\mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop,\ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ func,\ \mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00241}00241\ \ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{struct_async_task}{AsyncTask}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00242}00242\ \ \ \ \ task-\/>\mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00243}00243\ \ \ \ \ task-\/>\mbox{\hyperlink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{cancel}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00244}00244\ \ \ \ \ \mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}}*\ node\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{struct_async_task_node}{AsyncTaskNode}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00245}00245\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_adee2cf38d7faf2a7dcc8af3088a125db}{func}}\ =\ func;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00246}00246\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_a75e616f4250ff818abd5a7d67611c576}{params}}\ =\ params;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00247}00247\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_aba4c3334114277634578f62e0b6c463d}{task}}\ =\ task;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00248}00248\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_async_task_node_a20481c06ac4deff534ac15c8960b9a51}{next}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00249}00249\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00250}00250\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(loop-\/>\mbox{\hyperlink{struct_async_event_loop_a31eb0e2d7b3336d36929aa9285248c9d}{queue\_mtx}});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00251}00251\ \ \ \ \ \ \ \ \ loop-\/>queue.push(node);}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00252}00252\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00253}00253\ \ \ \ \ loop-\/>\mbox{\hyperlink{struct_async_event_loop_ac1799afde14dc01d7849f7b971a16df5}{queue\_cv}}.notify\_one();}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00254}00254\ \ \ \ \ \textcolor{keywordflow}{return}\ task;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00255}00255\ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00257}00257\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_result}{Result}}\ \mbox{\hyperlink{async_8h_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(\mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task)\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00258}00258\ \ \ \ \ std::unique\_lock<std::mutex>\ lock(task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00259}00259\ \ \ \ \ task-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}}.wait(lock,\ [\&]\{\ \textcolor{keywordflow}{return}\ task-\/>\mbox{\hyperlink{struct_async_task_aef3b8dc3580793df53a4008518c1e4e9}{ready}};\ \});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00260}00260\ \ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res\ =\ task-\/>\mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{result}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00261}00261\ \ \ \ \ \textcolor{keyword}{delete}\ task;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00262}00262\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00263}00263\ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00265}00265\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{struct_result}{Result}}\ \mbox{\hyperlink{async_8h_af23c830c05972076fed61c782b2cd7ed}{async\_await\_timeout}}(\mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task,\ \textcolor{keywordtype}{int}\ timeout\_ms)\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00266}00266\ \ \ \ \ std::unique\_lock<std::mutex>\ lock(task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00267}00267\ \ \ \ \ \textcolor{keywordflow}{if}\ (task-\/>\mbox{\hyperlink{struct_async_task_a1cfb5d542a90148d89b1ff7211dddf2e}{cv}}.wait\_for(lock,\ std::chrono::milliseconds(timeout\_ms),\ [\&]\{\ return\ task-\/>ready;\ \}))\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00268}00268\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res\ =\ task-\/>\mbox{\hyperlink{struct_async_task_afbc4252477e47f4610b929023db0d21e}{result}};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ task;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00271}00271\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00272}00272\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Таймаут:\ возвращаем\ Result\ с\ ошибкой}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00273}00273\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00274}00274\ \ \ \ \ \ \ \ \ res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00275}00275\ \ \ \ \ \ \ \ \ res.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}}\ =\ \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic<void*>}}((\textcolor{keywordtype}{void}*)\textcolor{stringliteral}{"{}Timeout"{}});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00276}00276\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ task;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00277}00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00278}00278\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00279}00279\ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00281}00281\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{async_8h_a50e869118636fbb76259be2551c8a8e7}{async\_cancel}}(\mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task)\ \{}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00282}00282\ \ \ \ \ std::lock\_guard<std::mutex>\ lock(task-\/>\mbox{\hyperlink{struct_async_task_ac6b19dfd6707edd8f731a171caab88a8}{mtx}});}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00283}00283\ \ \ \ \ task-\/>\mbox{\hyperlink{struct_async_task_ae5a06ee0b5735ffb7df240751a541378}{cancel}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00284}00284\ \}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00285}00285\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00286}00286\ }
+\DoxyCodeLine{\Hypertarget{async_8h_source_l00287}00287\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ KOALA\_ASYNC\_H}}
+
+\end{DoxyCode}

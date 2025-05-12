@@ -1,0 +1,314 @@
+\chapter{Документация по core/types.h}
+\hypertarget{md_core_2types_8doc}{}\label{md_core_2types_8doc}\index{Документация по core/types.h@{Документация по core/types.h}}
+\label{md_core_2types_8doc_autotoc_md42}%
+\Hypertarget{md_core_2types_8doc_autotoc_md42}%
+\hypertarget{md_core_2types_8doc_autotoc_md43}{}\doxysection{\texorpdfstring{Описание}{Описание}}\label{md_core_2types_8doc_autotoc_md43}
+{\ttfamily \doxylink{types_8h}{core/types.\+h}} содержит основные типы и структуры для кроссплатформенной работы с числами, универсальными значениями, результатами вычислений, параметрами функций и пайплайнами функций. Все типы совместимы с C и C++ и предназначены для интеграции с асинхронными примитивами ({\ttfamily \doxylink{async_8h}{async.\+h}}).
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2types_8doc_autotoc_md45}{}\doxysection{\texorpdfstring{Основные типы}{Основные типы}}\label{md_core_2types_8doc_autotoc_md45}
+\hypertarget{md_core_2types_8doc_autotoc_md46}{}\doxysubsection{\texorpdfstring{Целочисленные алиасы}{Целочисленные алиасы}}\label{md_core_2types_8doc_autotoc_md46}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{types_8h_a92c50087ca0e64fa93fc59402c55f8ca}{u8}}, {\ttfamily \doxylink{types_8h_ace9d960e74685e2cd84b36132dbbf8aa}{u16}}, {\ttfamily \doxylink{types_8h_afaa62991928fb9fb18ff0db62a040aba}{u32}}, {\ttfamily \doxylink{types_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234}{u64}} — стандартные беззнаковые целые.
+\item {\ttfamily \doxylink{types_8h_ae3702327b5f47e83b431e22b33da7b58}{i8}}, {\ttfamily \doxylink{types_8h_ad309dbcaeea13aa602d686964156ea0b}{i16}}, {\ttfamily \doxylink{types_8h_a48d6cd8e4135fb2ff7e7f2dac84089ec}{i32}}, {\ttfamily \doxylink{types_8h_a85cb35fbe5bf2961d7ad5f26814a91a2}{i64}} — стандартные знаковые целые.
+\item {\ttfamily \doxylink{types_8h_ae2b4f4372f3f2e9cd25737203141cffd}{ufast8}}, ... — быстрые целые (оптимизированы под скорость).
+\item {\ttfamily \doxylink{types_8h_a6efcfffd6e3ec05937e7dd1e85aac269}{uleast8}}, ... — наименьшие целые (минимальный размер).
+\item {\ttfamily uptr}, {\ttfamily iptr} — для хранения указателей.
+\item {\ttfamily usize}, {\ttfamily isize} — для размеров и разницы указателей.
+\end{DoxyItemize}\hypertarget{md_core_2types_8doc_autotoc_md47}{}\doxysubsection{\texorpdfstring{Generic}{Generic}}\label{md_core_2types_8doc_autotoc_md47}
+Универсальный контейнер для хранения значения любого типа.
+\begin{DoxyItemize}
+\item В C++\+: шаблон {\ttfamily \doxylink{struct_generic}{Generic}\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}, поле {\ttfamily T value}.
+\item В C\+: структура с полем {\ttfamily void\texorpdfstring{$\ast$}{*} value}.
+\item Макросы для C\+: {\ttfamily \doxylink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\+\_\+\+SET(g, v)}}, {\ttfamily \doxylink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\+\_\+\+GET(type, g)}}.
+\end{DoxyItemize}\hypertarget{md_core_2types_8doc_autotoc_md48}{}\doxysubsubsection{\texorpdfstring{Пример (C)}{Пример (C)}}\label{md_core_2types_8doc_autotoc_md48}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_generic}{Generic}}\ g;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ x\ =\ 42;}
+\DoxyCodeLine{\mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(g,\ \&x);}
+\DoxyCodeLine{\textcolor{keywordtype}{int}*\ px\ =\ \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ g);}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}},\ *px);\ \textcolor{comment}{//\ 42}}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md49}{}\doxysubsubsection{\texorpdfstring{Пример (C++)}{Пример (C++)}}\label{md_core_2types_8doc_autotoc_md49}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_generic}{Generic<int>}}\ g(42);}
+\DoxyCodeLine{std::cout\ <<\ g.value\ <<\ std::endl;\ \textcolor{comment}{//\ 42}}
+\DoxyCodeLine{\mbox{\hyperlink{struct_generic}{Generic<std::string>}}\ gs(std::string(\textcolor{stringliteral}{"{}hello"{}}));}
+\DoxyCodeLine{std::cout\ <<\ gs.value\ <<\ std::endl;\ \textcolor{comment}{//\ hello}}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md50}{}\doxysubsection{\texorpdfstring{Result}{Result}}\label{md_core_2types_8doc_autotoc_md50}
+Аналог Rust \doxylink{struct_result}{Result}\+: хранит либо успешное значение, либо ошибку, оба — в виде \doxylink{struct_generic}{Generic}.
+\begin{DoxyItemize}
+\item В C++\+: структура с {\ttfamily bool is\+\_\+ok}, {\ttfamily \doxylink{struct_generic}{Generic}\texorpdfstring{$<$}{<}void\texorpdfstring{$\ast$}{*}\texorpdfstring{$>$}{>} ok}, {\ttfamily \doxylink{struct_generic}{Generic}\texorpdfstring{$<$}{<}void\texorpdfstring{$\ast$}{*}\texorpdfstring{$>$}{>} err}.
+\item В C\+: структура с {\ttfamily int is\+\_\+ok}, {\ttfamily \doxylink{struct_generic}{Generic} ok}, {\ttfamily \doxylink{struct_generic}{Generic} err}.
+\end{DoxyItemize}\hypertarget{md_core_2types_8doc_autotoc_md51}{}\doxysubsubsection{\texorpdfstring{Пример (C)}{Пример (C)}}\label{md_core_2types_8doc_autotoc_md51}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ x\ =\ 42;}
+\DoxyCodeLine{res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ 1;}
+\DoxyCodeLine{\mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}},\ \&x);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}*\ px\ =\ \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}});}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}},\ *px);}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ err\ =\ \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ res.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}});}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Ошибка:\ \%s\(\backslash\)n"{}},\ err);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md52}{}\doxysubsubsection{\texorpdfstring{Пример (C++)}{Пример (C++)}}\label{md_core_2types_8doc_autotoc_md52}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ x\ =\ 42;}
+\DoxyCodeLine{res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}\ =\ \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic<int*>}}(\&x);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}*\ px\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}*\textcolor{keyword}{>}(res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}.\mbox{\hyperlink{struct_generic_a07a04db966cf03fd44abfc8f94b46179}{value}});}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ *px\ <<\ std::endl;}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ err\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(res.\mbox{\hyperlink{struct_result_a61932c0c529b3ba804174ce0461e8b3f}{err}}.\mbox{\hyperlink{struct_generic_a07a04db966cf03fd44abfc8f94b46179}{value}});}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Ошибка:\ "{}}\ <<\ err\ <<\ std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md53}{}\doxysubsection{\texorpdfstring{Function\+Params}{Function\+Params}}\label{md_core_2types_8doc_autotoc_md53}
+Параметры для функций в \doxylink{struct_function_pipeline}{Function\+Pipeline}.
+\begin{DoxyItemize}
+\item В C++\+: {\ttfamily int argc}, {\ttfamily \doxylink{struct_generic}{Generic}\texorpdfstring{$<$}{<}void\texorpdfstring{$\ast$}{*}\texorpdfstring{$>$}{>}\texorpdfstring{$\ast$}{*} argv}.
+\item В C\+: {\ttfamily int argc}, {\ttfamily Generic\texorpdfstring{$\ast$}{*} argv}.
+\item Используется для передачи аргументов в пайплайн-\/функции.
+\end{DoxyItemize}\hypertarget{md_core_2types_8doc_autotoc_md54}{}\doxysubsubsection{\texorpdfstring{Пример (C)}{Пример (C)}}\label{md_core_2types_8doc_autotoc_md54}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ x\ =\ 1,\ y\ =\ 2;}
+\DoxyCodeLine{\mbox{\hyperlink{struct_generic}{Generic}}\ argv[2];}
+\DoxyCodeLine{\mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(argv[0],\ \&x);}
+\DoxyCodeLine{\mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(argv[1],\ \&y);}
+\DoxyCodeLine{\mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 2,\ argv\ \};}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md55}{}\doxysubsubsection{\texorpdfstring{Пример (C++)}{Пример (C++)}}\label{md_core_2types_8doc_autotoc_md55}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ x\ =\ 1,\ y\ =\ 2;}
+\DoxyCodeLine{\mbox{\hyperlink{struct_generic}{Generic<void*>}}\ argv[2]\ =\ \{\ \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic<void*>}}(\&x),\ \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic<void*>}}(\&y)\ \};}
+\DoxyCodeLine{\mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 2,\ argv\ \};}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md56}{}\doxysubsection{\texorpdfstring{Function\+Pipeline}{Function\+Pipeline}}\label{md_core_2types_8doc_autotoc_md56}
+Элемент цепочки функций (pipeline).
+\begin{DoxyItemize}
+\item Поля\+: {\ttfamily \doxylink{struct_result}{Result} (\texorpdfstring{$\ast$}{*}func)(Function\+Params\texorpdfstring{$\ast$}{*})}, {\ttfamily Function\+Pipeline\texorpdfstring{$\ast$}{*} next}.
+\item Позволяет строить цепочки обработки данных.
+\end{DoxyItemize}\hypertarget{md_core_2types_8doc_autotoc_md57}{}\doxysubsubsection{\texorpdfstring{Пример (C)}{Пример (C)}}\label{md_core_2types_8doc_autotoc_md57}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ my\_func(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{\ \textcolor{comment}{/*\ ...\ */}\ \}}
+\DoxyCodeLine{\mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ my\_func,\ NULL\ \};}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md58}{}\doxysubsubsection{\texorpdfstring{Пример (C++)}{Пример (C++)}}\label{md_core_2types_8doc_autotoc_md58}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ my\_func(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{\ \textcolor{comment}{/*\ ...\ */}\ \}}
+\DoxyCodeLine{\mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ my\_func,\ \textcolor{keyword}{nullptr}\ \};}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2types_8doc_autotoc_md60}{}\doxysection{\texorpdfstring{Интеграция с async.\+h}{Интеграция с async.\+h}}\label{md_core_2types_8doc_autotoc_md60}
+
+\begin{DoxyItemize}
+\item Все типы совместимы с асинхронными примитивами\+: можно передавать \doxylink{struct_function_pipeline}{Function\+Pipeline}, \doxylink{struct_function_params}{Function\+Params}, \doxylink{struct_result}{Result} в async\+\_\+run, async\+\_\+await.
+\item \doxylink{struct_generic}{Generic} позволяет безопасно передавать любые типы данных между потоками.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2types_8doc_autotoc_md62}{}\doxysection{\texorpdfstring{Рекомендации по памяти и безопасности}{Рекомендации по памяти и безопасности}}\label{md_core_2types_8doc_autotoc_md62}
+
+\begin{DoxyItemize}
+\item Если \doxylink{struct_generic}{Generic} хранит указатель на динамически выделенную память, освобождайте её вручную после использования.
+\item Для \doxylink{struct_result}{Result}\+: если ok/err содержит динамический ресурс, освобождайте после обработки.
+\item \doxylink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{Function\+Params\+::argv} может указывать на массив \doxylink{struct_generic}{Generic}, который также может требовать освобождения.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2types_8doc_autotoc_md64}{}\doxysection{\texorpdfstring{Расширяемость}{Расширяемость}}\label{md_core_2types_8doc_autotoc_md64}
+
+\begin{DoxyItemize}
+\item Можно добавлять новые поля в \doxylink{struct_function_params}{Function\+Params} для передачи контекста.
+\item Можно строить сложные пайплайны, комбинируя \doxylink{struct_function_pipeline}{Function\+Pipeline} через поле next.
+\item Для поддержки дополнительных сценариев (например, отмена, таймауты) расширяйте \doxylink{struct_result}{Result} и \doxylink{struct_function_pipeline}{Function\+Pipeline}.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2types_8doc_autotoc_md66}{}\doxysection{\texorpdfstring{Пример комплексного использования с async.\+h (C)}{Пример комплексного использования с async.\+h (C)}}\label{md_core_2types_8doc_autotoc_md66}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{async_8h}{async.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ sum\_func(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ a\ =\ *(\textcolor{keywordtype}{int}*)\mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}[0]);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ b\ =\ *(\textcolor{keywordtype}{int}*)\mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}[1]);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}*\ sum\ =\ malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{\ \ \ \ *sum\ =\ a\ +\ b;}
+\DoxyCodeLine{\ \ \ \ res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}},\ sum);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ 10,\ y\ =\ 20;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_generic}{Generic}}\ argv[2];}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(argv[0],\ \&x);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(argv[1],\ \&y);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 2,\ argv\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ sum\_func,\ NULL\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(loop,\ \&fp,\ \&params);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ r\ =\ \mbox{\hyperlink{async_8c_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(task);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ sum\ =\ \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ r.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Sum:\ \%d\(\backslash\)n"{}},\ *sum);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ free(sum);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(loop);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2types_8doc_autotoc_md68}{}\doxysection{\texorpdfstring{См. также}{См. также}}\label{md_core_2types_8doc_autotoc_md68}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{async_8h}{core/async.\+h}} — асинхронные примитивы и event loop.
+\item Doxygen-\/блоки с примерами внутри \doxylink{types_8h}{types.\+h}.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2types_8doc_autotoc_md70}{}\doxysection{\texorpdfstring{FAQ}{FAQ}}\label{md_core_2types_8doc_autotoc_md70}
+{\bfseries{Q\+: Можно ли хранить в \doxylink{struct_generic}{Generic} не только указатели, но и значения?}} A\+: В C — только указатели (void\texorpdfstring{$\ast$}{*}). В C++ можно использовать \doxylink{struct_generic}{Generic$<$\+T$>$} для любых типов, но для совместимости с Function\+Params/\+Result рекомендуется использовать указатели.
+
+{\bfseries{Q\+: Как правильно освобождать память, если \doxylink{struct_result}{Result} содержит динамический ресурс?}} A\+: После обработки результата (например, после async\+\_\+await) проверьте, что ok/err содержит указатель на динамический ресурс, и вызовите free или delete вручную.
+
+{\bfseries{Q\+: Можно ли передавать \doxylink{struct_function_params}{Function\+Params} между потоками?}} A\+: Да, если все данные внутри argv корректно защищены или не используются конкурентно. Для передачи больших структур используйте указатели.
+
+{\bfseries{Q\+: Как построить цепочку \doxylink{struct_function_pipeline}{Function\+Pipeline}?}} A\+: Каждый элемент содержит указатель на следующий. Можно динамически строить цепочки любой длины.
+
+{\bfseries{Q\+: Как интегрировать с \doxylink{async_8h}{async.\+h}?}} A\+: Просто передайте \doxylink{struct_function_pipeline}{Function\+Pipeline} и \doxylink{struct_function_params}{Function\+Params} в async\+\_\+run. Результат получите через async\+\_\+await.
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2types_8doc_autotoc_md72}{}\doxysection{\texorpdfstring{Иллюстрированные схемы}{Иллюстрированные схемы}}\label{md_core_2types_8doc_autotoc_md72}
+\hypertarget{md_core_2types_8doc_autotoc_md73}{}\doxysubsection{\texorpdfstring{Generic (C)}{Generic (C)}}\label{md_core_2types_8doc_autotoc_md73}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Generic\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ void*\ value\ \ \ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md74}{}\doxysubsection{\texorpdfstring{Generic$<$\+T$>$ (C++)}{Generic$<$\+T$>$ (C++)}}\label{md_core_2types_8doc_autotoc_md74}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Generic<T>\ \ \ \ \ \ |}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ T\ value\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md75}{}\doxysubsection{\texorpdfstring{Result}{Result}}\label{md_core_2types_8doc_autotoc_md75}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Result\ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ is\_ok\ (bool/int)\ \ |}
+\DoxyCodeLine{|\ ok:\ \ \ Generic\ \ \ \ \ |}
+\DoxyCodeLine{|\ err:\ \ Generic\ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md76}{}\doxysubsection{\texorpdfstring{Function\+Params}{Function\+Params}}\label{md_core_2types_8doc_autotoc_md76}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ FunctionParams\ \ \ \ |}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ int\ argc\ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ Generic*\ argv\ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md77}{}\doxysubsection{\texorpdfstring{Function\+Pipeline (цепочка)}{Function\+Pipeline (цепочка)}}\label{md_core_2types_8doc_autotoc_md77}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ FunctionPipeline\ \ |\ -\/-\/-\/>\ |\ FunctionPipeline\ \ |\ -\/-\/-\/>\ ...}
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|\ \ \ \ \ \ |-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|\ func\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ |\ func\ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ next\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ \ \ |\ next\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+\hypertarget{md_core_2types_8doc_autotoc_md78}{}\doxysubsection{\texorpdfstring{Поток данных через Function\+Pipeline и async}{Поток данных через Function\+Pipeline и async}}\label{md_core_2types_8doc_autotoc_md78}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[FunctionParams]}
+\DoxyCodeLine{\ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ v}
+\DoxyCodeLine{[FunctionPipeline.func]\ -\/-\/(Result)-\/-\/>\ [async\_run]}
+\DoxyCodeLine{\ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ v\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{[FunctionPipeline.next]\ ...\ \ \ \ \ \ \ \ \ [AsyncEventLoop]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [async\_await]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [Result]}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_core_2types_8doc_autotoc_md80}{}\doxysection{\texorpdfstring{Типичные ошибки и их решения}{Типичные ошибки и их решения}}\label{md_core_2types_8doc_autotoc_md80}
+{\bfseries{Ошибка\+:}} Использование \doxylink{struct_generic}{Generic} для хранения значения, а не указателя (в C).
+\begin{DoxyItemize}
+\item {\bfseries{Решение\+:}} Всегда используйте указатель\+: {\ttfamily GENERIC\+\_\+\+SET(g, \&x);} и {\ttfamily \doxylink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\+\_\+\+GET(int\texorpdfstring{$\ast$}{*}, g)};}
+\end{DoxyItemize}
+
+{\bfseries{Ошибка\+:}} Утечка памяти при использовании динамических данных в Result/\+Generic.
+\begin{DoxyItemize}
+\item {\bfseries{Решение\+:}} После обработки результата обязательно вызывайте free/delete для выделенных данных.
+\end{DoxyItemize}
+
+{\bfseries{Ошибка\+:}} Неправильное приведение типа при извлечении из \doxylink{struct_generic}{Generic}.
+\begin{DoxyItemize}
+\item {\bfseries{Решение\+:}} Убедитесь, что тип в GENERIC\+\_\+\+GET совпадает с тем, что был сохранён.
+\end{DoxyItemize}
+
+{\bfseries{Ошибка\+:}} Забыли инициализировать поле next в \doxylink{struct_function_pipeline}{Function\+Pipeline}.
+\begin{DoxyItemize}
+\item {\bfseries{Решение\+:}} Всегда явно указывайте next (NULL/nullptr, если это конец цепочки).
+\end{DoxyItemize}
+
+{\bfseries{Ошибка\+:}} Использование \doxylink{struct_function_params}{Function\+Params} после освобождения argv.
+\begin{DoxyItemize}
+\item {\bfseries{Решение\+:}} Убедитесь, что argv живёт до завершения работы функции/пайплайна. 
+\end{DoxyItemize}

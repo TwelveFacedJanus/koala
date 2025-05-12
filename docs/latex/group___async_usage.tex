@@ -1,0 +1,58 @@
+\doxysubsection{Примеры использования асинхронных примитивов}
+\hypertarget{group___async_usage}{}\label{group___async_usage}\index{Примеры использования асинхронных примитивов@{Примеры использования асинхронных примитивов}}
+Collaboration diagram for Примеры использования асинхронных примитивов\+:
+% FIG 0
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ C:\ Асинхронный\ запуск\ функции\ из\ FunctionPipeline}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{async_8h}{async.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ my\_func(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\ \ \ \ res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}},\ \textcolor{stringliteral}{"{}Hello\ from\ async!"{}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ my\_func,\ NULL\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 0,\ NULL\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(loop,\ \&fp,\ \&params);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ r\ =\ \mbox{\hyperlink{async_8c_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(task);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ printf(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ (\textcolor{keywordtype}{char}*)\mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{char}*,\ r.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(loop);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ C++:\ Асинхронный\ запуск\ функции\ из\ FunctionPipeline}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{async_8h}{async.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{struct_result}{Result}}\ my\_func(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ res;}
+\DoxyCodeLine{\ \ \ \ res.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ res.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}\ =\ \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic<const\ char*>}}(\textcolor{stringliteral}{"{}Hello\ from\ async!"{}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ my\_func,\ \textcolor{keyword}{nullptr}\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 0,\ \textcolor{keyword}{nullptr}\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(loop,\ \&fp,\ \&params);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ r\ =\ \mbox{\hyperlink{async_8c_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(task);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ std::cout\ <<\ static\_cast<const\ char*>(r.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}.\mbox{\hyperlink{struct_generic_a07a04db966cf03fd44abfc8f94b46179}{value}})\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(loop);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

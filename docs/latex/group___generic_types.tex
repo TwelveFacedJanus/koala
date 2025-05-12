@@ -1,0 +1,37 @@
+\doxysection{Generic Types}
+\hypertarget{group___generic_types}{}\label{group___generic_types}\index{Generic Types@{Generic Types}}
+
+
+Универсальные типы для хранения любых значений.  
+
+
+Универсальные типы для хранения любых значений. 
+
+Примеры использования\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ C:\ Использование\ структуры\ Generic}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\mbox{\hyperlink{struct_generic}{Generic}}\ g;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ x\ =\ 42;}
+\DoxyCodeLine{\mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(g,\ \&x);\ \textcolor{comment}{//\ Сохраняем\ указатель\ на\ int}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}*\ px\ =\ \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ g);\ \textcolor{comment}{//\ Получаем\ указатель\ обратно}}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}},\ *px);\ \textcolor{comment}{//\ 42}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ C++:\ Использование\ шаблона\ Generic<T>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{types_8h}{types.h}}"{}}}
+\DoxyCodeLine{\mbox{\hyperlink{struct_generic}{Generic<int>}}\ g(42);}
+\DoxyCodeLine{std::cout\ <<\ g.value\ <<\ std::endl;\ \textcolor{comment}{//\ 42}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Можно\ использовать\ с\ любым\ типом}}
+\DoxyCodeLine{\mbox{\hyperlink{struct_generic}{Generic<std::string>}}\ gs(std::string(\textcolor{stringliteral}{"{}hello"{}}));}
+\DoxyCodeLine{std::cout\ <<\ gs.value\ <<\ std::endl;\ \textcolor{comment}{//\ hello}}
+
+\end{DoxyCode}
+ 

@@ -1,0 +1,854 @@
+\doxysection{core/types.h File Reference}
+\hypertarget{types_8h}{}\label{types_8h}\index{core/types.h@{core/types.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+Include dependency graph for types.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_generic}{Generic}}
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_generic}{Generic} с типизацией (C) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_result}{Result}}
+\item 
+struct \mbox{\hyperlink{struct_function_params}{Function\+Params}}
+\begin{DoxyCompactList}\small\item\em Структура параметров для функций в \doxylink{struct_function_pipeline}{Function\+Pipeline} (C). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_function_pipeline}{Function\+Pipeline}}
+\begin{DoxyCompactList}\small\item\em Элемент цепочки функций (pipeline). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\+\_\+\+SET}}(g,  v)
+\item 
+\#define \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\+\_\+\+GET}}(type,  g)
+\item 
+\#define \mbox{\hyperlink{types_8h_a4d7090f7df18ebdd1a99e2fcde6e2902}{GENERIC\+\_\+\+SET\+\_\+\+TYPED}}(g,  v,  t)
+\begin{DoxyCompactList}\small\item\em Установить значение и тип в \doxylink{struct_generic}{Generic}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{types_8h_a8fa4e00467f5aea37aff1ae5577e8e60}{GENERIC\+\_\+\+GET\+\_\+\+TYPED}}(type\+\_\+,  g,  expected\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Получить значение из \doxylink{struct_generic}{Generic} с проверкой типа \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\+\_\+\+SET}}(g,  v)
+\item 
+\#define \mbox{\hyperlink{types_8h_a4d68bf8fad29a687e33e42bb97b78acc}{GENERIC\+\_\+\+GET}}(type\+\_\+,  g)
+\item 
+\#define \mbox{\hyperlink{types_8h_ad2e5d1916acc91b315261fb957671e1e}{FUNCTION\+\_\+\+PIPELINE\+\_\+\+NEW}}(f)
+\begin{DoxyCompactList}\small\item\em Создать новый элемент \doxylink{struct_function_pipeline}{Function\+Pipeline} (C) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{types_8h_af37897671bf8697d02fc766caf475e97}{FUNCTION\+\_\+\+PIPELINE\+\_\+\+APPEND}}(head,  node)
+\begin{DoxyCompactList}\small\item\em Добавить элемент в конец цепочки \doxylink{struct_function_pipeline}{Function\+Pipeline} (C) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef intmax\+\_\+t \mbox{\hyperlink{types_8h_a8af36a8c7115983574aac1f3fcae989f}{MAX\+\_\+\+INT}}
+\item 
+typedef uintmax\+\_\+t \mbox{\hyperlink{types_8h_a747d422d392b2dd1eaf6fabf43f9889b}{MAX\+\_\+\+UINT}}
+\item 
+typedef uint8\+\_\+t \mbox{\hyperlink{types_8h_a92c50087ca0e64fa93fc59402c55f8ca}{u8}}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{types_8h_ace9d960e74685e2cd84b36132dbbf8aa}{u16}}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{types_8h_afaa62991928fb9fb18ff0db62a040aba}{u32}}
+\item 
+typedef uint64\+\_\+t \mbox{\hyperlink{types_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234}{u64}}
+\item 
+typedef int8\+\_\+t \mbox{\hyperlink{types_8h_ae3702327b5f47e83b431e22b33da7b58}{i8}}
+\item 
+typedef int16\+\_\+t \mbox{\hyperlink{types_8h_ad309dbcaeea13aa602d686964156ea0b}{i16}}
+\item 
+typedef int32\+\_\+t \mbox{\hyperlink{types_8h_a48d6cd8e4135fb2ff7e7f2dac84089ec}{i32}}
+\item 
+typedef int64\+\_\+t \mbox{\hyperlink{types_8h_a85cb35fbe5bf2961d7ad5f26814a91a2}{i64}}
+\item 
+typedef uint\+\_\+fast8\+\_\+t \mbox{\hyperlink{types_8h_ae2b4f4372f3f2e9cd25737203141cffd}{ufast8}}
+\item 
+typedef uint\+\_\+fast16\+\_\+t \mbox{\hyperlink{types_8h_a3a1ec08189269fa04e517e3fe39094ab}{ufast16}}
+\item 
+typedef uint\+\_\+fast32\+\_\+t \mbox{\hyperlink{types_8h_a0cd8c9c78e2b9bfe3db0459068ddc604}{ufast32}}
+\item 
+typedef uint\+\_\+fast64\+\_\+t \mbox{\hyperlink{types_8h_a4e217ff97c7124f2a239374a9a6a3db1}{ufast64}}
+\item 
+typedef int\+\_\+fast8\+\_\+t \mbox{\hyperlink{types_8h_aeb07dc435e45fa56078977a38c66dba5}{ifast8}}
+\item 
+typedef int\+\_\+fast16\+\_\+t \mbox{\hyperlink{types_8h_acb19e7a21a13082a88e05922eceb0dd1}{ifast16}}
+\item 
+typedef int\+\_\+fast32\+\_\+t \mbox{\hyperlink{types_8h_ad17545619a9f4b4e8dbeb85e63c26813}{ifast32}}
+\item 
+typedef int\+\_\+fast64\+\_\+t \mbox{\hyperlink{types_8h_a5b57406e36c1667bed6e1d69dede8932}{ifast64}}
+\item 
+typedef uint\+\_\+least8\+\_\+t \mbox{\hyperlink{types_8h_a6efcfffd6e3ec05937e7dd1e85aac269}{uleast8}}
+\item 
+typedef uint\+\_\+least16\+\_\+t \mbox{\hyperlink{types_8h_a2c6cb4ec294412b8a9b51aed8ce7e4ab}{uleast16}}
+\item 
+typedef uint\+\_\+least32\+\_\+t \mbox{\hyperlink{types_8h_a8e42138e35ba41a789d4246c26ac8f87}{uleast32}}
+\item 
+typedef uint\+\_\+least64\+\_\+t \mbox{\hyperlink{types_8h_a1bb7d4a5fb2665a92d734a03a29e8bea}{uleast64}}
+\item 
+typedef int\+\_\+least8\+\_\+t \mbox{\hyperlink{types_8h_ad61f7b02ed7d356fc910bab251308518}{ileast8}}
+\item 
+typedef int\+\_\+least16\+\_\+t \mbox{\hyperlink{types_8h_a6a1fdee920040422df3de278c534bda4}{ileast16}}
+\item 
+typedef int\+\_\+least32\+\_\+t \mbox{\hyperlink{types_8h_a0607d9929fdb23ac505c42fae527c976}{ileast32}}
+\item 
+typedef int\+\_\+least64\+\_\+t \mbox{\hyperlink{types_8h_a212c10ccb9dce24738e21da7e9c7a42f}{ileast64}}
+\item 
+typedef uintptr\+\_\+t \mbox{\hyperlink{types_8h_a93a1409151dffdb2c15147214279817a}{uptr}}
+\item 
+typedef intptr\+\_\+t \mbox{\hyperlink{types_8h_a1436c3bda94547287cbc2d66af2606e3}{iptr}}
+\item 
+typedef size\+\_\+t \mbox{\hyperlink{types_8h_a5148c9c1252e19e12def2814f71690e3}{usize}}
+\item 
+typedef ptrdiff\+\_\+t \mbox{\hyperlink{types_8h_a2992909b9c1ee26479af8fa433d4479f}{isize}}
+\item 
+typedef struct Generic \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic}}
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_generic}{Generic} с типизацией (C) \end{DoxyCompactList}\item 
+typedef struct Result \mbox{\hyperlink{types_8h_ade7e53b8ed7380705cbd1225db23cd5a}{Result}}
+\item 
+typedef struct Function\+Params \mbox{\hyperlink{types_8h_ae67f716349c52637b18f545e998b072e}{Function\+Params}}
+\begin{DoxyCompactList}\small\item\em Структура параметров для функций в \doxylink{struct_function_pipeline}{Function\+Pipeline} (C). \end{DoxyCompactList}\item 
+typedef struct Function\+Pipeline \mbox{\hyperlink{types_8h_ab1f813247c84d8e49c51bbe73431ddf8}{Function\+Pipeline}}
+\begin{DoxyCompactList}\small\item\em Элемент цепочки функций (pipeline). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0}{Generic\+Type}} \{ \newline
+\mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172}{GENERIC\+\_\+\+TYPE\+\_\+\+UNKNOWN}} = 0
+, \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128}{GENERIC\+\_\+\+TYPE\+\_\+\+INT}}
+, \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455}{GENERIC\+\_\+\+TYPE\+\_\+\+FLOAT}}
+, \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a}{GENERIC\+\_\+\+TYPE\+\_\+\+PTR}}
+, \newline
+\mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481}{GENERIC\+\_\+\+TYPE\+\_\+\+STR}}
+, \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e}{GENERIC\+\_\+\+TYPE\+\_\+\+CUSTOM}}
+ \}
+\begin{DoxyCompactList}\small\item\em Перечисление поддерживаемых типов для \doxylink{struct_generic}{Generic} (C) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{types_8h_a23864e11484aca063fa48537ce48c047}{result\+\_\+free}} (\mbox{\hyperlink{struct_result}{Result}} \texorpdfstring{$\ast$}{*}r)
+\begin{DoxyCompactList}\small\item\em Освобождает ресурсы, связанные с \doxylink{struct_result}{Result} (C). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{types_8h_af9008be1931af48f08a85957cb3e2d39}{function\+\_\+params\+\_\+free}} (\mbox{\hyperlink{struct_function_params}{Function\+Params}} \texorpdfstring{$\ast$}{*}p)
+\begin{DoxyCompactList}\small\item\em Освобождает ресурсы, связанные с \doxylink{struct_function_params}{Function\+Params} (C). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{types_8h_a3eeeb11379f52efc370487eb8a52c5ee}{function\+\_\+pipeline\+\_\+free}} (\mbox{\hyperlink{struct_function_pipeline}{Function\+Pipeline}} \texorpdfstring{$\ast$}{*}p)
+\begin{DoxyCompactList}\small\item\em Освобождает всю цепочку \doxylink{struct_function_pipeline}{Function\+Pipeline} (C). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{types_8h_ab347e09152d07525622b731e0df0cc6b}{function\+\_\+pipeline\+\_\+validate}} (\mbox{\hyperlink{struct_function_pipeline}{Function\+Pipeline}} \texorpdfstring{$\ast$}{*}head)
+\begin{DoxyCompactList}\small\item\em Проверить корректность цепочки \doxylink{struct_function_pipeline}{Function\+Pipeline} (нет циклов, все func != NULL) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{types_8h_af37897671bf8697d02fc766caf475e97}\index{types.h@{types.h}!FUNCTION\_PIPELINE\_APPEND@{FUNCTION\_PIPELINE\_APPEND}}
+\index{FUNCTION\_PIPELINE\_APPEND@{FUNCTION\_PIPELINE\_APPEND}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{FUNCTION\_PIPELINE\_APPEND}{FUNCTION\_PIPELINE\_APPEND}}
+{\footnotesize\ttfamily \label{types_8h_af37897671bf8697d02fc766caf475e97} 
+\#define FUNCTION\+\_\+\+PIPELINE\+\_\+\+APPEND(\begin{DoxyParamCaption}\item[{}]{head}{, }\item[{}]{node}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{do}\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ \_cur\ =\ (head);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ if\ (!\_cur)\ \{\ (head)\ =\ (node);\ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{else}\ \{\ \textcolor{keywordflow}{while}\ (\_cur-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}})\ \_cur\ =\ \_cur-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}};\ \_cur-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}}\ =\ (node);\ \}\ \(\backslash\)}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+
+
+Добавить элемент в конец цепочки \doxylink{struct_function_pipeline}{Function\+Pipeline} (C) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & -\/ начало цепочки \\
+\hline
+{\em node} & -\/ новый элемент \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00320}{320}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#define\ FUNCTION\_PIPELINE\_APPEND(head,\ node)\ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\ \ \ \ FunctionPipeline*\ \_cur\ =\ (head);\ \(\backslash\)}}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\ \ \ \ if\ (!\_cur)\ \{\ (head)\ =\ (node);\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\ \ \ \ else\ \{\ while\ (\_cur-\/>next)\ \_cur\ =\ \_cur-\/>next;\ \_cur-\/>next\ =\ (node);\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\}\ while(0)}}
+
+\end{DoxyCode}
+\Hypertarget{types_8h_ad2e5d1916acc91b315261fb957671e1e}\index{types.h@{types.h}!FUNCTION\_PIPELINE\_NEW@{FUNCTION\_PIPELINE\_NEW}}
+\index{FUNCTION\_PIPELINE\_NEW@{FUNCTION\_PIPELINE\_NEW}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{FUNCTION\_PIPELINE\_NEW}{FUNCTION\_PIPELINE\_NEW}}
+{\footnotesize\ttfamily \label{types_8h_ad2e5d1916acc91b315261fb957671e1e} 
+\#define FUNCTION\+\_\+\+PIPELINE\+\_\+\+NEW(\begin{DoxyParamCaption}\item[{}]{f}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ (\{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ \_fp\ =\ (\mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}));\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \_fp-\/>\mbox{\hyperlink{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2}{func}}\ =\ (f);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \_fp-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}}\ =\ NULL;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \_fp;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \})}
+
+\end{DoxyCode}
+
+
+Создать новый элемент \doxylink{struct_function_pipeline}{Function\+Pipeline} (C) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & -\/ функция \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+указатель на \doxylink{struct_function_pipeline}{Function\+Pipeline} 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00307}{307}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#define\ FUNCTION\_PIPELINE\_NEW(f)\ \(\backslash\)}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\ \ \ \ (\{\ \(\backslash\)}}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ FunctionPipeline*\ \_fp\ =\ (FunctionPipeline*)malloc(sizeof(FunctionPipeline));\ \(\backslash\)}}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_fp-\/>func\ =\ (f);\ \(\backslash\)}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_fp-\/>next\ =\ NULL;\ \(\backslash\)}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_fp;\ \(\backslash\)}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\ \ \ \ \})}}
+
+\end{DoxyCode}
+\Hypertarget{types_8h_a2f0d9a4aee65152ba07520f571a68051}\index{types.h@{types.h}!GENERIC\_GET@{GENERIC\_GET}}
+\index{GENERIC\_GET@{GENERIC\_GET}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{GENERIC\_GET}{GENERIC\_GET}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{types_8h_a2f0d9a4aee65152ba07520f571a68051} 
+\#define GENERIC\+\_\+\+GET(\begin{DoxyParamCaption}\item[{}]{type}{, }\item[{}]{g}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((type)((g).value))}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00108}{108}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a4d68bf8fad29a687e33e42bb97b78acc}\index{types.h@{types.h}!GENERIC\_GET@{GENERIC\_GET}}
+\index{GENERIC\_GET@{GENERIC\_GET}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{GENERIC\_GET}{GENERIC\_GET}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{types_8h_a4d68bf8fad29a687e33e42bb97b78acc} 
+\#define GENERIC\+\_\+\+GET(\begin{DoxyParamCaption}\item[{}]{type\+\_\+}{, }\item[{}]{g}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{types_8h_a8fa4e00467f5aea37aff1ae5577e8e60}{GENERIC\_GET\_TYPED}}(type\_,\ g,\ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a}{GENERIC\_TYPE\_PTR}})}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00108}{108}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a8fa4e00467f5aea37aff1ae5577e8e60}\index{types.h@{types.h}!GENERIC\_GET\_TYPED@{GENERIC\_GET\_TYPED}}
+\index{GENERIC\_GET\_TYPED@{GENERIC\_GET\_TYPED}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{GENERIC\_GET\_TYPED}{GENERIC\_GET\_TYPED}}
+{\footnotesize\ttfamily \label{types_8h_a8fa4e00467f5aea37aff1ae5577e8e60} 
+\#define GENERIC\+\_\+\+GET\+\_\+\+TYPED(\begin{DoxyParamCaption}\item[{}]{type\+\_\+}{, }\item[{}]{g}{, }\item[{}]{expected\+\_\+type}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ (((g).type\ ==\ (expected\_type))\ ?\ (type\_)((g).value)\ :\ NULL)}
+
+\end{DoxyCode}
+
+
+Получить значение из \doxylink{struct_generic}{Generic} с проверкой типа 
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00294}{294}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#define\ GENERIC\_GET\_TYPED(type\_,\ g,\ expected\_type)\ \(\backslash\)}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\ \ \ \ (((g).type\ ==\ (expected\_type))\ ?\ (type\_)((g).value)\ :\ NULL)}}
+
+\end{DoxyCode}
+\Hypertarget{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}\index{types.h@{types.h}!GENERIC\_SET@{GENERIC\_SET}}
+\index{GENERIC\_SET@{GENERIC\_SET}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{GENERIC\_SET}{GENERIC\_SET}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12} 
+\#define GENERIC\+\_\+\+SET(\begin{DoxyParamCaption}\item[{}]{g}{, }\item[{}]{v}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((g).value\ =\ (\textcolor{keywordtype}{void}*)(v))}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00107}{107}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}\index{types.h@{types.h}!GENERIC\_SET@{GENERIC\_SET}}
+\index{GENERIC\_SET@{GENERIC\_SET}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{GENERIC\_SET}{GENERIC\_SET}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12} 
+\#define GENERIC\+\_\+\+SET(\begin{DoxyParamCaption}\item[{}]{g}{, }\item[{}]{v}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{types_8h_a4d7090f7df18ebdd1a99e2fcde6e2902}{GENERIC\_SET\_TYPED}}(g,\ v,\ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a}{GENERIC\_TYPE\_PTR}})}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00107}{107}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a4d7090f7df18ebdd1a99e2fcde6e2902}\index{types.h@{types.h}!GENERIC\_SET\_TYPED@{GENERIC\_SET\_TYPED}}
+\index{GENERIC\_SET\_TYPED@{GENERIC\_SET\_TYPED}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{GENERIC\_SET\_TYPED}{GENERIC\_SET\_TYPED}}
+{\footnotesize\ttfamily \label{types_8h_a4d7090f7df18ebdd1a99e2fcde6e2902} 
+\#define GENERIC\+\_\+\+SET\+\_\+\+TYPED(\begin{DoxyParamCaption}\item[{}]{g}{, }\item[{}]{v}{, }\item[{}]{t}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do}\ \{\ (g).value\ =\ (\textcolor{keywordtype}{void}*)(v);\ (g).type\ =\ (t);\ \}\ \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+
+
+Установить значение и тип в \doxylink{struct_generic}{Generic}. 
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00289}{289}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{async_8c_source_l00180}{async\+\_\+await\+\_\+timeout()}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{types_8h_ae67f716349c52637b18f545e998b072e}\index{types.h@{types.h}!FunctionParams@{FunctionParams}}
+\index{FunctionParams@{FunctionParams}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{FunctionParams}{FunctionParams}}
+{\footnotesize\ttfamily \label{types_8h_ae67f716349c52637b18f545e998b072e} 
+typedef struct Function\+Params Function\+Params}
+
+
+
+Структура параметров для функций в \doxylink{struct_function_pipeline}{Function\+Pipeline} (C). 
+
+argc\+: количество аргументов argv\+: массив аргументов типа \doxylink{struct_generic}{Generic} \Hypertarget{types_8h_ab1f813247c84d8e49c51bbe73431ddf8}\index{types.h@{types.h}!FunctionPipeline@{FunctionPipeline}}
+\index{FunctionPipeline@{FunctionPipeline}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{FunctionPipeline}{FunctionPipeline}}
+{\footnotesize\ttfamily \label{types_8h_ab1f813247c84d8e49c51bbe73431ddf8} 
+typedef struct Function\+Pipeline Function\+Pipeline}
+
+
+
+Элемент цепочки функций (pipeline). 
+
+func\+: функция, принимающая указатель на \doxylink{struct_function_params}{Function\+Params} и возвращающая \doxylink{struct_result}{Result}. next\+: следующий элемент цепочки (или NULL). \Hypertarget{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}\index{types.h@{types.h}!Generic@{Generic}}
+\index{Generic@{Generic}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{Generic}{Generic}}
+{\footnotesize\ttfamily \label{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d} 
+typedef struct Generic Generic}
+
+
+
+\doxylink{struct_generic}{Generic} с типизацией (C) 
+
+\Hypertarget{types_8h_ad309dbcaeea13aa602d686964156ea0b}\index{types.h@{types.h}!i16@{i16}}
+\index{i16@{i16}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{i16}{i16}}
+{\footnotesize\ttfamily \label{types_8h_ad309dbcaeea13aa602d686964156ea0b} 
+typedef int16\+\_\+t \mbox{\hyperlink{types_8h_ad309dbcaeea13aa602d686964156ea0b}{i16}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00024}{24}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a48d6cd8e4135fb2ff7e7f2dac84089ec}\index{types.h@{types.h}!i32@{i32}}
+\index{i32@{i32}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{i32}{i32}}
+{\footnotesize\ttfamily \label{types_8h_a48d6cd8e4135fb2ff7e7f2dac84089ec} 
+typedef int32\+\_\+t \mbox{\hyperlink{types_8h_a48d6cd8e4135fb2ff7e7f2dac84089ec}{i32}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00025}{25}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a85cb35fbe5bf2961d7ad5f26814a91a2}\index{types.h@{types.h}!i64@{i64}}
+\index{i64@{i64}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{i64}{i64}}
+{\footnotesize\ttfamily \label{types_8h_a85cb35fbe5bf2961d7ad5f26814a91a2} 
+typedef int64\+\_\+t \mbox{\hyperlink{types_8h_a85cb35fbe5bf2961d7ad5f26814a91a2}{i64}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00026}{26}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_ae3702327b5f47e83b431e22b33da7b58}\index{types.h@{types.h}!i8@{i8}}
+\index{i8@{i8}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{i8}{i8}}
+{\footnotesize\ttfamily \label{types_8h_ae3702327b5f47e83b431e22b33da7b58} 
+typedef int8\+\_\+t \mbox{\hyperlink{types_8h_ae3702327b5f47e83b431e22b33da7b58}{i8}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00023}{23}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_acb19e7a21a13082a88e05922eceb0dd1}\index{types.h@{types.h}!ifast16@{ifast16}}
+\index{ifast16@{ifast16}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ifast16}{ifast16}}
+{\footnotesize\ttfamily \label{types_8h_acb19e7a21a13082a88e05922eceb0dd1} 
+typedef int\+\_\+fast16\+\_\+t \mbox{\hyperlink{types_8h_acb19e7a21a13082a88e05922eceb0dd1}{ifast16}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00035}{35}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_ad17545619a9f4b4e8dbeb85e63c26813}\index{types.h@{types.h}!ifast32@{ifast32}}
+\index{ifast32@{ifast32}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ifast32}{ifast32}}
+{\footnotesize\ttfamily \label{types_8h_ad17545619a9f4b4e8dbeb85e63c26813} 
+typedef int\+\_\+fast32\+\_\+t \mbox{\hyperlink{types_8h_ad17545619a9f4b4e8dbeb85e63c26813}{ifast32}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00036}{36}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a5b57406e36c1667bed6e1d69dede8932}\index{types.h@{types.h}!ifast64@{ifast64}}
+\index{ifast64@{ifast64}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ifast64}{ifast64}}
+{\footnotesize\ttfamily \label{types_8h_a5b57406e36c1667bed6e1d69dede8932} 
+typedef int\+\_\+fast64\+\_\+t \mbox{\hyperlink{types_8h_a5b57406e36c1667bed6e1d69dede8932}{ifast64}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00037}{37}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_aeb07dc435e45fa56078977a38c66dba5}\index{types.h@{types.h}!ifast8@{ifast8}}
+\index{ifast8@{ifast8}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ifast8}{ifast8}}
+{\footnotesize\ttfamily \label{types_8h_aeb07dc435e45fa56078977a38c66dba5} 
+typedef int\+\_\+fast8\+\_\+t \mbox{\hyperlink{types_8h_aeb07dc435e45fa56078977a38c66dba5}{ifast8}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00034}{34}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a6a1fdee920040422df3de278c534bda4}\index{types.h@{types.h}!ileast16@{ileast16}}
+\index{ileast16@{ileast16}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ileast16}{ileast16}}
+{\footnotesize\ttfamily \label{types_8h_a6a1fdee920040422df3de278c534bda4} 
+typedef int\+\_\+least16\+\_\+t \mbox{\hyperlink{types_8h_a6a1fdee920040422df3de278c534bda4}{ileast16}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00046}{46}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a0607d9929fdb23ac505c42fae527c976}\index{types.h@{types.h}!ileast32@{ileast32}}
+\index{ileast32@{ileast32}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ileast32}{ileast32}}
+{\footnotesize\ttfamily \label{types_8h_a0607d9929fdb23ac505c42fae527c976} 
+typedef int\+\_\+least32\+\_\+t \mbox{\hyperlink{types_8h_a0607d9929fdb23ac505c42fae527c976}{ileast32}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00047}{47}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a212c10ccb9dce24738e21da7e9c7a42f}\index{types.h@{types.h}!ileast64@{ileast64}}
+\index{ileast64@{ileast64}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ileast64}{ileast64}}
+{\footnotesize\ttfamily \label{types_8h_a212c10ccb9dce24738e21da7e9c7a42f} 
+typedef int\+\_\+least64\+\_\+t \mbox{\hyperlink{types_8h_a212c10ccb9dce24738e21da7e9c7a42f}{ileast64}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00048}{48}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_ad61f7b02ed7d356fc910bab251308518}\index{types.h@{types.h}!ileast8@{ileast8}}
+\index{ileast8@{ileast8}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ileast8}{ileast8}}
+{\footnotesize\ttfamily \label{types_8h_ad61f7b02ed7d356fc910bab251308518} 
+typedef int\+\_\+least8\+\_\+t \mbox{\hyperlink{types_8h_ad61f7b02ed7d356fc910bab251308518}{ileast8}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00045}{45}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a1436c3bda94547287cbc2d66af2606e3}\index{types.h@{types.h}!iptr@{iptr}}
+\index{iptr@{iptr}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{iptr}{iptr}}
+{\footnotesize\ttfamily \label{types_8h_a1436c3bda94547287cbc2d66af2606e3} 
+typedef intptr\+\_\+t \mbox{\hyperlink{types_8h_a1436c3bda94547287cbc2d66af2606e3}{iptr}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00052}{52}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a2992909b9c1ee26479af8fa433d4479f}\index{types.h@{types.h}!isize@{isize}}
+\index{isize@{isize}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{isize}{isize}}
+{\footnotesize\ttfamily \label{types_8h_a2992909b9c1ee26479af8fa433d4479f} 
+typedef ptrdiff\+\_\+t \mbox{\hyperlink{types_8h_a2992909b9c1ee26479af8fa433d4479f}{isize}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00056}{56}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a8af36a8c7115983574aac1f3fcae989f}\index{types.h@{types.h}!MAX\_INT@{MAX\_INT}}
+\index{MAX\_INT@{MAX\_INT}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_INT}{MAX\_INT}}
+{\footnotesize\ttfamily \label{types_8h_a8af36a8c7115983574aac1f3fcae989f} 
+typedef intmax\+\_\+t \mbox{\hyperlink{types_8h_a8af36a8c7115983574aac1f3fcae989f}{MAX\+\_\+\+INT}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00013}{13}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a747d422d392b2dd1eaf6fabf43f9889b}\index{types.h@{types.h}!MAX\_UINT@{MAX\_UINT}}
+\index{MAX\_UINT@{MAX\_UINT}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_UINT}{MAX\_UINT}}
+{\footnotesize\ttfamily \label{types_8h_a747d422d392b2dd1eaf6fabf43f9889b} 
+typedef uintmax\+\_\+t \mbox{\hyperlink{types_8h_a747d422d392b2dd1eaf6fabf43f9889b}{MAX\+\_\+\+UINT}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00014}{14}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_ade7e53b8ed7380705cbd1225db23cd5a}\index{types.h@{types.h}!Result@{Result}}
+\index{Result@{Result}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{Result}{Result}}
+{\footnotesize\ttfamily \label{types_8h_ade7e53b8ed7380705cbd1225db23cd5a} 
+typedef struct Result Result}
+
+\Hypertarget{types_8h_ace9d960e74685e2cd84b36132dbbf8aa}\index{types.h@{types.h}!u16@{u16}}
+\index{u16@{u16}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{u16}{u16}}
+{\footnotesize\ttfamily \label{types_8h_ace9d960e74685e2cd84b36132dbbf8aa} 
+typedef uint16\+\_\+t \mbox{\hyperlink{types_8h_ace9d960e74685e2cd84b36132dbbf8aa}{u16}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00018}{18}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_afaa62991928fb9fb18ff0db62a040aba}\index{types.h@{types.h}!u32@{u32}}
+\index{u32@{u32}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{u32}{u32}}
+{\footnotesize\ttfamily \label{types_8h_afaa62991928fb9fb18ff0db62a040aba} 
+typedef uint32\+\_\+t \mbox{\hyperlink{types_8h_afaa62991928fb9fb18ff0db62a040aba}{u32}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00019}{19}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234}\index{types.h@{types.h}!u64@{u64}}
+\index{u64@{u64}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{u64}{u64}}
+{\footnotesize\ttfamily \label{types_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234} 
+typedef uint64\+\_\+t \mbox{\hyperlink{types_8h_a3f7e2bcbb0b4c338f3c4f6c937cd4234}{u64}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00020}{20}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a92c50087ca0e64fa93fc59402c55f8ca}\index{types.h@{types.h}!u8@{u8}}
+\index{u8@{u8}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{u8}{u8}}
+{\footnotesize\ttfamily \label{types_8h_a92c50087ca0e64fa93fc59402c55f8ca} 
+typedef uint8\+\_\+t \mbox{\hyperlink{types_8h_a92c50087ca0e64fa93fc59402c55f8ca}{u8}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00017}{17}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a3a1ec08189269fa04e517e3fe39094ab}\index{types.h@{types.h}!ufast16@{ufast16}}
+\index{ufast16@{ufast16}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ufast16}{ufast16}}
+{\footnotesize\ttfamily \label{types_8h_a3a1ec08189269fa04e517e3fe39094ab} 
+typedef uint\+\_\+fast16\+\_\+t \mbox{\hyperlink{types_8h_a3a1ec08189269fa04e517e3fe39094ab}{ufast16}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00030}{30}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a0cd8c9c78e2b9bfe3db0459068ddc604}\index{types.h@{types.h}!ufast32@{ufast32}}
+\index{ufast32@{ufast32}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ufast32}{ufast32}}
+{\footnotesize\ttfamily \label{types_8h_a0cd8c9c78e2b9bfe3db0459068ddc604} 
+typedef uint\+\_\+fast32\+\_\+t \mbox{\hyperlink{types_8h_a0cd8c9c78e2b9bfe3db0459068ddc604}{ufast32}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00031}{31}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a4e217ff97c7124f2a239374a9a6a3db1}\index{types.h@{types.h}!ufast64@{ufast64}}
+\index{ufast64@{ufast64}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ufast64}{ufast64}}
+{\footnotesize\ttfamily \label{types_8h_a4e217ff97c7124f2a239374a9a6a3db1} 
+typedef uint\+\_\+fast64\+\_\+t \mbox{\hyperlink{types_8h_a4e217ff97c7124f2a239374a9a6a3db1}{ufast64}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00032}{32}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_ae2b4f4372f3f2e9cd25737203141cffd}\index{types.h@{types.h}!ufast8@{ufast8}}
+\index{ufast8@{ufast8}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{ufast8}{ufast8}}
+{\footnotesize\ttfamily \label{types_8h_ae2b4f4372f3f2e9cd25737203141cffd} 
+typedef uint\+\_\+fast8\+\_\+t \mbox{\hyperlink{types_8h_ae2b4f4372f3f2e9cd25737203141cffd}{ufast8}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00029}{29}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a2c6cb4ec294412b8a9b51aed8ce7e4ab}\index{types.h@{types.h}!uleast16@{uleast16}}
+\index{uleast16@{uleast16}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{uleast16}{uleast16}}
+{\footnotesize\ttfamily \label{types_8h_a2c6cb4ec294412b8a9b51aed8ce7e4ab} 
+typedef uint\+\_\+least16\+\_\+t \mbox{\hyperlink{types_8h_a2c6cb4ec294412b8a9b51aed8ce7e4ab}{uleast16}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00041}{41}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a8e42138e35ba41a789d4246c26ac8f87}\index{types.h@{types.h}!uleast32@{uleast32}}
+\index{uleast32@{uleast32}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{uleast32}{uleast32}}
+{\footnotesize\ttfamily \label{types_8h_a8e42138e35ba41a789d4246c26ac8f87} 
+typedef uint\+\_\+least32\+\_\+t \mbox{\hyperlink{types_8h_a8e42138e35ba41a789d4246c26ac8f87}{uleast32}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00042}{42}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a1bb7d4a5fb2665a92d734a03a29e8bea}\index{types.h@{types.h}!uleast64@{uleast64}}
+\index{uleast64@{uleast64}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{uleast64}{uleast64}}
+{\footnotesize\ttfamily \label{types_8h_a1bb7d4a5fb2665a92d734a03a29e8bea} 
+typedef uint\+\_\+least64\+\_\+t \mbox{\hyperlink{types_8h_a1bb7d4a5fb2665a92d734a03a29e8bea}{uleast64}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00043}{43}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a6efcfffd6e3ec05937e7dd1e85aac269}\index{types.h@{types.h}!uleast8@{uleast8}}
+\index{uleast8@{uleast8}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{uleast8}{uleast8}}
+{\footnotesize\ttfamily \label{types_8h_a6efcfffd6e3ec05937e7dd1e85aac269} 
+typedef uint\+\_\+least8\+\_\+t \mbox{\hyperlink{types_8h_a6efcfffd6e3ec05937e7dd1e85aac269}{uleast8}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00040}{40}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a93a1409151dffdb2c15147214279817a}\index{types.h@{types.h}!uptr@{uptr}}
+\index{uptr@{uptr}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{uptr}{uptr}}
+{\footnotesize\ttfamily \label{types_8h_a93a1409151dffdb2c15147214279817a} 
+typedef uintptr\+\_\+t \mbox{\hyperlink{types_8h_a93a1409151dffdb2c15147214279817a}{uptr}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00051}{51}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+\Hypertarget{types_8h_a5148c9c1252e19e12def2814f71690e3}\index{types.h@{types.h}!usize@{usize}}
+\index{usize@{usize}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{usize}{usize}}
+{\footnotesize\ttfamily \label{types_8h_a5148c9c1252e19e12def2814f71690e3} 
+typedef size\+\_\+t \mbox{\hyperlink{types_8h_a5148c9c1252e19e12def2814f71690e3}{usize}}}
+
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00055}{55}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{types_8h_a5b49a4735004213d537a8915a2ac69a0}\index{types.h@{types.h}!GenericType@{GenericType}}
+\index{GenericType@{GenericType}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{GenericType}{GenericType}}
+{\footnotesize\ttfamily \label{types_8h_a5b49a4735004213d537a8915a2ac69a0} 
+enum \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0}{Generic\+Type}}}
+
+
+
+Перечисление поддерживаемых типов для \doxylink{struct_generic}{Generic} (C) 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GENERIC\_TYPE\_UNKNOWN@{GENERIC\_TYPE\_UNKNOWN}!types.h@{types.h}}\index{types.h@{types.h}!GENERIC\_TYPE\_UNKNOWN@{GENERIC\_TYPE\_UNKNOWN}}}\Hypertarget{types_8h_a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172}\label{types_8h_a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172} 
+GENERIC\+\_\+\+TYPE\+\_\+\+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GENERIC\_TYPE\_INT@{GENERIC\_TYPE\_INT}!types.h@{types.h}}\index{types.h@{types.h}!GENERIC\_TYPE\_INT@{GENERIC\_TYPE\_INT}}}\Hypertarget{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128}\label{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128} 
+GENERIC\+\_\+\+TYPE\+\_\+\+INT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GENERIC\_TYPE\_FLOAT@{GENERIC\_TYPE\_FLOAT}!types.h@{types.h}}\index{types.h@{types.h}!GENERIC\_TYPE\_FLOAT@{GENERIC\_TYPE\_FLOAT}}}\Hypertarget{types_8h_a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455}\label{types_8h_a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455} 
+GENERIC\+\_\+\+TYPE\+\_\+\+FLOAT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GENERIC\_TYPE\_PTR@{GENERIC\_TYPE\_PTR}!types.h@{types.h}}\index{types.h@{types.h}!GENERIC\_TYPE\_PTR@{GENERIC\_TYPE\_PTR}}}\Hypertarget{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a}\label{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a} 
+GENERIC\+\_\+\+TYPE\+\_\+\+PTR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GENERIC\_TYPE\_STR@{GENERIC\_TYPE\_STR}!types.h@{types.h}}\index{types.h@{types.h}!GENERIC\_TYPE\_STR@{GENERIC\_TYPE\_STR}}}\Hypertarget{types_8h_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481}\label{types_8h_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481} 
+GENERIC\+\_\+\+TYPE\+\_\+\+STR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GENERIC\_TYPE\_CUSTOM@{GENERIC\_TYPE\_CUSTOM}!types.h@{types.h}}\index{types.h@{types.h}!GENERIC\_TYPE\_CUSTOM@{GENERIC\_TYPE\_CUSTOM}}}\Hypertarget{types_8h_a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e}\label{types_8h_a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e} 
+GENERIC\+\_\+\+TYPE\+\_\+\+CUSTOM&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{types_8h_source_l00269}{269}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172}{GENERIC\_TYPE\_UNKNOWN}}\ =\ 0,}
+\DoxyCodeLine{00271\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128}{GENERIC\_TYPE\_INT}},}
+\DoxyCodeLine{00272\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455}{GENERIC\_TYPE\_FLOAT}},}
+\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a}{GENERIC\_TYPE\_PTR}},}
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481}{GENERIC\_TYPE\_STR}},}
+\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e}{GENERIC\_TYPE\_CUSTOM}}}
+\DoxyCodeLine{00276\ \}\ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0}{GenericType}};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{types_8h_af9008be1931af48f08a85957cb3e2d39}\index{types.h@{types.h}!function\_params\_free@{function\_params\_free}}
+\index{function\_params\_free@{function\_params\_free}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{function\_params\_free()}{function\_params\_free()}}
+{\footnotesize\ttfamily \label{types_8h_af9008be1931af48f08a85957cb3e2d39} 
+void function\+\_\+params\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_function_params}{Function\+Params}} \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Освобождает ресурсы, связанные с \doxylink{struct_function_params}{Function\+Params} (C). 
+
+Освобождает argv, если он был выделен динамически. 
+
+Definition at line \mbox{\hyperlink{types_8c_source_l00013}{13}} of file \mbox{\hyperlink{types_8c_source}{types.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ \&\&\ p-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}})\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Если\ argv\ был\ выделен\ через\ malloc}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ free(p-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}});}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ p-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}\ =\ NULL;}
+\DoxyCodeLine{00018\ \ \ \ \ \}}
+\DoxyCodeLine{00019\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{types_8h_source_l00194}{Function\+Params\+::argv}}.
+
+\Hypertarget{types_8h_a3eeeb11379f52efc370487eb8a52c5ee}\index{types.h@{types.h}!function\_pipeline\_free@{function\_pipeline\_free}}
+\index{function\_pipeline\_free@{function\_pipeline\_free}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{function\_pipeline\_free()}{function\_pipeline\_free()}}
+{\footnotesize\ttfamily \label{types_8h_a3eeeb11379f52efc370487eb8a52c5ee} 
+void function\+\_\+pipeline\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_function_pipeline}{Function\+Pipeline}} \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Освобождает всю цепочку \doxylink{struct_function_pipeline}{Function\+Pipeline} (C). 
+
+Рекурсивно освобождает next. 
+
+Definition at line \mbox{\hyperlink{types_8c_source_l00021}{21}} of file \mbox{\hyperlink{types_8c_source}{types.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{while}\ (fp)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ next\ =\ fp-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ free(fp);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ fp\ =\ next;}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{types_8h_source_l00206}{Function\+Pipeline\+::next}}.
+
+\Hypertarget{types_8h_ab347e09152d07525622b731e0df0cc6b}\index{types.h@{types.h}!function\_pipeline\_validate@{function\_pipeline\_validate}}
+\index{function\_pipeline\_validate@{function\_pipeline\_validate}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{function\_pipeline\_validate()}{function\_pipeline\_validate()}}
+{\footnotesize\ttfamily \label{types_8h_ab347e09152d07525622b731e0df0cc6b} 
+int function\+\_\+pipeline\+\_\+validate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_function_pipeline}{Function\+Pipeline}} \texorpdfstring{$\ast$}{*}}]{head}{}\end{DoxyParamCaption})}
+
+
+
+Проверить корректность цепочки \doxylink{struct_function_pipeline}{Function\+Pipeline} (нет циклов, все func != NULL) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & -\/ начало цепочки \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 если корректна, 0 если есть ошибка 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{types_8c_source_l00029}{29}} of file \mbox{\hyperlink{types_8c_source}{types.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Проверка\ на\ циклы\ (алгоритм\ Флойда)}}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ slow\ =\ head;}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ fast\ =\ head;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{while}\ (fast\ \&\&\ fast-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}})\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!slow-\/>\mbox{\hyperlink{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2}{func}})\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ slow\ =\ slow-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ fast\ =\ fast-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}}-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (slow\ ==\ fast\ \&\&\ slow\ !=\ NULL)\ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ цикл}}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Проверка,\ что\ все\ func\ !=\ NULL}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{while}\ (head)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!head-\/>\mbox{\hyperlink{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2}{func}})\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ head\ =\ head-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}};}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{types_8h_source_l00205}{Function\+Pipeline\+::func}}, and \mbox{\hyperlink{types_8h_source_l00206}{Function\+Pipeline\+::next}}.
+
+\Hypertarget{types_8h_a23864e11484aca063fa48537ce48c047}\index{types.h@{types.h}!result\_free@{result\_free}}
+\index{result\_free@{result\_free}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{result\_free()}{result\_free()}}
+{\footnotesize\ttfamily \label{types_8h_a23864e11484aca063fa48537ce48c047} 
+void result\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_result}{Result}} \texorpdfstring{$\ast$}{*}}]{r}{}\end{DoxyParamCaption})}
+
+
+
+Освобождает ресурсы, связанные с \doxylink{struct_result}{Result} (C). 
+
+Если ok/err содержит динамический ресурс, освобождает его. 
+
+Definition at line \mbox{\hyperlink{types_8c_source_l00004}{4}} of file \mbox{\hyperlink{types_8c_source}{types.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00004\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{comment}{//\ Пользователь\ должен\ явно\ освобождать\ ok/err,\ если\ это\ динамические\ данные}}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{comment}{//\ Здесь\ можно\ добавить\ кастомную\ логику,\ если\ есть\ поле\ type\ в\ Generic}}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{comment}{//\ Пример:}}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{comment}{//\ if\ (r-\/>is\_ok\ \&\&\ r-\/>ok.value)\ free(r-\/>ok.value);}}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{comment}{//\ else\ if\ (!r-\/>is\_ok\ \&\&\ r-\/>err.value)\ free(r-\/>err.value);}}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ По\ умолчанию\ ничего\ не\ делаем}}
+\DoxyCodeLine{00011\ \}}
+
+\end{DoxyCode}
