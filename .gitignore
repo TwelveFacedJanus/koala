@@ -50,3 +50,13 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+
+# C development files
+main.c
+koala_app
+koala_dev
+build/
+
+# MacOS store
+.DS_Store

@@ -180,7 +180,7 @@ Result async_await_timeout(AsyncTask* task, int timeout_ms);
 #include <memory>
 #include <chrono>
 
-namespace koala_async_detail {
+namespace koala_async {
     inline void event_loop_worker(AsyncEventLoop* loop) {
         while (true) {
             AsyncTaskNode* node = nullptr;

@@ -60,6 +60,21 @@ typedef ptrdiff_t       isize;   // Знаковый размер (разниц�
     using nullptr_t = std::nullptr_t;  // Тип nullptr в C++
 #endif
 
+
+#ifndef __cplusplus
+/**
+ * @brief Перечисление поддерживаемых типов для Generic (C)
+ */
+typedef enum {
+    GENERIC_TYPE_UNKNOWN = 0,
+    GENERIC_TYPE_INT,
+    GENERIC_TYPE_FLOAT,
+    GENERIC_TYPE_PTR,
+    GENERIC_TYPE_STR,
+    GENERIC_TYPE_CUSTOM
+} GenericType;
+#endif //__cplusplus
+
 // =====================
 // Generic types block
 // =====================
@@ -102,6 +117,7 @@ typedef ptrdiff_t       isize;   // Знаковый размер (разниц�
     // C: структура Generic с void*
     typedef struct Generic {
         void* value;
+        GenericType type;
     } Generic;
     // Макрос для приведения типов
     #define GENERIC_SET(g, v)   ((g).value = (void*)(v))
@@ -264,24 +280,12 @@ struct FunctionPipelineGuard {
 
 #ifndef __cplusplus
 /**
- * @brief Перечисление поддерживаемых типов для Generic (C)
- */
-typedef enum {
-    GENERIC_TYPE_UNKNOWN = 0,
-    GENERIC_TYPE_INT,
-    GENERIC_TYPE_FLOAT,
-    GENERIC_TYPE_PTR,
-    GENERIC_TYPE_STR,
-    GENERIC_TYPE_CUSTOM
-} GenericType;
-
-/**
  * @brief Generic с типизацией (C)
  */
-typedef struct Generic {
+typedef struct TypedGeneric {
     void* value;
     GenericType type;
-} Generic;
+} TypedGeneric;
 
 /**
  * @brief Установить значение и тип в Generic
