@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['result_5ffree_0',['result_free',['../types_8c.html#a23864e11484aca063fa48537ce48c047',1,'result_free(Result *r):&#160;types.c'],['../types_8h.html#a23864e11484aca063fa48537ce48c047',1,'result_free(Result *r):&#160;types.c']]]
+  ['delete_0',['delete',['../mathematica_8h.html#ad5d282e52ef0803267ac362f62ad781d',1,'delete(struct Vector *vec):&#160;mathemetica.c'],['../mathemetica_8c.html#ad5d282e52ef0803267ac362f62ad781d',1,'delete(struct Vector *vec):&#160;mathemetica.c']]]
 ];

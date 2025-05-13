@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['v2_0',['Новые возможности (v2)',['../md_core_2async_8doc.html#autotoc_md16',1,'']]],
-  ['value_1',['value',['../struct_generic.html#a07a04db966cf03fd44abfc8f94b46179',1,'Generic']]],
-  ['void_20async_5fevent_5floop_5fstop_20asynceventloop_20loop_2',['void async_event_loop_stop(AsyncEventLoop* loop);',['../md_core_2async_8doc.html#autotoc_md10',1,'']]]
+  ['sender_5fip_0',['sender_ip',['../struct_p2_p_task.html#a0585879937022ccd86c4e6c776089135',1,'P2PTask']]],
+  ['sender_5fname_1',['sender_name',['../struct_p2_p_task.html#a6467942389453e04e9ca528ae3ad9ea7',1,'P2PTask']]],
+  ['sender_5fport_2',['sender_port',['../struct_p2_p_task.html#af1e4abe594d96c8ce5d7f95bf9b6bfc2',1,'P2PTask']]],
+  ['server_5fport_3',['server_port',['../struct_p2_p_network.html#aacd63a19bbcf118d569bf35d9bd09399',1,'P2PNetwork']]],
+  ['status_4',['status',['../struct_p2_p_task.html#a1c20c60d6871e06ead3faacc9da2057d',1,'P2PTask::status'],['../struct_task_cpp.html#a1af8bf4742b52ac3f700dd277f034add',1,'TaskCpp::status'],['../struct_task.html#aa54d3376b4b07ca6c9f80537c40ba5e7',1,'Task::status']]]
 ];

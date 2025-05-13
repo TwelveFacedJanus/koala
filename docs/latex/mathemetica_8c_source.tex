@@ -1,0 +1,72 @@
+\doxysection{mathemetica.\+c}
+\hypertarget{mathemetica_8c_source}{}\label{mathemetica_8c_source}\index{core/math/mathemetica.c@{core/math/mathemetica.c}}
+\mbox{\hyperlink{mathemetica_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mathematica_8h}{mathematica.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00004}00004\ \textcolor{comment}{//\ Helper\ function\ to\ create\ a\ new\ node}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00005}\mbox{\hyperlink{mathemetica_8c_af2c6f271cee0c0d88e2869f58c815667}{00005}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_vector}{Vector}}*\ \mbox{\hyperlink{mathemetica_8c_af2c6f271cee0c0d88e2869f58c815667}{create\_node}}(\mbox{\hyperlink{struct_generic}{Generic}}*\ data)\ \{}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00006}00006\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ node\ =\ (\mbox{\hyperlink{struct_vector}{Vector}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vector}{Vector}}));}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00007}00007\ \ \ \ \ \textcolor{keywordflow}{if}\ (!node)\ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00008}00008\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00009}00009\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}}\ =\ data;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00010}00010\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00011}00011\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_vector_aa30ac282b9203d10c9ac19386d18a435}{push\_back}}\ =\ \mbox{\hyperlink{mathematica_8h_a2499edf22ad5e432f6631b9a02470c18}{push}};}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{return}\ node;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00015}00015\ \textcolor{comment}{//\ Push\ implementation}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00016}\mbox{\hyperlink{mathematica_8h_a2499edf22ad5e432f6631b9a02470c18}{00016}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mathemetica_8c_a2499edf22ad5e432f6631b9a02470c18}{push}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_vector}{Vector}}*\ vec,\ \mbox{\hyperlink{struct_generic}{Generic}}*\ data)\ \{}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (!vec)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00018}00018\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00019}00019\ \ \ \ \ \textcolor{comment}{//\ Find\ the\ last\ node}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ current\ =\ vec;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{while}\ (current-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}})\ \{}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00022}00022\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}};}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00024}00024\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ Create\ and\ append\ new\ node}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ new\_node\ =\ \mbox{\hyperlink{mathemetica_8c_af2c6f271cee0c0d88e2869f58c815667}{create\_node}}(data);}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (!new\_node)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00028}00028\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00029}00029\ \ \ \ \ current-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}}\ =\ new\_node;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00032}00032\ \textcolor{comment}{//\ Delete\ a\ node\ with\ specific\ data}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00033}\mbox{\hyperlink{mathematica_8h_ad5d282e52ef0803267ac362f62ad781d}{00033}}\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{delete}(\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_vector}{Vector}}*\ vec)\ \{}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (!vec)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00035}00035\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00036}00036\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ current\ =\ vec;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00037}00037\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ prev\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00038}00038\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{while}\ (current)\ \{}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00040}00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ \mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}}\ =\ current-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}};}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00041}00041\ \ \ \ \ \ \ \ \ free(current);}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00042}00042\ \ \ \ \ \ \ \ \ current\ =\ \mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}};}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00044}00044\ \}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00046}00046\ \textcolor{comment}{//\ Free\ the\ entire\ vector}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00047}\mbox{\hyperlink{mathematica_8h_acc31669643b4c1e48ec174303999c367}{00047}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mathemetica_8c_acc31669643b4c1e48ec174303999c367}{free\_vector}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_vector}{Vector}}*\ vec)\ \{}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00048}00048\ \ \ \ \ \textcolor{keyword}{delete}(vec);\ \textcolor{comment}{//\ Just\ alias\ to\ delete\ in\ this\ implementation}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00051}00051\ \textcolor{comment}{//\ Allocate\ memory\ for\ a\ new\ vector}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00052}\mbox{\hyperlink{mathematica_8h_a522d4adf059058338603f89522cdfa3f}{00052}}\ \mbox{\hyperlink{struct_vector}{Vector}}*\ \mbox{\hyperlink{mathemetica_8c_a522d4adf059058338603f89522cdfa3f}{allocate\_memory\_for\_vector}}()\ \{}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ vec\ =\ (\mbox{\hyperlink{struct_vector}{Vector}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vector}{Vector}}));}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (!vec)\ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00055}00055\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00056}00056\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00057}00057\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00058}00058\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_aa30ac282b9203d10c9ac19386d18a435}{push\_back}}\ =\ \mbox{\hyperlink{mathematica_8h_a2499edf22ad5e432f6631b9a02470c18}{push}};}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{return}\ vec;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00060}00060\ \}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00062}00062\ \textcolor{comment}{//\ Initialize\ a\ new\ vector}}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00063}\mbox{\hyperlink{mathematica_8h_a038b4b5cd1454b3458df2d923534bae6}{00063}}\ \mbox{\hyperlink{struct_vector}{Vector}}*\ \mbox{\hyperlink{mathemetica_8c_a038b4b5cd1454b3458df2d923534bae6}{init\_vector}}()\ \{}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00064}00064\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ vec\ =\ \mbox{\hyperlink{mathemetica_8c_a522d4adf059058338603f89522cdfa3f}{allocate\_memory\_for\_vector}}();}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{return}\ vec;}
+\DoxyCodeLine{\Hypertarget{mathemetica_8c_source_l00066}00066\ \}}
+
+\end{DoxyCode}

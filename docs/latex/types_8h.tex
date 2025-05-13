@@ -10,13 +10,19 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_generic}{Generic}}
-\begin{DoxyCompactList}\small\item\em \doxylink{struct_generic}{Generic} с типизацией (C) \end{DoxyCompactList}\item 
+\item 
 struct \mbox{\hyperlink{struct_result}{Result}}
 \item 
 struct \mbox{\hyperlink{struct_function_params}{Function\+Params}}
 \begin{DoxyCompactList}\small\item\em Структура параметров для функций в \doxylink{struct_function_pipeline}{Function\+Pipeline} (C). \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_function_pipeline}{Function\+Pipeline}}
-\begin{DoxyCompactList}\small\item\em Элемент цепочки функций (pipeline). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Элемент цепочки функций (pipeline). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_typed_generic}{Typed\+Generic}}
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_generic}{Generic} с типизацией (C) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_p2_p_task}{P2\+PTask}}
+\item 
+struct \mbox{\hyperlink{struct_p2_p_network}{P2\+PNetwork}}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -100,23 +106,26 @@ typedef size\+\_\+t \mbox{\hyperlink{types_8h_a5148c9c1252e19e12def2814f71690e3}
 typedef ptrdiff\+\_\+t \mbox{\hyperlink{types_8h_a2992909b9c1ee26479af8fa433d4479f}{isize}}
 \item 
 typedef struct Generic \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic}}
-\begin{DoxyCompactList}\small\item\em \doxylink{struct_generic}{Generic} с типизацией (C) \end{DoxyCompactList}\item 
+\item 
 typedef struct Result \mbox{\hyperlink{types_8h_ade7e53b8ed7380705cbd1225db23cd5a}{Result}}
 \item 
 typedef struct Function\+Params \mbox{\hyperlink{types_8h_ae67f716349c52637b18f545e998b072e}{Function\+Params}}
 \begin{DoxyCompactList}\small\item\em Структура параметров для функций в \doxylink{struct_function_pipeline}{Function\+Pipeline} (C). \end{DoxyCompactList}\item 
 typedef struct Function\+Pipeline \mbox{\hyperlink{types_8h_ab1f813247c84d8e49c51bbe73431ddf8}{Function\+Pipeline}}
-\begin{DoxyCompactList}\small\item\em Элемент цепочки функций (pipeline). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Элемент цепочки функций (pipeline). \end{DoxyCompactList}\item 
+typedef struct Typed\+Generic \mbox{\hyperlink{types_8h_a0f7073e7318753114f8aadcd61b65c60}{Typed\+Generic}}
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_generic}{Generic} с типизацией (C) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0}{Generic\+Type}} \{ \newline
 \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172}{GENERIC\+\_\+\+TYPE\+\_\+\+UNKNOWN}} = 0
+, \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a09229b15ade9dd72bd2f8c721cf440e0}{GENERIC\+\_\+\+TYPE\+\_\+\+UINT}}
 , \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128}{GENERIC\+\_\+\+TYPE\+\_\+\+INT}}
 , \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455}{GENERIC\+\_\+\+TYPE\+\_\+\+FLOAT}}
-, \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a}{GENERIC\+\_\+\+TYPE\+\_\+\+PTR}}
 , \newline
-\mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481}{GENERIC\+\_\+\+TYPE\+\_\+\+STR}}
+\mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a}{GENERIC\+\_\+\+TYPE\+\_\+\+PTR}}
+, \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481}{GENERIC\+\_\+\+TYPE\+\_\+\+STR}}
 , \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e}{GENERIC\+\_\+\+TYPE\+\_\+\+CUSTOM}}
  \}
 \begin{DoxyCompactList}\small\item\em Перечисление поддерживаемых типов для \doxylink{struct_generic}{Generic} (C) \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -162,15 +171,15 @@ int \mbox{\hyperlink{types_8h_ab347e09152d07525622b731e0df0cc6b}{function\+\_\+p
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{types_8h_source_l00320}{320}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+Definition at line \mbox{\hyperlink{types_8h_source_l00325}{325}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#define\ FUNCTION\_PIPELINE\_APPEND(head,\ node)\ do\ \{\ \(\backslash\)}}
-\DoxyCodeLine{00321\ \textcolor{preprocessor}{\ \ \ \ FunctionPipeline*\ \_cur\ =\ (head);\ \(\backslash\)}}
-\DoxyCodeLine{00322\ \textcolor{preprocessor}{\ \ \ \ if\ (!\_cur)\ \{\ (head)\ =\ (node);\ \}\ \(\backslash\)}}
-\DoxyCodeLine{00323\ \textcolor{preprocessor}{\ \ \ \ else\ \{\ while\ (\_cur-\/>next)\ \_cur\ =\ \_cur-\/>next;\ \_cur-\/>next\ =\ (node);\ \}\ \(\backslash\)}}
-\DoxyCodeLine{00324\ \textcolor{preprocessor}{\}\ while(0)}}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#define\ FUNCTION\_PIPELINE\_APPEND(head,\ node)\ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\ \ \ \ FunctionPipeline*\ \_cur\ =\ (head);\ \(\backslash\)}}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\ \ \ \ if\ (!\_cur)\ \{\ (head)\ =\ (node);\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\ \ \ \ else\ \{\ while\ (\_cur-\/>next)\ \_cur\ =\ \_cur-\/>next;\ \_cur-\/>next\ =\ (node);\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\}\ while(0)}}
 
 \end{DoxyCode}
 \Hypertarget{types_8h_ad2e5d1916acc91b315261fb957671e1e}\index{types.h@{types.h}!FUNCTION\_PIPELINE\_NEW@{FUNCTION\_PIPELINE\_NEW}}
@@ -203,17 +212,17 @@ Definition at line \mbox{\hyperlink{types_8h_source_l00320}{320}} of file \mbox{
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{types_8h_source_l00307}{307}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+Definition at line \mbox{\hyperlink{types_8h_source_l00312}{312}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#define\ FUNCTION\_PIPELINE\_NEW(f)\ \(\backslash\)}}
-\DoxyCodeLine{00308\ \textcolor{preprocessor}{\ \ \ \ (\{\ \(\backslash\)}}
-\DoxyCodeLine{00309\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ FunctionPipeline*\ \_fp\ =\ (FunctionPipeline*)malloc(sizeof(FunctionPipeline));\ \(\backslash\)}}
-\DoxyCodeLine{00310\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_fp-\/>func\ =\ (f);\ \(\backslash\)}}
-\DoxyCodeLine{00311\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_fp-\/>next\ =\ NULL;\ \(\backslash\)}}
-\DoxyCodeLine{00312\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_fp;\ \(\backslash\)}}
-\DoxyCodeLine{00313\ \textcolor{preprocessor}{\ \ \ \ \})}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#define\ FUNCTION\_PIPELINE\_NEW(f)\ \(\backslash\)}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\ \ \ \ (\{\ \(\backslash\)}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ FunctionPipeline*\ \_fp\ =\ (FunctionPipeline*)malloc(sizeof(FunctionPipeline));\ \(\backslash\)}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_fp-\/>func\ =\ (f);\ \(\backslash\)}}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_fp-\/>next\ =\ NULL;\ \(\backslash\)}}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_fp;\ \(\backslash\)}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\ \ \ \ \})}}
 
 \end{DoxyCode}
 \Hypertarget{types_8h_a2f0d9a4aee65152ba07520f571a68051}\index{types.h@{types.h}!GENERIC\_GET@{GENERIC\_GET}}
@@ -229,7 +238,7 @@ Definition at line \mbox{\hyperlink{types_8h_source_l00307}{307}} of file \mbox{
 \end{DoxyCode}
 
 
-Definition at line \mbox{\hyperlink{types_8h_source_l00108}{108}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+Definition at line \mbox{\hyperlink{types_8h_source_l00125}{125}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
 
 \Hypertarget{types_8h_a4d68bf8fad29a687e33e42bb97b78acc}\index{types.h@{types.h}!GENERIC\_GET@{GENERIC\_GET}}
 \index{GENERIC\_GET@{GENERIC\_GET}!types.h@{types.h}}
@@ -244,7 +253,7 @@ Definition at line \mbox{\hyperlink{types_8h_source_l00108}{108}} of file \mbox{
 \end{DoxyCode}
 
 
-Definition at line \mbox{\hyperlink{types_8h_source_l00108}{108}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+Definition at line \mbox{\hyperlink{types_8h_source_l00125}{125}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
 
 \Hypertarget{types_8h_a8fa4e00467f5aea37aff1ae5577e8e60}\index{types.h@{types.h}!GENERIC\_GET\_TYPED@{GENERIC\_GET\_TYPED}}
 \index{GENERIC\_GET\_TYPED@{GENERIC\_GET\_TYPED}!types.h@{types.h}}
@@ -263,12 +272,12 @@ Definition at line \mbox{\hyperlink{types_8h_source_l00108}{108}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{types_8h_source_l00294}{294}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+Definition at line \mbox{\hyperlink{types_8h_source_l00299}{299}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#define\ GENERIC\_GET\_TYPED(type\_,\ g,\ expected\_type)\ \(\backslash\)}}
-\DoxyCodeLine{00295\ \textcolor{preprocessor}{\ \ \ \ (((g).type\ ==\ (expected\_type))\ ?\ (type\_)((g).value)\ :\ NULL)}}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#define\ GENERIC\_GET\_TYPED(type\_,\ g,\ expected\_type)\ \(\backslash\)}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\ \ \ \ (((g).type\ ==\ (expected\_type))\ ?\ (type\_)((g).value)\ :\ NULL)}}
 
 \end{DoxyCode}
 \Hypertarget{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}\index{types.h@{types.h}!GENERIC\_SET@{GENERIC\_SET}}
@@ -284,7 +293,7 @@ Definition at line \mbox{\hyperlink{types_8h_source_l00294}{294}} of file \mbox{
 \end{DoxyCode}
 
 
-Definition at line \mbox{\hyperlink{types_8h_source_l00107}{107}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+Definition at line \mbox{\hyperlink{types_8h_source_l00124}{124}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
 
 \Hypertarget{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}\index{types.h@{types.h}!GENERIC\_SET@{GENERIC\_SET}}
 \index{GENERIC\_SET@{GENERIC\_SET}!types.h@{types.h}}
@@ -299,7 +308,7 @@ Definition at line \mbox{\hyperlink{types_8h_source_l00107}{107}} of file \mbox{
 \end{DoxyCode}
 
 
-Definition at line \mbox{\hyperlink{types_8h_source_l00107}{107}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+Definition at line \mbox{\hyperlink{types_8h_source_l00124}{124}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
 
 \Hypertarget{types_8h_a4d7090f7df18ebdd1a99e2fcde6e2902}\index{types.h@{types.h}!GENERIC\_SET\_TYPED@{GENERIC\_SET\_TYPED}}
 \index{GENERIC\_SET\_TYPED@{GENERIC\_SET\_TYPED}!types.h@{types.h}}
@@ -318,7 +327,7 @@ Definition at line \mbox{\hyperlink{types_8h_source_l00107}{107}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{types_8h_source_l00289}{289}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+Definition at line \mbox{\hyperlink{types_8h_source_l00294}{294}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
 
 
 
@@ -352,10 +361,6 @@ func\+: функция, принимающая указатель на \doxylink
 \doxysubsubsection{\texorpdfstring{Generic}{Generic}}
 {\footnotesize\ttfamily \label{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d} 
 typedef struct Generic Generic}
-
-
-
-\doxylink{struct_generic}{Generic} с типизацией (C) 
 
 \Hypertarget{types_8h_ad309dbcaeea13aa602d686964156ea0b}\index{types.h@{types.h}!i16@{i16}}
 \index{i16@{i16}!types.h@{types.h}}
@@ -523,6 +528,16 @@ Definition at line \mbox{\hyperlink{types_8h_source_l00014}{14}} of file \mbox{\
 {\footnotesize\ttfamily \label{types_8h_ade7e53b8ed7380705cbd1225db23cd5a} 
 typedef struct Result Result}
 
+\Hypertarget{types_8h_a0f7073e7318753114f8aadcd61b65c60}\index{types.h@{types.h}!TypedGeneric@{TypedGeneric}}
+\index{TypedGeneric@{TypedGeneric}!types.h@{types.h}}
+\doxysubsubsection{\texorpdfstring{TypedGeneric}{TypedGeneric}}
+{\footnotesize\ttfamily \label{types_8h_a0f7073e7318753114f8aadcd61b65c60} 
+typedef struct Typed\+Generic Typed\+Generic}
+
+
+
+\doxylink{struct_generic}{Generic} с типизацией (C) 
+
 \Hypertarget{types_8h_ace9d960e74685e2cd84b36132dbbf8aa}\index{types.h@{types.h}!u16@{u16}}
 \index{u16@{u16}!types.h@{types.h}}
 \doxysubsubsection{\texorpdfstring{u16}{u16}}
@@ -681,6 +696,10 @@ enum \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0}{Generic\+Type}
 GENERIC\+\_\+\+TYPE\+\_\+\+UNKNOWN&\\
 \hline
 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GENERIC\_TYPE\_UINT@{GENERIC\_TYPE\_UINT}!types.h@{types.h}}\index{types.h@{types.h}!GENERIC\_TYPE\_UINT@{GENERIC\_TYPE\_UINT}}}\Hypertarget{types_8h_a5b49a4735004213d537a8915a2ac69a0a09229b15ade9dd72bd2f8c721cf440e0}\label{types_8h_a5b49a4735004213d537a8915a2ac69a0a09229b15ade9dd72bd2f8c721cf440e0} 
+GENERIC\+\_\+\+TYPE\+\_\+\+UINT&\\
+\hline
+
 \raisebox{\heightof{T}}[0pt][0pt]{\index{GENERIC\_TYPE\_INT@{GENERIC\_TYPE\_INT}!types.h@{types.h}}\index{types.h@{types.h}!GENERIC\_TYPE\_INT@{GENERIC\_TYPE\_INT}}}\Hypertarget{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128}\label{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128} 
 GENERIC\+\_\+\+TYPE\+\_\+\+INT&\\
 \hline
@@ -704,18 +723,19 @@ GENERIC\+\_\+\+TYPE\+\_\+\+CUSTOM&\\
 \end{DoxyEnumFields}
 
 
-Definition at line \mbox{\hyperlink{types_8h_source_l00269}{269}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
+Definition at line \mbox{\hyperlink{types_8h_source_l00068}{68}} of file \mbox{\hyperlink{types_8h_source}{types.\+h}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00270\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172}{GENERIC\_TYPE\_UNKNOWN}}\ =\ 0,}
-\DoxyCodeLine{00271\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128}{GENERIC\_TYPE\_INT}},}
-\DoxyCodeLine{00272\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455}{GENERIC\_TYPE\_FLOAT}},}
-\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a}{GENERIC\_TYPE\_PTR}},}
-\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481}{GENERIC\_TYPE\_STR}},}
-\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e}{GENERIC\_TYPE\_CUSTOM}}}
-\DoxyCodeLine{00276\ \}\ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0}{GenericType}};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172}{GENERIC\_TYPE\_UNKNOWN}}\ =\ 0,}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a09229b15ade9dd72bd2f8c721cf440e0}{GENERIC\_TYPE\_UINT}},}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128}{GENERIC\_TYPE\_INT}},}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455}{GENERIC\_TYPE\_FLOAT}},}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a}{GENERIC\_TYPE\_PTR}},}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481}{GENERIC\_TYPE\_STR}},}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e}{GENERIC\_TYPE\_CUSTOM}}}
+\DoxyCodeLine{00076\ \}\ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0}{GenericType}};}
 
 \end{DoxyCode}
 
@@ -748,7 +768,7 @@ Definition at line \mbox{\hyperlink{types_8c_source_l00013}{13}} of file \mbox{\
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{types_8h_source_l00194}{Function\+Params\+::argv}}.
+References \mbox{\hyperlink{types_8h_source_l00211}{Function\+Params\+::argv}}.
 
 \Hypertarget{types_8h_a3eeeb11379f52efc370487eb8a52c5ee}\index{types.h@{types.h}!function\_pipeline\_free@{function\_pipeline\_free}}
 \index{function\_pipeline\_free@{function\_pipeline\_free}!types.h@{types.h}}
@@ -777,7 +797,7 @@ Definition at line \mbox{\hyperlink{types_8c_source_l00021}{21}} of file \mbox{\
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{types_8h_source_l00206}{Function\+Pipeline\+::next}}.
+References \mbox{\hyperlink{types_8h_source_l00223}{Function\+Pipeline\+::next}}.
 
 \Hypertarget{types_8h_ab347e09152d07525622b731e0df0cc6b}\index{types.h@{types.h}!function\_pipeline\_validate@{function\_pipeline\_validate}}
 \index{function\_pipeline\_validate@{function\_pipeline\_validate}!types.h@{types.h}}
@@ -824,7 +844,7 @@ Definition at line \mbox{\hyperlink{types_8c_source_l00029}{29}} of file \mbox{\
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{types_8h_source_l00205}{Function\+Pipeline\+::func}}, and \mbox{\hyperlink{types_8h_source_l00206}{Function\+Pipeline\+::next}}.
+References \mbox{\hyperlink{types_8h_source_l00222}{Function\+Pipeline\+::func}}, and \mbox{\hyperlink{types_8h_source_l00223}{Function\+Pipeline\+::next}}.
 
 \Hypertarget{types_8h_a23864e11484aca063fa48537ce48c047}\index{types.h@{types.h}!result\_free@{result\_free}}
 \index{result\_free@{result\_free}!types.h@{types.h}}

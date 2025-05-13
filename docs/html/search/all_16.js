@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['задачами_20c_0',['Пример с несколькими задачами (C++)',['../md_core_2async_8doc.html#autotoc_md24',1,'']]],
-  ['задачи_20c_1',['Отмена задачи (C++)',['../md_core_2async_8doc.html#autotoc_md28',1,'']]],
-  ['задач_2',['Отмена задач',['../md_core_2async_8doc.html#autotoc_md18',1,'']]],
-  ['задач_20c_3',['Очередь задач (C++)',['../md_core_2async_8doc.html#autotoc_md37',1,'']]],
-  ['замечания_4',['Ограничения и замечания',['../md_core_2async_8doc.html#autotoc_md31',1,'']]]
+  ['быстрый_20старт_0',['Быстрый старт',['../md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md84',1,'Быстрый старт'],['../md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md100',1,'Быстрый старт']]],
+  ['безопасности_1',['Рекомендации по памяти и безопасности',['../md_core_2types_8doc.html#autotoc_md62',1,'']]]
 ];

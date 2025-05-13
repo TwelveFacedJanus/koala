@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['асинхронные_20примитивы_0',['Асинхронные примитивы',['../group___async.html',1,'']]],
-  ['асинхронных_20примитивов_1',['Примеры использования асинхронных примитивов',['../group___async_usage.html',1,'']]]
+  ['type_0',['Result Type',['../group___result_type.html',1,'']]],
+  ['types_1',['Generic Types',['../group___generic_types.html',1,'']]]
 ];

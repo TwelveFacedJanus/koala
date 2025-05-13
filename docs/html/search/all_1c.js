@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['расширяемость_0',['Расширяемость',['../md_core_2async_8doc.html#autotoc_md32',1,'Расширяемость'],['../md_core_2types_8doc.html#autotoc_md64',1,'Расширяемость']]],
-  ['рекомендации_20по_20памяти_20и_20безопасности_1',['Рекомендации по памяти и безопасности',['../md_core_2types_8doc.html#autotoc_md62',1,'']]],
-  ['решения_2',['Типичные ошибки и их решения',['../md_core_2types_8doc.html#autotoc_md80',1,'']]]
+  ['логгер_20antlogger_0',['Логгер AntLogger',['../group___ant_logger.html',1,'']]],
+  ['логирование_20с_20модулем_1',['Логирование с модулем',['../md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md105',1,'']]]
 ];

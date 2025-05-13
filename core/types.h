@@ -67,6 +67,7 @@ typedef ptrdiff_t       isize;   // Знаковый размер (разниц�
  */
 typedef enum {
     GENERIC_TYPE_UNKNOWN = 0,
+    GENERIC_TYPE_UINT,
     GENERIC_TYPE_INT,
     GENERIC_TYPE_FLOAT,
     GENERIC_TYPE_PTR,
@@ -333,5 +334,33 @@ typedef struct TypedGeneric {
  * @return 1 если корректна, 0 если есть ошибка
  */
 int function_pipeline_validate(FunctionPipeline* head);
+
+
+struct P2PTask {
+    const char* name;
+    const char* command;
+    
+    const char* sender_name;
+    const char* sender_ip;
+    int sender_port;
+
+    const char* receiver_name;
+    const char* receiver_ip;
+    int receiver_port;
+
+    int priority;
+    int status;
+    int result;
+};
+
+struct P2PNetwork {
+    int server_port;
+    int client_port;
+    int max_clients;
+    int current_clients;
+    int task_count;
+    int task_queue_size;
+    struct P2PTask* tasks_queue;
+};
 
 #endif // KOALA_TYPES_H

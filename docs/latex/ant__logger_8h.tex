@@ -1,0 +1,292 @@
+\doxysection{external/ant\+\_\+logger/ant\+\_\+logger.h File Reference}
+\hypertarget{ant__logger_8h}{}\label{ant__logger_8h}\index{external/ant\_logger/ant\_logger.h@{external/ant\_logger/ant\_logger.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Include dependency graph for ant\+\_\+logger.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ant__logger_8h_a24d7cf185f7a1cea4d24da717ef54f48}{ANT\+\_\+\+LOG\+\_\+\+DEBUG\+\_\+M}}(module,  fmt, ...)
+\begin{DoxyCompactList}\small\item\em Макросы для удобного логирования с указанием модуля \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ant__logger_8h_a5d24c343e3c2ced67a1dbf2d49472f45}{ANT\+\_\+\+LOG\+\_\+\+INFO\+\_\+M}}(module,  fmt, ...)
+\item 
+\#define \mbox{\hyperlink{ant__logger_8h_a1191c484e103c1d4a4a2d3313589db1a}{ANT\+\_\+\+LOG\+\_\+\+WARNING\+\_\+M}}(module,  fmt, ...)
+\item 
+\#define \mbox{\hyperlink{ant__logger_8h_a5a3d9b3b0e313976ff29578b8719edc4}{ANT\+\_\+\+LOG\+\_\+\+ERROR\+\_\+M}}(module,  fmt, ...)
+\item 
+\#define \mbox{\hyperlink{ant__logger_8h_a815557653cb80323d23f7c238bf682f0}{ANT\+\_\+\+LOG\+\_\+\+FATAL\+\_\+M}}(module,  fmt, ...)
+\item 
+\#define \mbox{\hyperlink{ant__logger_8h_a2b59d76f88b5231b3ac08e423a952b86}{ANT\+\_\+\+LOG\+\_\+\+DEBUG}}(fmt, ...)
+\begin{DoxyCompactList}\small\item\em Макросы без указания модуля (используется "{}default"{}) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{ant__logger_8h_a4e96a837103625c5cc61ab4cfff2d280}{ANT\+\_\+\+LOG\+\_\+\+INFO}}(fmt, ...)
+\item 
+\#define \mbox{\hyperlink{ant__logger_8h_a3a1870daa877f68a4a6ec9dc6927a2a7}{ANT\+\_\+\+LOG\+\_\+\+WARNING}}(fmt, ...)
+\item 
+\#define \mbox{\hyperlink{ant__logger_8h_a9ac03a31c30a9c8cfa5677b38a315e79}{ANT\+\_\+\+LOG\+\_\+\+ERROR}}(fmt, ...)
+\item 
+\#define \mbox{\hyperlink{ant__logger_8h_a558c9fc37fc16792a16cbd5c77273b90}{ANT\+\_\+\+LOG\+\_\+\+FATAL}}(fmt, ...)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ant__logger_8h_a7bc4329f01da48b7bb263197d1d3e440}{ant\+\_\+log\+\_\+callback\+\_\+t}}) (\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}module, const char \texorpdfstring{$\ast$}{*}message)
+\begin{DoxyCompactList}\small\item\em Установить пользовательский callback для логирования \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}} \{ \newline
+\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaacb9a6821a465c6d61218f696a0948198}{ANT\+\_\+\+LOG\+\_\+\+DEBUG}}
+, \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaaa0d3ac955565050d2ed2d61e466007b0}{ANT\+\_\+\+LOG\+\_\+\+INFO}}
+, \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaabd8136572ea2c5214e6f7123b4fdca4b}{ANT\+\_\+\+LOG\+\_\+\+WARNING}}
+, \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaa0b547a09405bad4fa19a7a60498272bf}{ANT\+\_\+\+LOG\+\_\+\+ERROR}}
+, \newline
+\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaacd5c8865faaf87d54f306c96e6bab323}{ANT\+\_\+\+LOG\+\_\+\+FATAL}}
+ \}
+\begin{DoxyCompactList}\small\item\em Уровни логирования \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___ant_logger_ga221ad35833a5d41f71421f2f3c066c95}{ant\+\_\+log\+\_\+enable\+\_\+colors}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Цветной вывод (по умолчанию включён для терминала) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_ga1f76a3ecf536cfb2681828f6b8941835}{ant\+\_\+log\+\_\+enable\+\_\+async}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Асинхронный режим (по умолчанию выключен) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_gaa2cfe4fcc129fa9b0766b9779db64858}{ant\+\_\+log\+\_\+init}} (const char \texorpdfstring{$\ast$}{*}file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Инициализация логгера (опционально\+: путь к файлу, callback) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_ga0d13b320d5c91e58632c230243f00bb8}{ant\+\_\+log\+\_\+shutdown}} ()
+\begin{DoxyCompactList}\small\item\em Завершение работы логгера (закрытие файлов и т.\+д.) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_gabc2800dfb26fd0b291ea7e04520328ec}{ant\+\_\+log\+\_\+set\+\_\+level}} (\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}} level)
+\begin{DoxyCompactList}\small\item\em Установить минимальный уровень логирования \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_ga9a61caaff7630aa717988962a55b3452}{ant\+\_\+log\+\_\+set\+\_\+callback}} (\mbox{\hyperlink{ant__logger_8h_a7bc4329f01da48b7bb263197d1d3e440}{ant\+\_\+log\+\_\+callback\+\_\+t}} cb)
+\begin{DoxyCompactList}\small\item\em Установить пользовательский callback для логирования. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_ga0aa4315bcae65fafb912aa5319c64417}{ant\+\_\+log\+\_\+write}} (\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}module, const char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}func, const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em Основная функция логирования (не используйте напрямую, используйте макросы) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ant__logger_8h_a2b59d76f88b5231b3ac08e423a952b86}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_DEBUG@{ANT\_LOG\_DEBUG}}
+\index{ANT\_LOG\_DEBUG@{ANT\_LOG\_DEBUG}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_DEBUG}{ANT\_LOG\_DEBUG}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a2b59d76f88b5231b3ac08e423a952b86} 
+\#define ANT\+\_\+\+LOG\+\_\+\+DEBUG(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{ant__logger_8h_a24d7cf185f7a1cea4d24da717ef54f48}{ANT\_LOG\_DEBUG\_M}}(\textcolor{stringliteral}{"{}default"{}},\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+Макросы без указания модуля (используется "{}default"{}) 
+
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00048}{48}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+\Hypertarget{ant__logger_8h_a24d7cf185f7a1cea4d24da717ef54f48}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_DEBUG\_M@{ANT\_LOG\_DEBUG\_M}}
+\index{ANT\_LOG\_DEBUG\_M@{ANT\_LOG\_DEBUG\_M}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_DEBUG\_M}{ANT\_LOG\_DEBUG\_M}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a24d7cf185f7a1cea4d24da717ef54f48} 
+\#define ANT\+\_\+\+LOG\+\_\+\+DEBUG\+\_\+M(\begin{DoxyParamCaption}\item[{}]{module}{, }\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group___ant_logger_ga0aa4315bcae65fafb912aa5319c64417}{ant\_log\_write}}(\mbox{\hyperlink{ant__logger_8h_a2b59d76f88b5231b3ac08e423a952b86}{ANT\_LOG\_DEBUG}},\ \ \ module,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_func\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+Макросы для удобного логирования с указанием модуля 
+
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00041}{41}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+\Hypertarget{ant__logger_8h_a9ac03a31c30a9c8cfa5677b38a315e79}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_ERROR@{ANT\_LOG\_ERROR}}
+\index{ANT\_LOG\_ERROR@{ANT\_LOG\_ERROR}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_ERROR}{ANT\_LOG\_ERROR}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a9ac03a31c30a9c8cfa5677b38a315e79} 
+\#define ANT\+\_\+\+LOG\+\_\+\+ERROR(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{ant__logger_8h_a5a3d9b3b0e313976ff29578b8719edc4}{ANT\_LOG\_ERROR\_M}}(\textcolor{stringliteral}{"{}default"{}},\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00051}{51}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+\Hypertarget{ant__logger_8h_a5a3d9b3b0e313976ff29578b8719edc4}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_ERROR\_M@{ANT\_LOG\_ERROR\_M}}
+\index{ANT\_LOG\_ERROR\_M@{ANT\_LOG\_ERROR\_M}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_ERROR\_M}{ANT\_LOG\_ERROR\_M}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a5a3d9b3b0e313976ff29578b8719edc4} 
+\#define ANT\+\_\+\+LOG\+\_\+\+ERROR\+\_\+M(\begin{DoxyParamCaption}\item[{}]{module}{, }\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group___ant_logger_ga0aa4315bcae65fafb912aa5319c64417}{ant\_log\_write}}(\mbox{\hyperlink{ant__logger_8h_a9ac03a31c30a9c8cfa5677b38a315e79}{ANT\_LOG\_ERROR}},\ \ \ module,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_func\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00044}{44}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+\Hypertarget{ant__logger_8h_a558c9fc37fc16792a16cbd5c77273b90}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_FATAL@{ANT\_LOG\_FATAL}}
+\index{ANT\_LOG\_FATAL@{ANT\_LOG\_FATAL}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_FATAL}{ANT\_LOG\_FATAL}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a558c9fc37fc16792a16cbd5c77273b90} 
+\#define ANT\+\_\+\+LOG\+\_\+\+FATAL(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{ant__logger_8h_a815557653cb80323d23f7c238bf682f0}{ANT\_LOG\_FATAL\_M}}(\textcolor{stringliteral}{"{}default"{}},\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00052}{52}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+\Hypertarget{ant__logger_8h_a815557653cb80323d23f7c238bf682f0}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_FATAL\_M@{ANT\_LOG\_FATAL\_M}}
+\index{ANT\_LOG\_FATAL\_M@{ANT\_LOG\_FATAL\_M}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_FATAL\_M}{ANT\_LOG\_FATAL\_M}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a815557653cb80323d23f7c238bf682f0} 
+\#define ANT\+\_\+\+LOG\+\_\+\+FATAL\+\_\+M(\begin{DoxyParamCaption}\item[{}]{module}{, }\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group___ant_logger_ga0aa4315bcae65fafb912aa5319c64417}{ant\_log\_write}}(\mbox{\hyperlink{ant__logger_8h_a558c9fc37fc16792a16cbd5c77273b90}{ANT\_LOG\_FATAL}},\ \ \ module,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_func\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00045}{45}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+\Hypertarget{ant__logger_8h_a4e96a837103625c5cc61ab4cfff2d280}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_INFO@{ANT\_LOG\_INFO}}
+\index{ANT\_LOG\_INFO@{ANT\_LOG\_INFO}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_INFO}{ANT\_LOG\_INFO}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a4e96a837103625c5cc61ab4cfff2d280} 
+\#define ANT\+\_\+\+LOG\+\_\+\+INFO(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{ant__logger_8h_a5d24c343e3c2ced67a1dbf2d49472f45}{ANT\_LOG\_INFO\_M}}(\textcolor{stringliteral}{"{}default"{}},\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00049}{49}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+\Hypertarget{ant__logger_8h_a5d24c343e3c2ced67a1dbf2d49472f45}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_INFO\_M@{ANT\_LOG\_INFO\_M}}
+\index{ANT\_LOG\_INFO\_M@{ANT\_LOG\_INFO\_M}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_INFO\_M}{ANT\_LOG\_INFO\_M}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a5d24c343e3c2ced67a1dbf2d49472f45} 
+\#define ANT\+\_\+\+LOG\+\_\+\+INFO\+\_\+M(\begin{DoxyParamCaption}\item[{}]{module}{, }\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group___ant_logger_ga0aa4315bcae65fafb912aa5319c64417}{ant\_log\_write}}(\mbox{\hyperlink{ant__logger_8h_a4e96a837103625c5cc61ab4cfff2d280}{ANT\_LOG\_INFO}},\ \ \ \ module,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_func\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00042}{42}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+\Hypertarget{ant__logger_8h_a3a1870daa877f68a4a6ec9dc6927a2a7}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_WARNING@{ANT\_LOG\_WARNING}}
+\index{ANT\_LOG\_WARNING@{ANT\_LOG\_WARNING}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_WARNING}{ANT\_LOG\_WARNING}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a3a1870daa877f68a4a6ec9dc6927a2a7} 
+\#define ANT\+\_\+\+LOG\+\_\+\+WARNING(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{ant__logger_8h_a1191c484e103c1d4a4a2d3313589db1a}{ANT\_LOG\_WARNING\_M}}(\textcolor{stringliteral}{"{}default"{}},\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00050}{50}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+\Hypertarget{ant__logger_8h_a1191c484e103c1d4a4a2d3313589db1a}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_WARNING\_M@{ANT\_LOG\_WARNING\_M}}
+\index{ANT\_LOG\_WARNING\_M@{ANT\_LOG\_WARNING\_M}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_WARNING\_M}{ANT\_LOG\_WARNING\_M}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a1191c484e103c1d4a4a2d3313589db1a} 
+\#define ANT\+\_\+\+LOG\+\_\+\+WARNING\+\_\+M(\begin{DoxyParamCaption}\item[{}]{module}{, }\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group___ant_logger_ga0aa4315bcae65fafb912aa5319c64417}{ant\_log\_write}}(\mbox{\hyperlink{ant__logger_8h_a3a1870daa877f68a4a6ec9dc6927a2a7}{ANT\_LOG\_WARNING}},\ module,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_func\_\_,\ fmt,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00043}{43}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{ant__logger_8h_a7bc4329f01da48b7bb263197d1d3e440}\index{ant\_logger.h@{ant\_logger.h}!ant\_log\_callback\_t@{ant\_log\_callback\_t}}
+\index{ant\_log\_callback\_t@{ant\_log\_callback\_t}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ant\_log\_callback\_t}{ant\_log\_callback\_t}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a7bc4329f01da48b7bb263197d1d3e440} 
+typedef void(\texorpdfstring{$\ast$}{*} ant\+\_\+log\+\_\+callback\+\_\+t) (\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}module, const char \texorpdfstring{$\ast$}{*}message)}
+
+
+
+Установить пользовательский callback для логирования 
+
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00034}{34}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}\index{ant\_logger.h@{ant\_logger.h}!ant\_log\_level\_t@{ant\_log\_level\_t}}
+\index{ant\_log\_level\_t@{ant\_log\_level\_t}!ant\_logger.h@{ant\_logger.h}}
+\doxysubsubsection{\texorpdfstring{ant\_log\_level\_t}{ant\_log\_level\_t}}
+{\footnotesize\ttfamily \label{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa} 
+enum \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}}}
+
+
+
+Уровни логирования 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ANT\_LOG\_DEBUG@{ANT\_LOG\_DEBUG}!ant\_logger.h@{ant\_logger.h}}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_DEBUG@{ANT\_LOG\_DEBUG}}}\Hypertarget{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaacb9a6821a465c6d61218f696a0948198}\label{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaacb9a6821a465c6d61218f696a0948198} 
+ANT\+\_\+\+LOG\+\_\+\+DEBUG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ANT\_LOG\_INFO@{ANT\_LOG\_INFO}!ant\_logger.h@{ant\_logger.h}}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_INFO@{ANT\_LOG\_INFO}}}\Hypertarget{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaaa0d3ac955565050d2ed2d61e466007b0}\label{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaaa0d3ac955565050d2ed2d61e466007b0} 
+ANT\+\_\+\+LOG\+\_\+\+INFO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ANT\_LOG\_WARNING@{ANT\_LOG\_WARNING}!ant\_logger.h@{ant\_logger.h}}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_WARNING@{ANT\_LOG\_WARNING}}}\Hypertarget{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaabd8136572ea2c5214e6f7123b4fdca4b}\label{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaabd8136572ea2c5214e6f7123b4fdca4b} 
+ANT\+\_\+\+LOG\+\_\+\+WARNING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ANT\_LOG\_ERROR@{ANT\_LOG\_ERROR}!ant\_logger.h@{ant\_logger.h}}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_ERROR@{ANT\_LOG\_ERROR}}}\Hypertarget{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaa0b547a09405bad4fa19a7a60498272bf}\label{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaa0b547a09405bad4fa19a7a60498272bf} 
+ANT\+\_\+\+LOG\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ANT\_LOG\_FATAL@{ANT\_LOG\_FATAL}!ant\_logger.h@{ant\_logger.h}}\index{ant\_logger.h@{ant\_logger.h}!ANT\_LOG\_FATAL@{ANT\_LOG\_FATAL}}}\Hypertarget{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaacd5c8865faaf87d54f306c96e6bab323}\label{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaaacd5c8865faaf87d54f306c96e6bab323} 
+ANT\+\_\+\+LOG\+\_\+\+FATAL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8h_source_l00010}{10}} of file \mbox{\hyperlink{ant__logger_8h_source}{ant\+\_\+logger.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{ant__logger_8h_a2b59d76f88b5231b3ac08e423a952b86}{ANT\_LOG\_DEBUG}},}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{ant__logger_8h_a4e96a837103625c5cc61ab4cfff2d280}{ANT\_LOG\_INFO}},}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{ant__logger_8h_a3a1870daa877f68a4a6ec9dc6927a2a7}{ANT\_LOG\_WARNING}},}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{ant__logger_8h_a9ac03a31c30a9c8cfa5677b38a315e79}{ANT\_LOG\_ERROR}},}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{ant__logger_8h_a558c9fc37fc16792a16cbd5c77273b90}{ANT\_LOG\_FATAL}}}
+\DoxyCodeLine{00016\ \}\ \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\_log\_level\_t}};}
+
+\end{DoxyCode}

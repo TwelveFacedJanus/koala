@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['err_0',['err',['../struct_result.html#a61932c0c529b3ba804174ce0461e8b3f',1,'Result']]],
-  ['event_20loop_1',['Event Loop',['../md_core_2async_8doc.html#autotoc_md36',1,'Архитектура Event Loop'],['../md_core_2async_8doc.html#autotoc_md40',1,'Поток данных через Event Loop']]]
+  ['data_0',['data',['../struct_vector.html#aaf5fa1c2e6abf17ac77378c461d59f96',1,'Vector']]],
+  ['delete_1',['delete',['../mathematica_8h.html#ad5d282e52ef0803267ac362f62ad781d',1,'delete(struct Vector *vec):&#160;mathemetica.c'],['../mathemetica_8c.html#ad5d282e52ef0803267ac362f62ad781d',1,'delete(struct Vector *vec):&#160;mathemetica.c']]]
 ];

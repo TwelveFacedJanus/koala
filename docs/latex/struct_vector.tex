@@ -1,0 +1,106 @@
+\doxysection{Vector Struct Reference}
+\hypertarget{struct_vector}{}\label{struct_vector}\index{Vector@{Vector}}
+
+
+Структура \doxylink{struct_vector}{Vector} для C.  
+
+
+
+
+{\ttfamily \#include $<$mathematica.\+h$>$}
+
+
+
+Collaboration diagram for Vector\+:
+% FIG 0
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_generic}{Generic}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}}
+\begin{DoxyCompactList}\small\item\em Указатель на данные (\doxylink{struct_generic}{Generic}) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}}
+\begin{DoxyCompactList}\small\item\em Следующий элемент списка \end{DoxyCompactList}\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_vector_aa30ac282b9203d10c9ac19386d18a435}{push\+\_\+back}} )(struct \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_generic}{Generic}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}})
+\begin{DoxyCompactList}\small\item\em Добавить элемент в конец \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Структура \doxylink{struct_vector}{Vector} для C. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{mathematica_8h_a2499edf22ad5e432f6631b9a02470c18}{push} 
+
+\doxylink{mathematica_8h_ad5d282e52ef0803267ac362f62ad781d}{delete} 
+
+\doxylink{mathematica_8h_acc31669643b4c1e48ec174303999c367}{free\+\_\+vector} 
+
+\doxylink{mathematica_8h_a522d4adf059058338603f89522cdfa3f}{allocate\+\_\+memory\+\_\+for\+\_\+vector} 
+
+\doxylink{mathematica_8h_a038b4b5cd1454b3458df2d923534bae6}{init\+\_\+vector} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{mathematica_8h_source_l00102}{102}} of file \mbox{\hyperlink{mathematica_8h_source}{mathematica.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}\index{Vector@{Vector}!data@{data}}
+\index{data@{data}!Vector@{Vector}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \label{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96} 
+\mbox{\hyperlink{struct_generic}{Generic}}\texorpdfstring{$\ast$}{*} Vector\+::data}
+
+
+
+Указатель на данные (\doxylink{struct_generic}{Generic}) 
+
+
+
+Definition at line \mbox{\hyperlink{mathematica_8h_source_l00103}{103}} of file \mbox{\hyperlink{mathematica_8h_source}{mathematica.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mathemetica_8c_source_l00052}{allocate\+\_\+memory\+\_\+for\+\_\+vector()}}, and \mbox{\hyperlink{mathemetica_8c_source_l00005}{create\+\_\+node()}}.
+
+\Hypertarget{struct_vector_a2206ec1b236bc6df260f169a61faecb6}\index{Vector@{Vector}!next@{next}}
+\index{next@{next}!Vector@{Vector}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \label{struct_vector_a2206ec1b236bc6df260f169a61faecb6} 
+struct \mbox{\hyperlink{struct_vector}{Vector}}\texorpdfstring{$\ast$}{*} Vector\+::next}
+
+
+
+Следующий элемент списка 
+
+
+
+Definition at line \mbox{\hyperlink{mathematica_8h_source_l00104}{104}} of file \mbox{\hyperlink{mathematica_8h_source}{mathematica.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mathemetica_8c_source_l00052}{allocate\+\_\+memory\+\_\+for\+\_\+vector()}}, \mbox{\hyperlink{mathemetica_8c_source_l00005}{create\+\_\+node()}}, \mbox{\hyperlink{mathemetica_8c_source_l00033}{delete()}}, and \mbox{\hyperlink{mathemetica_8c_source_l00016}{push()}}.
+
+\Hypertarget{struct_vector_aa30ac282b9203d10c9ac19386d18a435}\index{Vector@{Vector}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!Vector@{Vector}}
+\doxysubsubsection{\texorpdfstring{push\_back}{push\_back}}
+{\footnotesize\ttfamily \label{struct_vector_aa30ac282b9203d10c9ac19386d18a435} 
+void(\texorpdfstring{$\ast$}{*} Vector\+::push\+\_\+back) (struct \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{struct_generic}{Generic}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}})}
+
+
+
+Добавить элемент в конец 
+
+
+
+Definition at line \mbox{\hyperlink{mathematica_8h_source_l00105}{105}} of file \mbox{\hyperlink{mathematica_8h_source}{mathematica.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mathemetica_8c_source_l00052}{allocate\+\_\+memory\+\_\+for\+\_\+vector()}}, and \mbox{\hyperlink{mathemetica_8c_source_l00005}{create\+\_\+node()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+core/math/\mbox{\hyperlink{mathematica_8h}{mathematica.\+h}}\end{DoxyCompactItemize}

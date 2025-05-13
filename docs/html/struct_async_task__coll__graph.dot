@@ -30,5 +30,5 @@ digraph "AsyncTask"
 <HR/>
 <TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
 </TABLE>>
-,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct_generic.html",tooltip="Generic с типизацией (C)"];
+,height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct_generic.html",tooltip=" "];
 }

@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['документация_20по_20core_20async_20h_0',['Документация по core/async.h',['../md_core_2async_8doc.html',1,'']]],
-  ['документация_20по_20core_20types_20h_1',['Документация по core/types.h',['../md_core_2types_8doc.html',1,'']]],
-  ['данных_20через_20event_20loop_2',['Поток данных через Event Loop',['../md_core_2async_8doc.html#autotoc_md40',1,'']]],
-  ['данных_20через_20functionpipeline_20и_20async_3',['Поток данных через FunctionPipeline и async',['../md_core_2types_8doc.html#autotoc_md78',1,'']]]
+  ['архитектура_20event_20loop_0',['Архитектура Event Loop',['../md_core_2async_8doc.html#autotoc_md36',1,'']]],
+  ['асинхронные_20примитивы_1',['Асинхронные примитивы',['../group___async.html',1,'']]],
+  ['асинхронный_20режим_2',['Асинхронный режим',['../md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md106',1,'']]],
+  ['алиасы_3',['Целочисленные алиасы',['../md_core_2types_8doc.html#autotoc_md46',1,'']]],
+  ['аргументами_20c_4',['Пример с аргументами (C)',['../md_core_2async_8doc.html#autotoc_md23',1,'']]],
+  ['асинхронных_20примитивов_5',['Примеры использования асинхронных примитивов',['../group___async_usage.html',1,'']]]
 ];

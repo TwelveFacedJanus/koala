@@ -1,0 +1,44 @@
+\doxysection{milena\+\_\+queue.\+h}
+\hypertarget{milena__queue_8h_source}{}\label{milena__queue_8h_source}\index{external/milenadb/src/milena\_queue.h@{external/milenadb/src/milena\_queue.h}}
+\mbox{\hyperlink{milena__queue_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00009}00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00011}00011\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00012}00012\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00013}00013\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00019}\mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8}{00019}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8}{TaskStatus}}\ \{}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00020}\mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8a0ed072201418c1161c26657cbb446b55}{00020}}\ \ \ \ \ \mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8a0ed072201418c1161c26657cbb446b55}{TASK\_DONE}},\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00021}\mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8a7c169d810155c026d36e14dbace569f8}{00021}}\ \ \ \ \ \mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8a7c169d810155c026d36e14dbace569f8}{TASK\_PENDING}},\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00022}\mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8aefbc99194d4bc3aecd78087cb3bffa18}{00022}}\ \ \ \ \ \mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8aefbc99194d4bc3aecd78087cb3bffa18}{TASK\_ERROR}}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00023}\mbox{\hyperlink{milena__queue_8h_aff00a711f819bdfcf8ae47020c7f8a51}{00023}}\ \}\ \mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8}{TaskStatus}};}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00031}\mbox{\hyperlink{struct_task}{00031}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_task}{Task}}\ \{}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00032}\mbox{\hyperlink{struct_task_a0e3ac964196caa1299e2fbd10f4481ea}{00032}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{struct_task_a0e3ac964196caa1299e2fbd10f4481ea}{name}};\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00033}\mbox{\hyperlink{struct_task_aee54179dac8f5a82601f2b7ebb974e7f}{00033}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{struct_task_aee54179dac8f5a82601f2b7ebb974e7f}{command}};\ \ \ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00034}\mbox{\hyperlink{struct_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{00034}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{priority}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00035}\mbox{\hyperlink{struct_task_aa54d3376b4b07ca6c9f80537c40ba5e7}{00035}}\ \ \ \ \ \mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8}{TaskStatus}}\ \mbox{\hyperlink{struct_task_aa54d3376b4b07ca6c9f80537c40ba5e7}{status}};\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00036}\mbox{\hyperlink{milena__queue_8h_a1d107d116293b1dddca4e5d3d2898d00}{00036}}\ \}\ \mbox{\hyperlink{struct_task}{Task}};}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00042}\mbox{\hyperlink{milena__queue_8h_ad4f29a362a072ba563b41ae8e935c6fc}{00042}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_queue}{Queue}}\ \mbox{\hyperlink{struct_queue}{Queue}};}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00052}00052\ \mbox{\hyperlink{struct_queue}{Queue}}*\ \mbox{\hyperlink{milena__queue_8h_a8839b4e99adcf7db181790759ab73251}{queue\_create}}();}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00062}00062\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{milena__queue_8h_ad21ee75924298937673e2b8d66665466}{queue\_destroy}}(\mbox{\hyperlink{struct_queue}{Queue}}*\ q);}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00074}00074\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{milena__queue_8h_a25f401b84c98fcc9889d4b3d89bbe6cd}{queue\_append}}(\mbox{\hyperlink{struct_queue}{Queue}}*\ q,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_task}{Task}}*\ task);}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00086}00086\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{milena__queue_8h_a1478530550de22bffb8e6ec40723bf05}{queue\_remove\_by\_index}}(\mbox{\hyperlink{struct_queue}{Queue}}*\ q,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00097}00097\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{milena__queue_8h_a0f252ebf0551b727232e0e252f460e35}{queue\_size}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_queue}{Queue}}*\ q);}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00109}00109\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_task}{Task}}*\ \mbox{\hyperlink{milena__queue_8h_a590ad8484455a01e8da4c5e9360e0dca}{queue\_get}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_queue}{Queue}}*\ q,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00111}00111\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00112}00112\ \}}
+\DoxyCodeLine{\Hypertarget{milena__queue_8h_source_l00113}00113\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

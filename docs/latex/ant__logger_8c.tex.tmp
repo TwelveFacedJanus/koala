@@ -1,0 +1,101 @@
+\doxysection{external/ant\+\_\+logger/ant\+\_\+logger.c File Reference}
+\hypertarget{ant__logger_8c}{}\label{ant__logger_8c}\index{external/ant\_logger/ant\_logger.c@{external/ant\_logger/ant\_logger.c}}
+{\ttfamily \#include "{}ant\+\_\+logger.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include "{}../core/async.\+h"{}}\newline
+{\ttfamily \#include "{}../core/types.\+h"{}}\newline
+{\ttfamily \#include "{}../core/math/mathematica.\+h"{}}\newline
+Include dependency graph for ant\+\_\+logger.\+c\+:
+% FIG 0
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_ant_log_async_msg}{Ant\+Log\+Async\+Msg}}
+\begin{DoxyCompactList}\small\item\em Структура для передачи лог-\/сообщения в event loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ant__logger_8c_ad5e3b63bac006a6db90510427d5921f4}{ANT\+\_\+\+LOG\+\_\+\+MAX\+\_\+\+MSG}}~1024
+\item 
+\#define \mbox{\hyperlink{ant__logger_8c_ac6ec193c48cb9355806642c90365dce3}{ANT\+\_\+\+LOG\+\_\+\+MAX\+\_\+\+MODULE}}~64
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group___ant_logger_ga221ad35833a5d41f71421f2f3c066c95}{ant\+\_\+log\+\_\+enable\+\_\+colors}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Включить или отключить цветной вывод. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_ga1f76a3ecf536cfb2681828f6b8941835}{ant\+\_\+log\+\_\+enable\+\_\+async}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Включить или отключить асинхронный режим логирования. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_gaa2cfe4fcc129fa9b0766b9779db64858}{ant\+\_\+log\+\_\+init}} (const char \texorpdfstring{$\ast$}{*}file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Инициализация логгера. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_ga0d13b320d5c91e58632c230243f00bb8}{ant\+\_\+log\+\_\+shutdown}} ()
+\begin{DoxyCompactList}\small\item\em Завершение работы логгера, освобождение ресурсов. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_gabc2800dfb26fd0b291ea7e04520328ec}{ant\+\_\+log\+\_\+set\+\_\+level}} (\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}} level)
+\begin{DoxyCompactList}\small\item\em Установить минимальный уровень логирования. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_ga9a61caaff7630aa717988962a55b3452}{ant\+\_\+log\+\_\+set\+\_\+callback}} (\mbox{\hyperlink{ant__logger_8h_a7bc4329f01da48b7bb263197d1d3e440}{ant\+\_\+log\+\_\+callback\+\_\+t}} cb)
+\begin{DoxyCompactList}\small\item\em Установить пользовательский callback для логирования. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group___ant_logger_gabc00b5c23fd4d11163bb01ea559322c4}{ant\+\_\+log\+\_\+output}} (\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}module, const char \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Вывод сообщения (thread-\/safe) \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group___ant_logger_ga1ab70f322f8077796d3fd3fce804d789}{ant\+\_\+log\+\_\+format}} (char \texorpdfstring{$\ast$}{*}out, size\+\_\+t out\+\_\+sz, \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}module, const char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}func, const char \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Форматирование сообщения с цветом, временем и контекстом. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{struct_result}{Result}} \mbox{\hyperlink{group___ant_logger_ga88512267049455a44ecba369aa21dfa4}{ant\+\_\+log\+\_\+async\+\_\+func}} (\mbox{\hyperlink{struct_function_params}{Function\+Params}} \texorpdfstring{$\ast$}{*}params)
+\begin{DoxyCompactList}\small\item\em Функция-\/обёртка для асинхронного вывода логов через event loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group___ant_logger_ga0aa4315bcae65fafb912aa5319c64417}{ant\+\_\+log\+\_\+write}} (\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}module, const char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}func, const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em Основная функция логирования (используйте макросы). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\+\_\+file}} = NULL
+\begin{DoxyCompactList}\small\item\em Файл для логирования (NULL = stderr) \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\+\_\+log\+\_\+level\+\_\+t}} \mbox{\hyperlink{group___ant_logger_gac2d0c8bd84c184f09bc7bd777bfcc96a}{min\+\_\+level}} = \mbox{\hyperlink{ant__logger_8h_a2b59d76f88b5231b3ac08e423a952b86}{ANT\+\_\+\+LOG\+\_\+\+DEBUG}}
+\begin{DoxyCompactList}\small\item\em Минимальный уровень логирования \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{ant__logger_8h_a7bc4329f01da48b7bb263197d1d3e440}{ant\+\_\+log\+\_\+callback\+\_\+t}} \mbox{\hyperlink{group___ant_logger_gadda969f63c963605bba1b88d35ca66f6}{user\+\_\+callback}} = NULL
+\begin{DoxyCompactList}\small\item\em Пользовательский callback для логирования \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{group___ant_logger_ga7d98e2dd1964a2c9cdb897cc63f23d0b}{use\+\_\+colors}} = 1
+\begin{DoxyCompactList}\small\item\em Включён ли цветной вывод \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{group___ant_logger_ga0e9196e140d1096d301f320d049c12ee}{use\+\_\+async}} = 0
+\begin{DoxyCompactList}\small\item\em Включён ли асинхронный режим \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{struct_async_event_loop}{Async\+Event\+Loop}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\+\_\+loop}} = NULL
+\begin{DoxyCompactList}\small\item\em Event loop для асинхронного логирования \end{DoxyCompactList}\item 
+static pthread\+\_\+mutex\+\_\+t \mbox{\hyperlink{group___ant_logger_ga54baead9ac1aa7d2d2f886956ac57c1e}{log\+\_\+mutex}} = PTHREAD\+\_\+\+MUTEX\+\_\+\+INITIALIZER
+\begin{DoxyCompactList}\small\item\em Мьютекс для потокобезопасности \end{DoxyCompactList}\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group___ant_logger_ga8a2ced25981b49f1555d16f390df6006}{level\+\_\+colors}} \mbox{[}$\,$\mbox{]}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group___ant_logger_ga6ee99f12766d97f932da55d2232f5cf5}{level\+\_\+names}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ant__logger_8c_ac6ec193c48cb9355806642c90365dce3}\index{ant\_logger.c@{ant\_logger.c}!ANT\_LOG\_MAX\_MODULE@{ANT\_LOG\_MAX\_MODULE}}
+\index{ANT\_LOG\_MAX\_MODULE@{ANT\_LOG\_MAX\_MODULE}!ant\_logger.c@{ant\_logger.c}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_MAX\_MODULE}{ANT\_LOG\_MAX\_MODULE}}
+{\footnotesize\ttfamily \label{ant__logger_8c_ac6ec193c48cb9355806642c90365dce3} 
+\#define ANT\+\_\+\+LOG\+\_\+\+MAX\+\_\+\+MODULE~64}
+
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8c_source_l00011}{11}} of file \mbox{\hyperlink{ant__logger_8c_source}{ant\+\_\+logger.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{ant__logger_8c_source_l00201}{ant\+\_\+log\+\_\+write()}}.
+
+\Hypertarget{ant__logger_8c_ad5e3b63bac006a6db90510427d5921f4}\index{ant\_logger.c@{ant\_logger.c}!ANT\_LOG\_MAX\_MSG@{ANT\_LOG\_MAX\_MSG}}
+\index{ANT\_LOG\_MAX\_MSG@{ANT\_LOG\_MAX\_MSG}!ant\_logger.c@{ant\_logger.c}}
+\doxysubsubsection{\texorpdfstring{ANT\_LOG\_MAX\_MSG}{ANT\_LOG\_MAX\_MSG}}
+{\footnotesize\ttfamily \label{ant__logger_8c_ad5e3b63bac006a6db90510427d5921f4} 
+\#define ANT\+\_\+\+LOG\+\_\+\+MAX\+\_\+\+MSG~1024}
+
+
+
+Definition at line \mbox{\hyperlink{ant__logger_8c_source_l00010}{10}} of file \mbox{\hyperlink{ant__logger_8c_source}{ant\+\_\+logger.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{ant__logger_8c_source_l00201}{ant\+\_\+log\+\_\+write()}}.
+

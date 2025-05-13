@@ -57,6 +57,10 @@ main.c
 koala_app
 koala_dev
 build/
+a.out
 
 # MacOS store
 .DS_Store
+
+# Ignore all python development files
+python_dev/

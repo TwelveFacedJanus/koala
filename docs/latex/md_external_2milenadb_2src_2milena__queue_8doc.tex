@@ -1,0 +1,130 @@
+\chapter{Milena Queue\+: Документация}
+\hypertarget{md_external_2milenadb_2src_2milena__queue_8doc}{}\label{md_external_2milenadb_2src_2milena__queue_8doc}\index{Milena Queue: Документация@{Milena Queue: Документация}}
+\label{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md81}%
+\Hypertarget{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md81}%
+\hypertarget{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md82}{}\doxysection{\texorpdfstring{Описание}{Описание}}\label{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md82}
+{\bfseries{Milena \doxylink{struct_queue}{Queue}}} — это кроссплатформенная очередь задач для распределённых вычислений, реализованная на C++ с C API. Позволяет добавлять, удалять и получать задачи по индексу. Поддерживает безопасное использование в C и C++.
+
+
+\begin{DoxyItemize}
+\item Очередь реализована как динамический массив (vector) внутри C++.
+\item Каждая задача ({\ttfamily \doxylink{struct_task}{Task}}) содержит имя, команду для запуска, приоритет и статус.
+\item Очередь ({\ttfamily \doxylink{struct_queue}{Queue}}) скрыта за opaque pointer для совместимости с C.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md84}{}\doxysection{\texorpdfstring{Быстрый старт}{Быстрый старт}}\label{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md84}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{milena__queue_8h}{milena\_queue.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{milena__queue__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_queue}{Queue}}*\ q\ =\ \mbox{\hyperlink{milena__queue_8cpp_a8839b4e99adcf7db181790759ab73251}{queue\_create}}();}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_task}{Task}}\ t1\ =\ \{\textcolor{stringliteral}{"{}Task1"{}},\ \textcolor{stringliteral}{"{}echo\ Hello"{}},\ 1,\ \mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8a7c169d810155c026d36e14dbace569f8}{TASK\_PENDING}}\};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_task}{Task}}\ t2\ =\ \{\textcolor{stringliteral}{"{}Task2"{}},\ \textcolor{stringliteral}{"{}ls\ -\/l"{}},\ 2,\ \mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8a7c169d810155c026d36e14dbace569f8}{TASK\_PENDING}}\};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{milena__queue_8cpp_a25f401b84c98fcc9889d4b3d89bbe6cd}{queue\_append}}(q,\ \&t1);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{milena__queue_8cpp_a25f401b84c98fcc9889d4b3d89bbe6cd}{queue\_append}}(q,\ \&t2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{milena__queue_8cpp_a0f252ebf0551b727232e0e252f460e35}{queue\_size}}(q);\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_task}{Task}}*\ t\ =\ \mbox{\hyperlink{milena__queue_8cpp_a590ad8484455a01e8da4c5e9360e0dca}{queue\_get}}(q,\ i);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s:\ \%s\(\backslash\)n"{}},\ t-\/>\mbox{\hyperlink{struct_task_a0e3ac964196caa1299e2fbd10f4481ea}{name}},\ t-\/>\mbox{\hyperlink{struct_task_aee54179dac8f5a82601f2b7ebb974e7f}{command}});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{milena__queue_8cpp_a1478530550de22bffb8e6ec40723bf05}{queue\_remove\_by\_index}}(q,\ 0);\ \textcolor{comment}{//\ удалить\ первую\ задачу}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{milena__queue_8cpp_ad21ee75924298937673e2b8d66665466}{queue\_destroy}}(q);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md86}{}\doxysection{\texorpdfstring{Примеры использования}{Примеры использования}}\label{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md86}
+\hypertarget{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md87}{}\doxysubsection{\texorpdfstring{Добавление и удаление задач}{Добавление и удаление задач}}\label{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md87}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_queue}{Queue}}*\ q\ =\ \mbox{\hyperlink{milena__queue_8cpp_a8839b4e99adcf7db181790759ab73251}{queue\_create}}();}
+\DoxyCodeLine{\mbox{\hyperlink{struct_task}{Task}}\ t\ =\ \{\textcolor{stringliteral}{"{}Backup"{}},\ \textcolor{stringliteral}{"{}tar\ -\/czf\ backup.tar.gz\ /data"{}},\ 5,\ \mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8a7c169d810155c026d36e14dbace569f8}{TASK\_PENDING}}\};}
+\DoxyCodeLine{\mbox{\hyperlink{milena__queue_8cpp_a25f401b84c98fcc9889d4b3d89bbe6cd}{queue\_append}}(q,\ \&t);}
+\DoxyCodeLine{\mbox{\hyperlink{milena__queue_8cpp_a1478530550de22bffb8e6ec40723bf05}{queue\_remove\_by\_index}}(q,\ 0);}
+\DoxyCodeLine{\mbox{\hyperlink{milena__queue_8cpp_ad21ee75924298937673e2b8d66665466}{queue\_destroy}}(q);}
+
+\end{DoxyCode}
+\hypertarget{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md88}{}\doxysubsection{\texorpdfstring{Получение задачи по индексу}{Получение задачи по индексу}}\label{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md88}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_task}{Task}}*\ t\ =\ \mbox{\hyperlink{milena__queue_8cpp_a590ad8484455a01e8da4c5e9360e0dca}{queue\_get}}(q,\ 0);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (t)\ \{}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}\%s:\ \%s\(\backslash\)n"{}},\ t-\/>\mbox{\hyperlink{struct_task_a0e3ac964196caa1299e2fbd10f4481ea}{name}},\ t-\/>\mbox{\hyperlink{struct_task_aee54179dac8f5a82601f2b7ebb974e7f}{command}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md90}{}\doxysection{\texorpdfstring{Иллюстрированная схема структуры}{Иллюстрированная схема структуры}}\label{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md90}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ Task\ \ \ |\ -\/-\/-\/>\ |\ \ Task\ \ \ |\ -\/-\/-\/>\ |\ \ Task\ \ \ |}
+\DoxyCodeLine{|\ \ name\ \ \ |\ \ \ \ \ \ |\ \ name\ \ \ |\ \ \ \ \ \ |\ \ name\ \ \ |}
+\DoxyCodeLine{|\ command\ |\ \ \ \ \ \ |\ command\ |\ \ \ \ \ \ |\ command\ |}
+\DoxyCodeLine{|\ ...\ \ \ \ \ |\ \ \ \ \ \ |\ ...\ \ \ \ \ |\ \ \ \ \ \ |\ ...\ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Внутри C++ очередь реализована как std\+::vector$<$\+Task$>$.
+\item Для C предоставляется непрозрачный указатель (opaque pointer).
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md92}{}\doxysection{\texorpdfstring{Типичные ошибки при использовании}{Типичные ошибки при использовании}}\label{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md92}
+
+\begin{DoxyItemize}
+\item {\bfseries{Использование уничтоженной очереди}}
+\begin{DoxyItemize}
+\item После {\ttfamily queue\+\_\+destroy(q)} нельзя обращаться к {\ttfamily q} или задачам, полученным через {\ttfamily queue\+\_\+get}.
+\end{DoxyItemize}
+\item {\bfseries{Неверный индекс}}
+\begin{DoxyItemize}
+\item Вызов {\ttfamily queue\+\_\+get(q, index)} или {\ttfamily queue\+\_\+remove\+\_\+by\+\_\+index(q, index)} с индексом вне диапазона вернёт {\ttfamily NULL} или 0.
+\end{DoxyItemize}
+\item {\bfseries{Передача NULL-\/указателей}}
+\begin{DoxyItemize}
+\item Все функции ожидают валидные указатели на очередь и задачи.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md94}{}\doxysection{\texorpdfstring{FAQ}{FAQ}}\label{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md94}
+{\bfseries{Q\+: Можно ли использовать очередь из нескольких потоков?}}
+\begin{DoxyItemize}
+\item Нет, реализация не потокобезопасна. Для многопоточного доступа используйте внешние механизмы синхронизации.
+\end{DoxyItemize}
+
+{\bfseries{Q\+: Как долго живут строки внутри \doxylink{struct_task}{Task}?}}
+\begin{DoxyItemize}
+\item Строки не копируются, а сохраняются как указатели. Убедитесь, что строки живут не меньше, чем задача в очереди.
+\end{DoxyItemize}
+
+{\bfseries{Q\+: Можно ли изменять задачи после добавления?}}
+\begin{DoxyItemize}
+\item Нет, задачи внутри очереди не предназначены для изменения через полученный указатель. Для изменения — удалите и добавьте новую задачу.
+\end{DoxyItemize}
+
+{\bfseries{Q\+: Как узнать статус задачи?}}
+\begin{DoxyItemize}
+\item Используйте поле {\ttfamily status} структуры \doxylink{struct_task}{Task}, полученной через {\ttfamily queue\+\_\+get}.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md96}{}\doxysection{\texorpdfstring{Контакты и поддержка}{Контакты и поддержка}}\label{md_external_2milenadb_2src_2milena__queue_8doc_autotoc_md96}
+
+\begin{DoxyItemize}
+\item Вопросы и баги\+: создавайте issue в репозитории проекта.
+\item Автор\+: twelvefaced 
+\end{DoxyItemize}

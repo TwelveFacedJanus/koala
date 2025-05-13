@@ -1,0 +1,146 @@
+\doxysection{Task\+Cpp Struct Reference}
+\hypertarget{struct_task_cpp}{}\label{struct_task_cpp}\index{TaskCpp@{TaskCpp}}
+
+
+Collaboration diagram for Task\+Cpp\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_task_cpp_aaaab8f8a2356772996a2e32fc5934d0e}{Task\+Cpp}} (const \mbox{\hyperlink{struct_task}{Task}} \&t)
+\item 
+\mbox{\hyperlink{struct_task}{Task}} \mbox{\hyperlink{struct_task_cpp_a366c60b020b9b306d0c412bddd7336eb}{to\+\_\+c}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{struct_task_cpp_a2e99dab32589dfc1cad992be67293725}{name}}
+\item 
+std\+::string \mbox{\hyperlink{struct_task_cpp_ae08387d21a067a6aa10b7bc1f7e71de0}{command}}
+\item 
+int \mbox{\hyperlink{struct_task_cpp_ae36c259c5b4cb53b9eeb4dfd9f4dd81e}{priority}}
+\item 
+\mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8}{Task\+Status}} \mbox{\hyperlink{struct_task_cpp_a1af8bf4742b52ac3f700dd277f034add}{status}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_task_cpp_aaaab8f8a2356772996a2e32fc5934d0e}\index{TaskCpp@{TaskCpp}!TaskCpp@{TaskCpp}}
+\index{TaskCpp@{TaskCpp}!TaskCpp@{TaskCpp}}
+\doxysubsubsection{\texorpdfstring{TaskCpp()}{TaskCpp()}}
+{\footnotesize\ttfamily \label{struct_task_cpp_aaaab8f8a2356772996a2e32fc5934d0e} 
+Task\+Cpp\+::\+Task\+Cpp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_task}{Task}} \&}]{t}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{struct_task_cpp_a2e99dab32589dfc1cad992be67293725}{name}}(t.\mbox{\hyperlink{struct_task_a0e3ac964196caa1299e2fbd10f4481ea}{name}}\ ?\ t.\mbox{\hyperlink{struct_task_a0e3ac964196caa1299e2fbd10f4481ea}{name}}\ :\ \textcolor{stringliteral}{"{}"{}}),\ \mbox{\hyperlink{struct_task_cpp_ae08387d21a067a6aa10b7bc1f7e71de0}{command}}(t.\mbox{\hyperlink{struct_task_aee54179dac8f5a82601f2b7ebb974e7f}{command}}\ ?\ t.\mbox{\hyperlink{struct_task_aee54179dac8f5a82601f2b7ebb974e7f}{command}}\ :\ \textcolor{stringliteral}{"{}"{}}),\ \mbox{\hyperlink{struct_task_cpp_ae36c259c5b4cb53b9eeb4dfd9f4dd81e}{priority}}(t.\mbox{\hyperlink{struct_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{priority}}),\ \mbox{\hyperlink{struct_task_cpp_a1af8bf4742b52ac3f700dd277f034add}{status}}(t.\mbox{\hyperlink{struct_task_aa54d3376b4b07ca6c9f80537c40ba5e7}{status}})\ \{\}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{milena__queue_8cpp_source_l00009}{command}}, \mbox{\hyperlink{milena__queue_8cpp_source_l00008}{name}}, \mbox{\hyperlink{milena__queue_8cpp_source_l00010}{priority}}, and \mbox{\hyperlink{milena__queue_8cpp_source_l00011}{status}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_task_cpp_a366c60b020b9b306d0c412bddd7336eb}\index{TaskCpp@{TaskCpp}!to\_c@{to\_c}}
+\index{to\_c@{to\_c}!TaskCpp@{TaskCpp}}
+\doxysubsubsection{\texorpdfstring{to\_c()}{to\_c()}}
+{\footnotesize\ttfamily \label{struct_task_cpp_a366c60b020b9b306d0c412bddd7336eb} 
+\mbox{\hyperlink{struct_task}{Task}} Task\+Cpp\+::to\+\_\+c (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{milena__queue_8h_a1d107d116293b1dddca4e5d3d2898d00}{Task}}\ t;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ t.\mbox{\hyperlink{struct_task_a0e3ac964196caa1299e2fbd10f4481ea}{name}}\ =\ \mbox{\hyperlink{struct_task_cpp_a2e99dab32589dfc1cad992be67293725}{name}}.c\_str();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ t.\mbox{\hyperlink{struct_task_aee54179dac8f5a82601f2b7ebb974e7f}{command}}\ =\ \mbox{\hyperlink{struct_task_cpp_ae08387d21a067a6aa10b7bc1f7e71de0}{command}}.c\_str();}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ t.\mbox{\hyperlink{struct_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{priority}}\ =\ \mbox{\hyperlink{struct_task_cpp_ae36c259c5b4cb53b9eeb4dfd9f4dd81e}{priority}};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ t.\mbox{\hyperlink{struct_task_aa54d3376b4b07ca6c9f80537c40ba5e7}{status}}\ =\ \mbox{\hyperlink{struct_task_cpp_a1af8bf4742b52ac3f700dd277f034add}{status}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{milena__queue_8h_source_l00033}{Task\+::command}}, \mbox{\hyperlink{milena__queue_8cpp_source_l00009}{command}}, \mbox{\hyperlink{milena__queue_8h_source_l00032}{Task\+::name}}, \mbox{\hyperlink{milena__queue_8cpp_source_l00008}{name}}, \mbox{\hyperlink{milena__queue_8h_source_l00034}{Task\+::priority}}, \mbox{\hyperlink{milena__queue_8cpp_source_l00010}{priority}}, \mbox{\hyperlink{milena__queue_8h_source_l00035}{Task\+::status}}, and \mbox{\hyperlink{milena__queue_8cpp_source_l00011}{status}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_task_cpp_ae08387d21a067a6aa10b7bc1f7e71de0}\index{TaskCpp@{TaskCpp}!command@{command}}
+\index{command@{command}!TaskCpp@{TaskCpp}}
+\doxysubsubsection{\texorpdfstring{command}{command}}
+{\footnotesize\ttfamily \label{struct_task_cpp_ae08387d21a067a6aa10b7bc1f7e71de0} 
+std\+::string Task\+Cpp\+::command}
+
+
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{milena__queue_8cpp_source_l00013}{Task\+Cpp()}}, and \mbox{\hyperlink{milena__queue_8cpp_source_l00015}{to\+\_\+c()}}.
+
+\Hypertarget{struct_task_cpp_a2e99dab32589dfc1cad992be67293725}\index{TaskCpp@{TaskCpp}!name@{name}}
+\index{name@{name}!TaskCpp@{TaskCpp}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{struct_task_cpp_a2e99dab32589dfc1cad992be67293725} 
+std\+::string Task\+Cpp\+::name}
+
+
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{milena__queue_8cpp_source_l00013}{Task\+Cpp()}}, and \mbox{\hyperlink{milena__queue_8cpp_source_l00015}{to\+\_\+c()}}.
+
+\Hypertarget{struct_task_cpp_ae36c259c5b4cb53b9eeb4dfd9f4dd81e}\index{TaskCpp@{TaskCpp}!priority@{priority}}
+\index{priority@{priority}!TaskCpp@{TaskCpp}}
+\doxysubsubsection{\texorpdfstring{priority}{priority}}
+{\footnotesize\ttfamily \label{struct_task_cpp_ae36c259c5b4cb53b9eeb4dfd9f4dd81e} 
+int Task\+Cpp\+::priority}
+
+
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{milena__queue_8cpp_source_l00013}{Task\+Cpp()}}, and \mbox{\hyperlink{milena__queue_8cpp_source_l00015}{to\+\_\+c()}}.
+
+\Hypertarget{struct_task_cpp_a1af8bf4742b52ac3f700dd277f034add}\index{TaskCpp@{TaskCpp}!status@{status}}
+\index{status@{status}!TaskCpp@{TaskCpp}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{struct_task_cpp_a1af8bf4742b52ac3f700dd277f034add} 
+\mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8}{Task\+Status}} Task\+Cpp\+::status}
+
+
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+
+Referenced by \mbox{\hyperlink{milena__queue_8cpp_source_l00013}{Task\+Cpp()}}, and \mbox{\hyperlink{milena__queue_8cpp_source_l00015}{to\+\_\+c()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+external/milenadb/src/\mbox{\hyperlink{milena__queue_8cpp}{milena\+\_\+queue.\+cpp}}\end{DoxyCompactItemize}

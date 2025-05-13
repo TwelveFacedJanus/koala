@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['generic_20types_0',['Generic Types',['../group___generic_types.html',1,'']]]
+  ['antlogger_0',['Логгер AntLogger',['../group___ant_logger.html',1,'']]]
 ];

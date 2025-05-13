@@ -1,0 +1,32 @@
+\doxysubsection{Примеры использования векторов}
+\hypertarget{group___vector_usage}{}\label{group___vector_usage}\index{Примеры использования векторов@{Примеры использования векторов}}
+Collaboration diagram for Примеры использования векторов\+:
+% FIG 0
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mathematica_8h}{core/math/mathematica.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{milena__queue__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ vector\ =\ \mbox{\hyperlink{mathematica_8h_a038b4b5cd1454b3458df2d923534bae6}{init\_vector}}();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (vector\ ==\ NULL)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ обработка\ ошибки}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ value\ =\ 42;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_generic}{Generic}}\ g;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(g,\ \&value);\ \textcolor{comment}{//\ Сохраняем\ указатель\ на\ int}}
+\DoxyCodeLine{\ \ \ \ g.\mbox{\hyperlink{struct_generic_a031d63fc3caf0870abc151457255d7e2}{type}}\ =\ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128}{GENERIC\_TYPE\_INT}};}
+\DoxyCodeLine{\ \ \ \ vector-\/>\mbox{\hyperlink{struct_vector_aa30ac282b9203d10c9ac19386d18a435}{push\_back}}(vector,\ \&g);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Извлечение\ значения\ из\ первого\ элемента\ вектора}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_generic}{Generic}}*\ g\_ptr\ =\ vector-\/>\mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}};\ \textcolor{comment}{//\ Предполагается,\ что\ data\ указывает\ на\ первый\ элемент\ Generic}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}*\ px\ =\ \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ *g\_ptr);}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}},\ *px);\ \textcolor{comment}{//\ 42}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{mathematica_8h_acc31669643b4c1e48ec174303999c367}{free\_vector}}(vector);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

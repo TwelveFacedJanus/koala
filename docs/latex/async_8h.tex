@@ -205,7 +205,7 @@ Definition at line \mbox{\hyperlink{async_8c_source_l00180}{180}} of file \mbox{
 \end{DoxyCode}
 
 
-References \mbox{\hyperlink{async_8h_source_l00091}{Async\+Task\+::cv}}, \mbox{\hyperlink{types_8h_source_l00169}{Result\+::err}}, \mbox{\hyperlink{types_8h_source_l00289}{GENERIC\+\_\+\+SET\+\_\+\+TYPED}}, \mbox{\hyperlink{types_8h_source_l00274}{GENERIC\+\_\+\+TYPE\+\_\+\+STR}}, \mbox{\hyperlink{types_8h_source_l00167}{Result\+::is\+\_\+ok}}, \mbox{\hyperlink{async_8h_source_l00090}{Async\+Task\+::mtx}}, \mbox{\hyperlink{async_8h_source_l00092}{Async\+Task\+::ready}}, and \mbox{\hyperlink{async_8h_source_l00094}{Async\+Task\+::result}}.
+References \mbox{\hyperlink{async_8h_source_l00091}{Async\+Task\+::cv}}, \mbox{\hyperlink{types_8h_source_l00186}{Result\+::err}}, \mbox{\hyperlink{types_8h_source_l00294}{GENERIC\+\_\+\+SET\+\_\+\+TYPED}}, \mbox{\hyperlink{types_8h_source_l00074}{GENERIC\+\_\+\+TYPE\+\_\+\+STR}}, \mbox{\hyperlink{types_8h_source_l00184}{Result\+::is\+\_\+ok}}, \mbox{\hyperlink{async_8h_source_l00090}{Async\+Task\+::mtx}}, \mbox{\hyperlink{async_8h_source_l00092}{Async\+Task\+::ready}}, and \mbox{\hyperlink{async_8h_source_l00094}{Async\+Task\+::result}}.
 
 \Hypertarget{async_8h_a50e869118636fbb76259be2551c8a8e7}\index{async.h@{async.h}!async\_cancel@{async\_cancel}}
 \index{async\_cancel@{async\_cancel}!async.h@{async.h}}
@@ -257,6 +257,12 @@ References \mbox{\hyperlink{async_8h_source_l00093}{Async\+Task\+::cancel}}, and
 \begin{DoxyReturn}{Returns}
 Указатель на новый \doxylink{struct_async_event_loop}{Async\+Event\+Loop} 
 \end{DoxyReturn}
+
+
+Referenced by \mbox{\hyperlink{ant__logger_8c_source_l00069}{ant\+\_\+log\+\_\+enable\+\_\+async()}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
 \Hypertarget{async_8h_ae9b4f6a8a99f032aab3301f145b6f4de}\index{async.h@{async.h}!async\_event\_loop\_stop@{async\_event\_loop\_stop}}
 \index{async\_event\_loop\_stop@{async\_event\_loop\_stop}!async.h@{async.h}}
 \doxysubsubsection{\texorpdfstring{async\_event\_loop\_stop()}{async\_event\_loop\_stop()}}
@@ -312,6 +318,12 @@ Definition at line \mbox{\hyperlink{async_8c_source_l00072}{72}} of file \mbox{\
 
 References \mbox{\hyperlink{async_8h_source_l00105}{Async\+Task\+Node\+::next}}, \mbox{\hyperlink{async_8h_source_l00121}{Async\+Event\+Loop\+::num\+\_\+workers}}, \mbox{\hyperlink{async_8h_source_l00123}{Async\+Event\+Loop\+::queue\+\_\+cv}}, \mbox{\hyperlink{async_8h_source_l00124}{Async\+Event\+Loop\+::queue\+\_\+head}}, \mbox{\hyperlink{async_8h_source_l00122}{Async\+Event\+Loop\+::queue\+\_\+mtx}}, \mbox{\hyperlink{async_8h_source_l00126}{Async\+Event\+Loop\+::running}}, and \mbox{\hyperlink{async_8h_source_l00120}{Async\+Event\+Loop\+::workers}}.
 
+
+
+Referenced by \mbox{\hyperlink{ant__logger_8c_source_l00069}{ant\+\_\+log\+\_\+enable\+\_\+async()}}, and \mbox{\hyperlink{ant__logger_8c_source_l00101}{ant\+\_\+log\+\_\+shutdown()}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
 \Hypertarget{async_8h_a07b659d1096ebc8c902a9a5e63ad4925}\index{async.h@{async.h}!async\_run@{async\_run}}
 \index{async\_run@{async\_run}!async.h@{async.h}}
 \doxysubsubsection{\texorpdfstring{async\_run()}{async\_run()}}
@@ -402,3 +414,9 @@ Definition at line \mbox{\hyperlink{async_8c_source_l00101}{101}} of file \mbox{
 
 References \mbox{\hyperlink{async_8h_source_l00093}{Async\+Task\+::cancel}}, \mbox{\hyperlink{async_8h_source_l00091}{Async\+Task\+::cv}}, \mbox{\hyperlink{async_8h_source_l00102}{Async\+Task\+Node\+::func}}, \mbox{\hyperlink{async_8h_source_l00090}{Async\+Task\+::mtx}}, \mbox{\hyperlink{async_8h_source_l00105}{Async\+Task\+Node\+::next}}, \mbox{\hyperlink{async_8h_source_l00103}{Async\+Task\+Node\+::params}}, \mbox{\hyperlink{async_8h_source_l00123}{Async\+Event\+Loop\+::queue\+\_\+cv}}, \mbox{\hyperlink{async_8h_source_l00124}{Async\+Event\+Loop\+::queue\+\_\+head}}, \mbox{\hyperlink{async_8h_source_l00122}{Async\+Event\+Loop\+::queue\+\_\+mtx}}, \mbox{\hyperlink{async_8h_source_l00125}{Async\+Event\+Loop\+::queue\+\_\+tail}}, \mbox{\hyperlink{async_8h_source_l00092}{Async\+Task\+::ready}}, \mbox{\hyperlink{async_8h_source_l00094}{Async\+Task\+::result}}, and \mbox{\hyperlink{async_8h_source_l00104}{Async\+Task\+Node\+::task}}.
 
+
+
+Referenced by \mbox{\hyperlink{ant__logger_8c_source_l00201}{ant\+\_\+log\+\_\+write()}}.
+
+Here is the caller graph for this function\+:
+% FIG 4

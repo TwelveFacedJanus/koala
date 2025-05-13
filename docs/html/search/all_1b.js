@@ -1,28 +1,5 @@
 var searchData=
 [
-  ['потокобезопасность_0',['Потокобезопасность',['../md_core_2async_8doc.html#autotoc_md30',1,'']]],
-  ['поток_20данных_20через_20event_20loop_1',['Поток данных через Event Loop',['../md_core_2async_8doc.html#autotoc_md40',1,'']]],
-  ['поток_20данных_20через_20functionpipeline_20и_20async_2',['Поток данных через FunctionPipeline и async',['../md_core_2types_8doc.html#autotoc_md78',1,'']]],
-  ['пояснения_20по_20новым_20полям_20структур_3',['Пояснения по новым полям структур',['../md_core_2async_8doc.html#autotoc_md41',1,'']]],
-  ['примеры_20использования_4',['Примеры использования',['../md_core_2async_8doc.html#autotoc_md21',1,'']]],
-  ['примеры_20использования_20асинхронных_20примитивов_5',['Примеры использования асинхронных примитивов',['../group___async_usage.html',1,'']]],
-  ['пример_20комплексного_20использования_20с_20async_20h_20c_6',['Пример комплексного использования с async.h (C)',['../md_core_2types_8doc.html#autotoc_md66',1,'']]],
-  ['пример_20обработки_20ошибок_20c_7',['Пример обработки ошибок (C++)',['../md_core_2async_8doc.html#autotoc_md25',1,'']]],
-  ['пример_20с_20аргументами_20c_8',['Пример с аргументами (C)',['../md_core_2async_8doc.html#autotoc_md23',1,'']]],
-  ['пример_20с_20несколькими_20задачами_20c_9',['Пример с несколькими задачами (C++)',['../md_core_2async_8doc.html#autotoc_md24',1,'']]],
-  ['пример_20c_10',['Пример C',['../md_core_2types_8doc.html#autotoc_md48',1,'Пример (C)'],['../md_core_2types_8doc.html#autotoc_md51',1,'Пример (C)'],['../md_core_2types_8doc.html#autotoc_md54',1,'Пример (C)'],['../md_core_2types_8doc.html#autotoc_md57',1,'Пример (C)'],['../md_core_2types_8doc.html#autotoc_md49',1,'Пример (C++)'],['../md_core_2types_8doc.html#autotoc_md52',1,'Пример (C++)'],['../md_core_2types_8doc.html#autotoc_md55',1,'Пример (C++)'],['../md_core_2types_8doc.html#autotoc_md58',1,'Пример (C++)']]],
-  ['простой_20пример_20c_11',['Простой пример (C)',['../md_core_2async_8doc.html#autotoc_md22',1,'']]],
-  ['пул_20потоков_12',['Пул потоков',['../md_core_2async_8doc.html#autotoc_md17',1,'']]],
-  ['пул_20потоков_20c_13',['Пул потоков (C++)',['../md_core_2async_8doc.html#autotoc_md26',1,'']]],
-  ['памяти_20и_20безопасности_14',['Рекомендации по памяти и безопасности',['../md_core_2types_8doc.html#autotoc_md62',1,'']]],
-  ['полям_20структур_15',['Пояснения по новым полям структур',['../md_core_2async_8doc.html#autotoc_md41',1,'']]],
-  ['потоков_16',['Пул потоков',['../md_core_2async_8doc.html#autotoc_md17',1,'']]],
-  ['потоков_20c_17',['Пул потоков (C++)',['../md_core_2async_8doc.html#autotoc_md26',1,'']]],
-  ['по_20новым_20полям_20структур_18',['Пояснения по новым полям структур',['../md_core_2async_8doc.html#autotoc_md41',1,'']]],
-  ['по_20памяти_20и_20безопасности_19',['Рекомендации по памяти и безопасности',['../md_core_2types_8doc.html#autotoc_md62',1,'']]],
-  ['по_20core_20async_20h_20',['Документация по core/async.h',['../md_core_2async_8doc.html',1,'']]],
-  ['по_20core_20types_20h_21',['Документация по core/types.h',['../md_core_2types_8doc.html',1,'']]],
-  ['пример_20c_22',['Простой пример (C)',['../md_core_2async_8doc.html#autotoc_md22',1,'']]],
-  ['примитивов_23',['Примеры использования асинхронных примитивов',['../group___async_usage.html',1,'']]],
-  ['примитивы_24',['Асинхронные примитивы',['../group___async.html',1,'']]]
+  ['контакты_20и_20поддержка_0',['Контакты и поддержка',['../md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md96',1,'Контакты и поддержка'],['../md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md115',1,'Контакты и поддержка']]],
+  ['комплексного_20использования_20с_20async_20h_20c_1',['Пример комплексного использования с async.h (C)',['../md_core_2types_8doc.html#autotoc_md66',1,'']]]
 ];

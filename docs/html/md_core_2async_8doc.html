@@ -34,7 +34,7 @@
   <td id="projectalign">
    <div id="projectname">Koala
    </div>
-   <div id="projectbrief">Asynchronous Event Loop Implementation</div>
+   <div id="projectbrief">Asynchronous Computing</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -222,7 +222,7 @@ Result async_await(AsyncTask* task);</h2>
 <div class="line">    <span class="keywordflow">return</span> res;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="milena__queue__test_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
 <div class="line">    <a class="code hl_struct" href="struct_async_event_loop.html">AsyncEventLoop</a>* loop = <a class="code hl_function" href="async_8h.html#a437b5a4a2f9570b7b86d002238198b3a">async_event_loop_init</a>();</div>
 <div class="line">    <a class="code hl_struct" href="struct_function_pipeline.html">FunctionPipeline</a> fp = { hello_func, NULL };</div>
 <div class="line">    <a class="code hl_struct" href="struct_function_params.html">FunctionParams</a> params = { 0, NULL };</div>
@@ -237,16 +237,17 @@ Result async_await(AsyncTask* task);</h2>
 <div class="ttc" id="aasync_8c_html_ae9b4f6a8a99f032aab3301f145b6f4de"><div class="ttname"><a href="async_8c.html#ae9b4f6a8a99f032aab3301f145b6f4de">async_event_loop_stop</a></div><div class="ttdeci">void async_event_loop_stop(AsyncEventLoop *loop)</div><div class="ttdoc">Остановить event loop и освободить ресурсы</div><div class="ttdef"><b>Definition</b> <a href="async_8c_source.html#l00072">async.c:72</a></div></div>
 <div class="ttc" id="aasync_8h_html"><div class="ttname"><a href="async_8h.html">async.h</a></div></div>
 <div class="ttc" id="aasync_8h_html_a437b5a4a2f9570b7b86d002238198b3a"><div class="ttname"><a href="async_8h.html#a437b5a4a2f9570b7b86d002238198b3a">async_event_loop_init</a></div><div class="ttdeci">AsyncEventLoop * async_event_loop_init()</div><div class="ttdoc">Инициализация event loop.</div></div>
+<div class="ttc" id="amilena__queue__test_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="milena__queue__test_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="milena__queue__test_8cpp_source.html#l00004">milena_queue_test.cpp:4</a></div></div>
 <div class="ttc" id="astruct_async_event_loop_html"><div class="ttname"><a href="struct_async_event_loop.html">AsyncEventLoop</a></div><div class="ttdoc">Event loop для асинхронных задач с пулом потоков</div><div class="ttdef"><b>Definition</b> <a href="async_8h_source.html#l00111">async.h:111</a></div></div>
 <div class="ttc" id="astruct_async_task_html"><div class="ttname"><a href="struct_async_task.html">AsyncTask</a></div><div class="ttdoc">Дескриптор асинхронной задачи (future/promise)</div><div class="ttdef"><b>Definition</b> <a href="async_8h_source.html#l00082">async.h:82</a></div></div>
-<div class="ttc" id="astruct_function_params_html"><div class="ttname"><a href="struct_function_params.html">FunctionParams</a></div><div class="ttdoc">Структура параметров для функций в FunctionPipeline (C).</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00192">types.h:192</a></div></div>
-<div class="ttc" id="astruct_function_pipeline_html"><div class="ttname"><a href="struct_function_pipeline.html">FunctionPipeline</a></div><div class="ttdoc">Элемент цепочки функций (pipeline).</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00204">types.h:204</a></div></div>
-<div class="ttc" id="astruct_result_html"><div class="ttname"><a href="struct_result.html">Result</a></div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00166">types.h:166</a></div></div>
-<div class="ttc" id="astruct_result_html_a8d5e88d2fd6f6705953a4307f40b51e8"><div class="ttname"><a href="struct_result.html#a8d5e88d2fd6f6705953a4307f40b51e8">Result::is_ok</a></div><div class="ttdeci">int is_ok</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00167">types.h:167</a></div></div>
-<div class="ttc" id="astruct_result_html_aa5c3c9431343f8dfbf1d97bdf25dcaa3"><div class="ttname"><a href="struct_result.html#aa5c3c9431343f8dfbf1d97bdf25dcaa3">Result::ok</a></div><div class="ttdeci">Generic ok</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00168">types.h:168</a></div></div>
+<div class="ttc" id="astruct_function_params_html"><div class="ttname"><a href="struct_function_params.html">FunctionParams</a></div><div class="ttdoc">Структура параметров для функций в FunctionPipeline (C).</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00209">types.h:209</a></div></div>
+<div class="ttc" id="astruct_function_pipeline_html"><div class="ttname"><a href="struct_function_pipeline.html">FunctionPipeline</a></div><div class="ttdoc">Элемент цепочки функций (pipeline).</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00221">types.h:221</a></div></div>
+<div class="ttc" id="astruct_result_html"><div class="ttname"><a href="struct_result.html">Result</a></div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00183">types.h:183</a></div></div>
+<div class="ttc" id="astruct_result_html_a8d5e88d2fd6f6705953a4307f40b51e8"><div class="ttname"><a href="struct_result.html#a8d5e88d2fd6f6705953a4307f40b51e8">Result::is_ok</a></div><div class="ttdeci">int is_ok</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00184">types.h:184</a></div></div>
+<div class="ttc" id="astruct_result_html_aa5c3c9431343f8dfbf1d97bdf25dcaa3"><div class="ttname"><a href="struct_result.html#aa5c3c9431343f8dfbf1d97bdf25dcaa3">Result::ok</a></div><div class="ttdeci">Generic ok</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00185">types.h:185</a></div></div>
 <div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div></div>
-<div class="ttc" id="atypes_8h_html_a2f0d9a4aee65152ba07520f571a68051"><div class="ttname"><a href="types_8h.html#a2f0d9a4aee65152ba07520f571a68051">GENERIC_GET</a></div><div class="ttdeci">#define GENERIC_GET(type, g)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00108">types.h:108</a></div></div>
-<div class="ttc" id="atypes_8h_html_ac4fb7d702f5247b30f8593c9e4cd1d12"><div class="ttname"><a href="types_8h.html#ac4fb7d702f5247b30f8593c9e4cd1d12">GENERIC_SET</a></div><div class="ttdeci">#define GENERIC_SET(g, v)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00107">types.h:107</a></div></div>
+<div class="ttc" id="atypes_8h_html_a2f0d9a4aee65152ba07520f571a68051"><div class="ttname"><a href="types_8h.html#a2f0d9a4aee65152ba07520f571a68051">GENERIC_GET</a></div><div class="ttdeci">#define GENERIC_GET(type, g)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00125">types.h:125</a></div></div>
+<div class="ttc" id="atypes_8h_html_ac4fb7d702f5247b30f8593c9e4cd1d12"><div class="ttname"><a href="types_8h.html#ac4fb7d702f5247b30f8593c9e4cd1d12">GENERIC_SET</a></div><div class="ttdeci">#define GENERIC_SET(g, v)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00124">types.h:124</a></div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md23"></a>
 Пример с аргументами (C)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
@@ -269,7 +270,7 @@ Result async_await(AsyncTask* task);</h2>
 <div class="line">    <span class="keywordflow">return</span> res;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="milena__queue__test_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
 <div class="line">    <a class="code hl_struct" href="struct_async_event_loop.html">AsyncEventLoop</a>* loop = <a class="code hl_function" href="async_8h.html#a437b5a4a2f9570b7b86d002238198b3a">async_event_loop_init</a>();</div>
 <div class="line">    <span class="keywordtype">int</span> x = 2, y = 3;</div>
 <div class="line">    <a class="code hl_struct" href="struct_generic.html">Generic</a> argv[2];</div>
@@ -289,10 +290,10 @@ Result async_await(AsyncTask* task);</h2>
 <div class="line">    <a class="code hl_function" href="async_8c.html#ae9b4f6a8a99f032aab3301f145b6f4de">async_event_loop_stop</a>(loop);</div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="astruct_function_params_html_aa928a3634843ca5a3e5469b97efb4787"><div class="ttname"><a href="struct_function_params.html#aa928a3634843ca5a3e5469b97efb4787">FunctionParams::argv</a></div><div class="ttdeci">Generic * argv</div><div class="ttdoc">Массив аргументов (Generic)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00194">types.h:194</a></div></div>
-<div class="ttc" id="astruct_function_params_html_abec2b9a3d56da4074bd803c48dadba8e"><div class="ttname"><a href="struct_function_params.html#abec2b9a3d56da4074bd803c48dadba8e">FunctionParams::argc</a></div><div class="ttdeci">int argc</div><div class="ttdoc">Количество аргументов</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00193">types.h:193</a></div></div>
-<div class="ttc" id="astruct_generic_html"><div class="ttname"><a href="struct_generic.html">Generic</a></div><div class="ttdoc">Generic с типизацией (C)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00103">types.h:103</a></div></div>
-<div class="ttc" id="astruct_result_html_a61932c0c529b3ba804174ce0461e8b3f"><div class="ttname"><a href="struct_result.html#a61932c0c529b3ba804174ce0461e8b3f">Result::err</a></div><div class="ttdeci">Generic err</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00169">types.h:169</a></div></div>
+<div class="ttc" id="astruct_function_params_html_aa928a3634843ca5a3e5469b97efb4787"><div class="ttname"><a href="struct_function_params.html#aa928a3634843ca5a3e5469b97efb4787">FunctionParams::argv</a></div><div class="ttdeci">Generic * argv</div><div class="ttdoc">Массив аргументов (Generic)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00211">types.h:211</a></div></div>
+<div class="ttc" id="astruct_function_params_html_abec2b9a3d56da4074bd803c48dadba8e"><div class="ttname"><a href="struct_function_params.html#abec2b9a3d56da4074bd803c48dadba8e">FunctionParams::argc</a></div><div class="ttdeci">int argc</div><div class="ttdoc">Количество аргументов</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00210">types.h:210</a></div></div>
+<div class="ttc" id="astruct_generic_html"><div class="ttname"><a href="struct_generic.html">Generic</a></div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00119">types.h:119</a></div></div>
+<div class="ttc" id="astruct_result_html_a61932c0c529b3ba804174ce0461e8b3f"><div class="ttname"><a href="struct_result.html#a61932c0c529b3ba804174ce0461e8b3f">Result::err</a></div><div class="ttdeci">Generic err</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00186">types.h:186</a></div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md24"></a>
 Пример с несколькими задачами (C++)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
@@ -307,7 +308,7 @@ Result async_await(AsyncTask* task);</h2>
 <div class="line">    <span class="keywordflow">return</span> res;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="milena__queue__test_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
 <div class="line">    <a class="code hl_struct" href="struct_async_event_loop.html">AsyncEventLoop</a>* loop = <a class="code hl_function" href="async_8h.html#a437b5a4a2f9570b7b86d002238198b3a">async_event_loop_init</a>();</div>
 <div class="line">    <a class="code hl_struct" href="struct_function_pipeline.html">FunctionPipeline</a> fp = { hello_func, <span class="keyword">nullptr</span> };</div>
 <div class="line">    std::vector&lt;AsyncTask*&gt; tasks;</div>
@@ -317,13 +318,13 @@ Result async_await(AsyncTask* task);</h2>
 <div class="line">    }</div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keyword">auto</span> task : tasks) {</div>
 <div class="line">        <a class="code hl_struct" href="struct_result.html">Result</a> r = <a class="code hl_function" href="async_8c.html#a9be1c41fab44175790073cb7ffb83722">async_await</a>(task);</div>
-<div class="line">        <span class="keywordflow">if</span> (r.<a class="code hl_variable" href="struct_result.html#a8d5e88d2fd6f6705953a4307f40b51e8">is_ok</a>) std::cout &lt;&lt; static_cast&lt;const char*&gt;(r.<a class="code hl_variable" href="struct_result.html#aa5c3c9431343f8dfbf1d97bdf25dcaa3">ok</a>.<a class="code hl_variable" href="struct_generic.html#a07a04db966cf03fd44abfc8f94b46179">value</a>) &lt;&lt; std::endl;</div>
+<div class="line">        <span class="keywordflow">if</span> (r.<a class="code hl_variable" href="struct_result.html#a8d5e88d2fd6f6705953a4307f40b51e8">is_ok</a>) std::cout &lt;&lt; static_cast&lt;const char*&gt;(r.<a class="code hl_variable" href="struct_result.html#aa5c3c9431343f8dfbf1d97bdf25dcaa3">ok</a>.<a class="code hl_variable" href="struct_generic.html#a1fbf56fa903c54bf08b9be9d7a11138e">value</a>) &lt;&lt; std::endl;</div>
 <div class="line">    }</div>
 <div class="line">    <a class="code hl_function" href="async_8c.html#ae9b4f6a8a99f032aab3301f145b6f4de">async_event_loop_stop</a>(loop);</div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="astruct_generic_html_a07a04db966cf03fd44abfc8f94b46179"><div class="ttname"><a href="struct_generic.html#a07a04db966cf03fd44abfc8f94b46179">Generic::value</a></div><div class="ttdeci">void * value</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00104">types.h:104</a></div></div>
-<div class="ttc" id="atypes_8h_html_a5ac639ad8f5bb96eb3bf8279cd371c9d"><div class="ttname"><a href="types_8h.html#a5ac639ad8f5bb96eb3bf8279cd371c9d">Generic</a></div><div class="ttdeci">struct Generic Generic</div><div class="ttdoc">Generic с типизацией (C)</div></div>
+<div class="ttc" id="astruct_generic_html_a1fbf56fa903c54bf08b9be9d7a11138e"><div class="ttname"><a href="struct_generic.html#a1fbf56fa903c54bf08b9be9d7a11138e">Generic::value</a></div><div class="ttdeci">void * value</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00120">types.h:120</a></div></div>
+<div class="ttc" id="atypes_8h_html_a5ac639ad8f5bb96eb3bf8279cd371c9d"><div class="ttname"><a href="types_8h.html#a5ac639ad8f5bb96eb3bf8279cd371c9d">Generic</a></div><div class="ttdeci">struct Generic Generic</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md25"></a>
 Пример обработки ошибок (C++)</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
@@ -337,13 +338,13 @@ Result async_await(AsyncTask* task);</h2>
 <div class="line">    <span class="keywordflow">return</span> res;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="milena__queue__test_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
 <div class="line">    <a class="code hl_struct" href="struct_async_event_loop.html">AsyncEventLoop</a>* loop = <a class="code hl_function" href="async_8h.html#a437b5a4a2f9570b7b86d002238198b3a">async_event_loop_init</a>();</div>
 <div class="line">    <a class="code hl_struct" href="struct_function_pipeline.html">FunctionPipeline</a> fp = { fail_func, <span class="keyword">nullptr</span> };</div>
 <div class="line">    <a class="code hl_struct" href="struct_function_params.html">FunctionParams</a> params = { 0, <span class="keyword">nullptr</span> };</div>
 <div class="line">    <a class="code hl_struct" href="struct_async_task.html">AsyncTask</a>* task = <a class="code hl_function" href="async_8c.html#a07b659d1096ebc8c902a9a5e63ad4925">async_run</a>(loop, &amp;fp, &amp;params);</div>
 <div class="line">    <a class="code hl_struct" href="struct_result.html">Result</a> r = <a class="code hl_function" href="async_8c.html#a9be1c41fab44175790073cb7ffb83722">async_await</a>(task);</div>
-<div class="line">    <span class="keywordflow">if</span> (!r.<a class="code hl_variable" href="struct_result.html#a8d5e88d2fd6f6705953a4307f40b51e8">is_ok</a>) std::cout &lt;&lt; <span class="stringliteral">&quot;Error: &quot;</span> &lt;&lt; <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(r.<a class="code hl_variable" href="struct_result.html#a61932c0c529b3ba804174ce0461e8b3f">err</a>.<a class="code hl_variable" href="struct_generic.html#a07a04db966cf03fd44abfc8f94b46179">value</a>) &lt;&lt; std::endl;</div>
+<div class="line">    <span class="keywordflow">if</span> (!r.<a class="code hl_variable" href="struct_result.html#a8d5e88d2fd6f6705953a4307f40b51e8">is_ok</a>) std::cout &lt;&lt; <span class="stringliteral">&quot;Error: &quot;</span> &lt;&lt; <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(r.<a class="code hl_variable" href="struct_result.html#a61932c0c529b3ba804174ce0461e8b3f">err</a>.<a class="code hl_variable" href="struct_generic.html#a1fbf56fa903c54bf08b9be9d7a11138e">value</a>) &lt;&lt; std::endl;</div>
 <div class="line">    <a class="code hl_function" href="async_8c.html#ae9b4f6a8a99f032aab3301f145b6f4de">async_event_loop_stop</a>(loop);</div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
@@ -356,14 +357,14 @@ Result async_await(AsyncTask* task);</h2>
 Ожидание с таймаутом (C++)</h2>
 <div class="fragment"><div class="line"><a class="code hl_struct" href="struct_async_task.html">AsyncTask</a>* task = <a class="code hl_function" href="async_8c.html#a07b659d1096ebc8c902a9a5e63ad4925">async_run</a>(loop, &amp;fp, &amp;params);</div>
 <div class="line"><a class="code hl_struct" href="struct_result.html">Result</a> r = <a class="code hl_function" href="async_8c.html#af23c830c05972076fed61c782b2cd7ed">async_await_timeout</a>(task, 1000); <span class="comment">// ждать максимум 1 секунду</span></div>
-<div class="line"><span class="keywordflow">if</span> (!r.<a class="code hl_variable" href="struct_result.html#a8d5e88d2fd6f6705953a4307f40b51e8">is_ok</a>) std::cout &lt;&lt; <span class="stringliteral">&quot;Timeout or error: &quot;</span> &lt;&lt; <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(r.<a class="code hl_variable" href="struct_result.html#a61932c0c529b3ba804174ce0461e8b3f">err</a>.<a class="code hl_variable" href="struct_generic.html#a07a04db966cf03fd44abfc8f94b46179">value</a>) &lt;&lt; std::endl;</div>
+<div class="line"><span class="keywordflow">if</span> (!r.<a class="code hl_variable" href="struct_result.html#a8d5e88d2fd6f6705953a4307f40b51e8">is_ok</a>) std::cout &lt;&lt; <span class="stringliteral">&quot;Timeout or error: &quot;</span> &lt;&lt; <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(r.<a class="code hl_variable" href="struct_result.html#a61932c0c529b3ba804174ce0461e8b3f">err</a>.<a class="code hl_variable" href="struct_generic.html#a1fbf56fa903c54bf08b9be9d7a11138e">value</a>) &lt;&lt; std::endl;</div>
 <div class="ttc" id="aasync_8c_html_af23c830c05972076fed61c782b2cd7ed"><div class="ttname"><a href="async_8c.html#af23c830c05972076fed61c782b2cd7ed">async_await_timeout</a></div><div class="ttdeci">Result async_await_timeout(AsyncTask *task, int timeout_ms)</div><div class="ttdoc">Ожидать завершения асинхронной задачи с таймаутом (мс)</div><div class="ttdef"><b>Definition</b> <a href="async_8c_source.html#l00180">async.c:180</a></div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
 Отмена задачи (C++)</h2>
 <div class="fragment"><div class="line"><a class="code hl_struct" href="struct_async_task.html">AsyncTask</a>* task = <a class="code hl_function" href="async_8c.html#a07b659d1096ebc8c902a9a5e63ad4925">async_run</a>(loop, &amp;fp, &amp;params);</div>
 <div class="line"><a class="code hl_function" href="async_8c.html#a50e869118636fbb76259be2551c8a8e7">async_cancel</a>(task); <span class="comment">// попытка отменить задачу</span></div>
 <div class="line"><a class="code hl_struct" href="struct_result.html">Result</a> r = <a class="code hl_function" href="async_8c.html#a9be1c41fab44175790073cb7ffb83722">async_await</a>(task);</div>
-<div class="line"><span class="keywordflow">if</span> (!r.<a class="code hl_variable" href="struct_result.html#a8d5e88d2fd6f6705953a4307f40b51e8">is_ok</a>) std::cout &lt;&lt; <span class="stringliteral">&quot;Cancelled or error: &quot;</span> &lt;&lt; <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(r.<a class="code hl_variable" href="struct_result.html#a61932c0c529b3ba804174ce0461e8b3f">err</a>.<a class="code hl_variable" href="struct_generic.html#a07a04db966cf03fd44abfc8f94b46179">value</a>) &lt;&lt; std::endl;</div>
+<div class="line"><span class="keywordflow">if</span> (!r.<a class="code hl_variable" href="struct_result.html#a8d5e88d2fd6f6705953a4307f40b51e8">is_ok</a>) std::cout &lt;&lt; <span class="stringliteral">&quot;Cancelled or error: &quot;</span> &lt;&lt; <span class="keyword">static_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(r.<a class="code hl_variable" href="struct_result.html#a61932c0c529b3ba804174ce0461e8b3f">err</a>.<a class="code hl_variable" href="struct_generic.html#a1fbf56fa903c54bf08b9be9d7a11138e">value</a>) &lt;&lt; std::endl;</div>
 <div class="ttc" id="aasync_8c_html_a50e869118636fbb76259be2551c8a8e7"><div class="ttname"><a href="async_8c.html#a50e869118636fbb76259be2551c8a8e7">async_cancel</a></div><div class="ttdeci">void async_cancel(AsyncTask *task)</div><div class="ttdoc">Отменить асинхронную задачу (установить флаг cancel)</div><div class="ttdef"><b>Definition</b> <a href="async_8c_source.html#l00230">async.c:230</a></div></div>
 </div><!-- fragment --><hr  />
 <h1><a class="anchor" id="autotoc_md30"></a>
@@ -391,7 +392,7 @@ Result async_await(AsyncTask* task);</h2>
 <h1><a class="anchor" id="autotoc_md34"></a>
 См. также</h1>
 <ul>
-<li><code><a class="el" href="types_8h.html">core/types.h</a></code> — описание <a class="el" href="struct_function_pipeline.html" title="Элемент цепочки функций (pipeline).">FunctionPipeline</a>, <a class="el" href="struct_result.html">Result</a>, <a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a>.</li>
+<li><code><a class="el" href="types_8h.html">core/types.h</a></code> — описание <a class="el" href="struct_function_pipeline.html" title="Элемент цепочки функций (pipeline).">FunctionPipeline</a>, <a class="el" href="struct_result.html">Result</a>, <a class="el" href="struct_generic.html">Generic</a>.</li>
 <li>Примеры в Doxygen-блоках внутри <a class="el" href="async_8h.html">async.h</a>.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md35"></a>

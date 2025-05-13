@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['result_20type_0',['Result Type',['../group___result_type.html',1,'']]]
+  ['generic_20types_0',['Generic Types',['../group___generic_types.html',1,'']]]
 ];

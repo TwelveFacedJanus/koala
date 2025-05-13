@@ -15,7 +15,7 @@ Collaboration diagram for Примеры использования асинхр
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ res;}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{milena__queue__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ my\_func,\ NULL\ \};}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 0,\ NULL\ \};}
@@ -43,13 +43,13 @@ Collaboration diagram for Примеры использования асинхр
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ res;}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{milena__queue__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ loop\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}\ fp\ =\ \{\ my\_func,\ \textcolor{keyword}{nullptr}\ \};}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}\ params\ =\ \{\ 0,\ \textcolor{keyword}{nullptr}\ \};}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_async_task}{AsyncTask}}*\ task\ =\ \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(loop,\ \&fp,\ \&params);}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_result}{Result}}\ r\ =\ \mbox{\hyperlink{async_8c_a9be1c41fab44175790073cb7ffb83722}{async\_await}}(task);}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ std::cout\ <<\ static\_cast<const\ char*>(r.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}.\mbox{\hyperlink{struct_generic_a07a04db966cf03fd44abfc8f94b46179}{value}})\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (r.\mbox{\hyperlink{struct_result_a8d5e88d2fd6f6705953a4307f40b51e8}{is\_ok}})\ std::cout\ <<\ static\_cast<const\ char*>(r.\mbox{\hyperlink{struct_result_aa5c3c9431343f8dfbf1d97bdf25dcaa3}{ok}}.\mbox{\hyperlink{struct_generic_a1fbf56fa903c54bf08b9be9d7a11138e}{value}})\ <<\ std::endl;}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(loop);}
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
 \DoxyCodeLine{\}}

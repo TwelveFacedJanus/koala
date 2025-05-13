@@ -103,12 +103,39 @@ var NAVTREE =
       ] ],
       [ "Типичные ошибки и их решения", "md_core_2types_8doc.html#autotoc_md80", null ]
     ] ],
+    [ "Milena Queue: Документация", "md_external_2milenadb_2src_2milena__queue_8doc.html", [
+      [ "Описание", "md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md82", null ],
+      [ "Быстрый старт", "md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md84", null ],
+      [ "Примеры использования", "md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md86", [
+        [ "Добавление и удаление задач", "md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md87", null ],
+        [ "Получение задачи по индексу", "md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md88", null ]
+      ] ],
+      [ "Иллюстрированная схема структуры", "md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md90", null ],
+      [ "Типичные ошибки при использовании", "md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md92", null ],
+      [ "FAQ", "md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md94", null ],
+      [ "Контакты и поддержка", "md_external_2milenadb_2src_2milena__queue_8doc.html#autotoc_md96", null ]
+    ] ],
+    [ "AntLogger: Документация", "md_external_2ant__logger_2ant__logger_8doc.html", [
+      [ "Описание", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md98", null ],
+      [ "Быстрый старт", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md100", null ],
+      [ "Основные возможности", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md102", null ],
+      [ "Примеры использования", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md104", [
+        [ "Логирование с модулем", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md105", null ],
+        [ "Асинхронный режим", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md106", null ],
+        [ "Callback", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md107", null ]
+      ] ],
+      [ "Иллюстрированная схема работы", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md109", null ],
+      [ "FAQ", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md111", null ],
+      [ "Типичные ошибки", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md113", null ],
+      [ "Контакты и поддержка", "md_external_2ant__logger_2ant__logger_8doc.html#autotoc_md115", null ]
+    ] ],
     [ "Topics", "topics.html", "topics" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -117,6 +144,7 @@ var NAVTREE =
       [ "Globals", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
@@ -128,7 +156,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"annotated.html",
+"struct_async_task_node.html#adee2cf38d7faf2a7dcc8af3088a125db"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

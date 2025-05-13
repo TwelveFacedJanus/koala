@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['ready_0',['ready',['../struct_async_task.html#aef3b8dc3580793df53a4008518c1e4e9',1,'AsyncTask']]],
-  ['result_1',['Result',['../md_core_2async_8doc.html#autotoc_md14',1,'Интеграция с FunctionPipeline и Result'],['../struct_result.html',1,'Result'],['../types_8h.html#ade7e53b8ed7380705cbd1225db23cd5a',1,'Result:&#160;types.h'],['../md_core_2types_8doc.html#autotoc_md50',1,'Result'],['../md_core_2types_8doc.html#autotoc_md75',1,'Result']]],
-  ['result_2',['result',['../struct_async_task.html#afbc4252477e47f4610b929023db0d21e',1,'AsyncTask']]],
-  ['result_20async_5fawait_20asynctask_20task_3',['Result async_await(AsyncTask* task);',['../md_core_2async_8doc.html#autotoc_md12',1,'']]],
-  ['result_20type_4',['Result Type',['../group___result_type.html',1,'']]],
-  ['result_5ffree_5',['result_free',['../types_8c.html#a23864e11484aca063fa48537ce48c047',1,'result_free(Result *r):&#160;types.c'],['../types_8h.html#a23864e11484aca063fa48537ce48c047',1,'result_free(Result *r):&#160;types.c']]],
-  ['running_6',['running',['../struct_async_event_loop.html#ae51517ca0aaf958b5dbddd128d0e025f',1,'AsyncEventLoop']]]
+  ['p2pnetwork_0',['P2PNetwork',['../struct_p2_p_network.html',1,'']]],
+  ['p2ptask_1',['P2PTask',['../struct_p2_p_task.html',1,'']]],
+  ['params_2',['params',['../md_core_2async_8doc.html#autotoc_md11',1,'AsyncTask* async_run(AsyncEventLoop* loop, FunctionPipeline* func, FunctionParams* params);'],['../struct_async_task_node.html#a75e616f4250ff818abd5a7d67611c576',1,'AsyncTaskNode::params']]],
+  ['priority_3',['priority',['../struct_p2_p_task.html#a7d525610bd25d0e922ba442d72dd1530',1,'P2PTask::priority'],['../struct_task_cpp.html#ae36c259c5b4cb53b9eeb4dfd9f4dd81e',1,'TaskCpp::priority'],['../struct_task.html#a69eb6d4ca426f1f0de3b2d495c710fb2',1,'Task::priority']]],
+  ['push_4',['push',['../mathematica_8h.html#a2499edf22ad5e432f6631b9a02470c18',1,'push(struct Vector *vec, Generic *data):&#160;mathemetica.c'],['../mathemetica_8c.html#a2499edf22ad5e432f6631b9a02470c18',1,'push(struct Vector *vec, Generic *data):&#160;mathemetica.c']]],
+  ['push_5fback_5',['push_back',['../struct_vector.html#aa30ac282b9203d10c9ac19386d18a435',1,'Vector']]]
 ];

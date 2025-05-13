@@ -1,0 +1,249 @@
+\doxysection{core/math/mathemetica.c File Reference}
+\hypertarget{mathemetica_8c}{}\label{mathemetica_8c}\index{core/math/mathemetica.c@{core/math/mathemetica.c}}
+{\ttfamily \#include "{}mathematica.\+h"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for mathemetica.\+c\+:
+% FIG 0
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{mathemetica_8c_af2c6f271cee0c0d88e2869f58c815667}{create\+\_\+node}} (\mbox{\hyperlink{struct_generic}{Generic}} \texorpdfstring{$\ast$}{*}data)
+\item 
+void \mbox{\hyperlink{mathemetica_8c_a2499edf22ad5e432f6631b9a02470c18}{push}} (struct \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}vec, \mbox{\hyperlink{struct_generic}{Generic}} \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Добавить элемент в конец вектора. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mathemetica_8c_ad5d282e52ef0803267ac362f62ad781d}{delete}} (struct \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}vec)
+\begin{DoxyCompactList}\small\item\em Удалить все элементы вектора и освободить память. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mathemetica_8c_acc31669643b4c1e48ec174303999c367}{free\+\_\+vector}} (struct \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}vec)
+\begin{DoxyCompactList}\small\item\em Освободить память, занятую вектором (синоним delete). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{mathemetica_8c_a522d4adf059058338603f89522cdfa3f}{allocate\+\_\+memory\+\_\+for\+\_\+vector}} ()
+\begin{DoxyCompactList}\small\item\em Выделить память под новый вектор (используется внутри init\+\_\+vector). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{mathemetica_8c_a038b4b5cd1454b3458df2d923534bae6}{init\+\_\+vector}} ()
+\begin{DoxyCompactList}\small\item\em Инициализировать новый пустой вектор. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{mathemetica_8c_a522d4adf059058338603f89522cdfa3f}\index{mathemetica.c@{mathemetica.c}!allocate\_memory\_for\_vector@{allocate\_memory\_for\_vector}}
+\index{allocate\_memory\_for\_vector@{allocate\_memory\_for\_vector}!mathemetica.c@{mathemetica.c}}
+\doxysubsubsection{\texorpdfstring{allocate\_memory\_for\_vector()}{allocate\_memory\_for\_vector()}}
+{\footnotesize\ttfamily \label{mathemetica_8c_a522d4adf059058338603f89522cdfa3f} 
+\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*} allocate\+\_\+memory\+\_\+for\+\_\+vector (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Выделить память под новый вектор (используется внутри init\+\_\+vector). 
+
+\begin{DoxyReturn}{Returns}
+Указатель на новый вектор или NULL при ошибке 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mathemetica_8c_source_l00052}{52}} of file \mbox{\hyperlink{mathemetica_8c_source}{mathemetica.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ vec\ =\ (\mbox{\hyperlink{struct_vector}{Vector}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vector}{Vector}}));}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (!vec)\ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00055\ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}}\ =\ NULL;}
+\DoxyCodeLine{00057\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}}\ =\ NULL;}
+\DoxyCodeLine{00058\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_aa30ac282b9203d10c9ac19386d18a435}{push\_back}}\ =\ \mbox{\hyperlink{mathematica_8h_a2499edf22ad5e432f6631b9a02470c18}{push}};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ vec;}
+\DoxyCodeLine{00060\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{mathematica_8h_source_l00103}{Vector\+::data}}, \mbox{\hyperlink{mathematica_8h_source_l00104}{Vector\+::next}}, \mbox{\hyperlink{mathemetica_8c_source_l00016}{push()}}, and \mbox{\hyperlink{mathematica_8h_source_l00105}{Vector\+::push\+\_\+back}}.
+
+
+
+Referenced by \mbox{\hyperlink{mathemetica_8c_source_l00063}{init\+\_\+vector()}}.
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{mathemetica_8c_af2c6f271cee0c0d88e2869f58c815667}\index{mathemetica.c@{mathemetica.c}!create\_node@{create\_node}}
+\index{create\_node@{create\_node}!mathemetica.c@{mathemetica.c}}
+\doxysubsubsection{\texorpdfstring{create\_node()}{create\_node()}}
+{\footnotesize\ttfamily \label{mathemetica_8c_af2c6f271cee0c0d88e2869f58c815667} 
+static \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*} create\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_generic}{Generic}} \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{mathemetica_8c_source_l00005}{5}} of file \mbox{\hyperlink{mathemetica_8c_source}{mathemetica.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00005\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ node\ =\ (\mbox{\hyperlink{struct_vector}{Vector}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vector}{Vector}}));}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordflow}{if}\ (!node)\ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00008\ \ \ \ \ }
+\DoxyCodeLine{00009\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}}\ =\ data;}
+\DoxyCodeLine{00010\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}}\ =\ NULL;}
+\DoxyCodeLine{00011\ \ \ \ \ node-\/>\mbox{\hyperlink{struct_vector_aa30ac282b9203d10c9ac19386d18a435}{push\_back}}\ =\ \mbox{\hyperlink{mathematica_8h_a2499edf22ad5e432f6631b9a02470c18}{push}};}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{return}\ node;}
+\DoxyCodeLine{00013\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{mathematica_8h_source_l00103}{Vector\+::data}}, \mbox{\hyperlink{mathematica_8h_source_l00104}{Vector\+::next}}, \mbox{\hyperlink{mathemetica_8c_source_l00016}{push()}}, and \mbox{\hyperlink{mathematica_8h_source_l00105}{Vector\+::push\+\_\+back}}.
+
+
+
+Referenced by \mbox{\hyperlink{mathemetica_8c_source_l00016}{push()}}.
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{mathemetica_8c_ad5d282e52ef0803267ac362f62ad781d}\index{mathemetica.c@{mathemetica.c}!delete@{delete}}
+\index{delete@{delete}!mathemetica.c@{mathemetica.c}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily \label{mathemetica_8c_ad5d282e52ef0803267ac362f62ad781d} 
+void delete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}}]{vec}{}\end{DoxyParamCaption})}
+
+
+
+Удалить все элементы вектора и освободить память. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Указатель на вектор \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mathemetica_8c_source_l00033}{33}} of file \mbox{\hyperlink{mathemetica_8c_source}{mathemetica.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (!vec)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00035\ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ current\ =\ vec;}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ prev\ =\ NULL;}
+\DoxyCodeLine{00038\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{while}\ (current)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ next\ =\ current-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ free(current);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ current\ =\ next;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{mathematica_8h_source_l00104}{Vector\+::next}}.
+
+\Hypertarget{mathemetica_8c_acc31669643b4c1e48ec174303999c367}\index{mathemetica.c@{mathemetica.c}!free\_vector@{free\_vector}}
+\index{free\_vector@{free\_vector}!mathemetica.c@{mathemetica.c}}
+\doxysubsubsection{\texorpdfstring{free\_vector()}{free\_vector()}}
+{\footnotesize\ttfamily \label{mathemetica_8c_acc31669643b4c1e48ec174303999c367} 
+void free\+\_\+vector (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}}]{vec}{}\end{DoxyParamCaption})}
+
+
+
+Освободить память, занятую вектором (синоним delete). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Указатель на вектор \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mathemetica_8c_source_l00047}{47}} of file \mbox{\hyperlink{mathemetica_8c_source}{mathemetica.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{delete}(vec);\ \textcolor{comment}{//\ Just\ alias\ to\ delete\ in\ this\ implementation}}
+\DoxyCodeLine{00049\ \}}
+
+\end{DoxyCode}
+\Hypertarget{mathemetica_8c_a038b4b5cd1454b3458df2d923534bae6}\index{mathemetica.c@{mathemetica.c}!init\_vector@{init\_vector}}
+\index{init\_vector@{init\_vector}!mathemetica.c@{mathemetica.c}}
+\doxysubsubsection{\texorpdfstring{init\_vector()}{init\_vector()}}
+{\footnotesize\ttfamily \label{mathemetica_8c_a038b4b5cd1454b3458df2d923534bae6} 
+\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*} init\+\_\+vector (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Инициализировать новый пустой вектор. 
+
+\begin{DoxyReturn}{Returns}
+Указатель на новый вектор или NULL при ошибке 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{mathemetica_8c_source_l00063}{63}} of file \mbox{\hyperlink{mathemetica_8c_source}{mathemetica.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ vec\ =\ \mbox{\hyperlink{mathemetica_8c_a522d4adf059058338603f89522cdfa3f}{allocate\_memory\_for\_vector}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ vec;}
+\DoxyCodeLine{00066\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{mathemetica_8c_source_l00052}{allocate\+\_\+memory\+\_\+for\+\_\+vector()}}.
+
+Here is the call graph for this function\+:
+% FIG 5
+\Hypertarget{mathemetica_8c_a2499edf22ad5e432f6631b9a02470c18}\index{mathemetica.c@{mathemetica.c}!push@{push}}
+\index{push@{push}!mathemetica.c@{mathemetica.c}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily \label{mathemetica_8c_a2499edf22ad5e432f6631b9a02470c18} 
+void push (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}}]{vec}{, }\item[{\mbox{\hyperlink{struct_generic}{Generic}} \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Добавить элемент в конец вектора. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Указатель на вектор \\
+\hline
+{\em data} & Указатель на объект \doxylink{struct_generic}{Generic} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{mathemetica_8c_source_l00016}{16}} of file \mbox{\hyperlink{mathemetica_8c_source}{mathemetica.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (!vec)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00018\ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Find\ the\ last\ node}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ current\ =\ vec;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{while}\ (current-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}})\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}};}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Create\ and\ append\ new\ node}}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ new\_node\ =\ \mbox{\hyperlink{mathemetica_8c_af2c6f271cee0c0d88e2869f58c815667}{create\_node}}(data);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (!new\_node)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ current-\/>\mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}}\ =\ new\_node;}
+\DoxyCodeLine{00030\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{mathemetica_8c_source_l00005}{create\+\_\+node()}}, and \mbox{\hyperlink{mathematica_8h_source_l00104}{Vector\+::next}}.
+
+
+
+Referenced by \mbox{\hyperlink{mathemetica_8c_source_l00052}{allocate\+\_\+memory\+\_\+for\+\_\+vector()}}, and \mbox{\hyperlink{mathemetica_8c_source_l00005}{create\+\_\+node()}}.
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7

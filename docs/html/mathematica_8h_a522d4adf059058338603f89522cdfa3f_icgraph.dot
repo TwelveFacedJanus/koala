@@ -1,0 +1,11 @@
+digraph "allocate_memory_for_vector"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="allocate_memory_for\l_vector",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Выделить память под новый вектор (используется внутри init_vector)."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="init_vector",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$mathemetica_8c.html#a038b4b5cd1454b3458df2d923534bae6",tooltip="Инициализировать новый пустой вектор."];
+}

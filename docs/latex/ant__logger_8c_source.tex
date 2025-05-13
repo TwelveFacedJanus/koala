@@ -1,0 +1,193 @@
+\doxysection{ant\+\_\+logger.\+c}
+\hypertarget{ant__logger_8c_source}{}\label{ant__logger_8c_source}\index{external/ant\_logger/ant\_logger.c@{external/ant\_logger/ant\_logger.c}}
+\mbox{\hyperlink{ant__logger_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ant__logger_8h}{ant\_logger.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <pthread.h>}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}../core/async.h"{}}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00010}\mbox{\hyperlink{ant__logger_8c_ad5e3b63bac006a6db90510427d5921f4}{00010}}\ \textcolor{preprocessor}{\#define\ ANT\_LOG\_MAX\_MSG\ 1024}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00011}\mbox{\hyperlink{ant__logger_8c_ac6ec193c48cb9355806642c90365dce3}{00011}}\ \textcolor{preprocessor}{\#define\ ANT\_LOG\_MAX\_MODULE\ 64}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00022}\mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{00022}}\ \textcolor{keyword}{static}\ FILE*\ \mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\_file}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00026}\mbox{\hyperlink{group___ant_logger_gac2d0c8bd84c184f09bc7bd777bfcc96a}{00026}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\_log\_level\_t}}\ \mbox{\hyperlink{group___ant_logger_gac2d0c8bd84c184f09bc7bd777bfcc96a}{min\_level}}\ =\ \mbox{\hyperlink{ant__logger_8h_a2b59d76f88b5231b3ac08e423a952b86}{ANT\_LOG\_DEBUG}};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00030}\mbox{\hyperlink{group___ant_logger_gadda969f63c963605bba1b88d35ca66f6}{00030}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{ant__logger_8h_a7bc4329f01da48b7bb263197d1d3e440}{ant\_log\_callback\_t}}\ \mbox{\hyperlink{group___ant_logger_gadda969f63c963605bba1b88d35ca66f6}{user\_callback}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00034}\mbox{\hyperlink{group___ant_logger_ga7d98e2dd1964a2c9cdb897cc63f23d0b}{00034}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group___ant_logger_ga7d98e2dd1964a2c9cdb897cc63f23d0b}{use\_colors}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00038}\mbox{\hyperlink{group___ant_logger_ga0e9196e140d1096d301f320d049c12ee}{00038}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group___ant_logger_ga0e9196e140d1096d301f320d049c12ee}{use\_async}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00042}\mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{00042}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_async_event_loop}{AsyncEventLoop}}*\ \mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\_loop}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00046}\mbox{\hyperlink{group___ant_logger_ga54baead9ac1aa7d2d2f886956ac57c1e}{00046}}\ \textcolor{keyword}{static}\ pthread\_mutex\_t\ \mbox{\hyperlink{group___ant_logger_ga54baead9ac1aa7d2d2f886956ac57c1e}{log\_mutex}}\ =\ PTHREAD\_MUTEX\_INITIALIZER;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00048}\mbox{\hyperlink{group___ant_logger_ga8a2ced25981b49f1555d16f390df6006}{00048}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{group___ant_logger_ga8a2ced25981b49f1555d16f390df6006}{level\_colors}}[]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00049}00049\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)033[0;37m"{}},\ \textcolor{comment}{//\ DEBUG\ -\/\ white}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00050}00050\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)033[0;32m"{}},\ \textcolor{comment}{//\ INFO\ -\/\ green}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00051}00051\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)033[1;33m"{}},\ \textcolor{comment}{//\ WARNING\ -\/\ yellow}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00052}00052\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)033[0;31m"{}},\ \textcolor{comment}{//\ ERROR\ -\/\ red}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00053}00053\ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)033[1;41m"{}}\ \ \textcolor{comment}{//\ FATAL\ -\/\ red\ bg}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00054}00054\ \};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00055}\mbox{\hyperlink{group___ant_logger_ga6ee99f12766d97f932da55d2232f5cf5}{00055}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{group___ant_logger_ga6ee99f12766d97f932da55d2232f5cf5}{level\_names}}[]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00056}00056\ \ \ \ \ \textcolor{stringliteral}{"{}DEBUG"{}},\ \textcolor{stringliteral}{"{}INFO"{}},\ \textcolor{stringliteral}{"{}WARNING"{}},\ \textcolor{stringliteral}{"{}ERROR"{}},\ \textcolor{stringliteral}{"{}FATAL"{}}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00057}00057\ \};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00063}\mbox{\hyperlink{group___ant_logger_ga221ad35833a5d41f71421f2f3c066c95}{00063}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___ant_logger_ga221ad35833a5d41f71421f2f3c066c95}{ant\_log\_enable\_colors}}(\textcolor{keywordtype}{bool}\ enable)\ \{\ \mbox{\hyperlink{group___ant_logger_ga7d98e2dd1964a2c9cdb897cc63f23d0b}{use\_colors}}\ =\ enable\ ?\ 1\ :\ 0;\ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00069}\mbox{\hyperlink{group___ant_logger_ga1f76a3ecf536cfb2681828f6b8941835}{00069}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___ant_logger_ga1f76a3ecf536cfb2681828f6b8941835}{ant\_log\_enable\_async}}(\textcolor{keywordtype}{bool}\ enable)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (enable\ \&\&\ !\mbox{\hyperlink{group___ant_logger_ga0e9196e140d1096d301f320d049c12ee}{use\_async}})\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00071}00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\_loop}}\ =\ \mbox{\hyperlink{async_8h_a437b5a4a2f9570b7b86d002238198b3a}{async\_event\_loop\_init}}();}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\_loop}})\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}[ant\_logger]\ ERROR:\ Failed\ to\ initialize\ async\ event\ loop!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_ga0e9196e140d1096d301f320d049c12ee}{use\_async}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00077}00077\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!enable\ \&\&\ \mbox{\hyperlink{group___ant_logger_ga0e9196e140d1096d301f320d049c12ee}{use\_async}})\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(\mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\_loop}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00079}00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\_loop}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00080}00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_ga0e9196e140d1096d301f320d049c12ee}{use\_async}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00082}00082\ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00088}\mbox{\hyperlink{group___ant_logger_gaa2cfe4fcc129fa9b0766b9779db64858}{00088}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___ant_logger_gaa2cfe4fcc129fa9b0766b9779db64858}{ant\_log\_init}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ file\_path)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_path)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00090}00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\_file}}\ =\ fopen(file\_path,\ \textcolor{stringliteral}{"{}a"{}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\_file}})\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}[ant\_logger]\ ERROR:\ Failed\ to\ open\ log\ file\ '\%s'!\ Logging\ to\ stderr.\(\backslash\)n"{}},\ file\_path);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\_file}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00095}00095\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00096}00096\ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00101}\mbox{\hyperlink{group___ant_logger_ga0d13b320d5c91e58632c230243f00bb8}{00101}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___ant_logger_ga0d13b320d5c91e58632c230243f00bb8}{ant\_log\_shutdown}}()\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00102}00102\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\_file}})\ fclose(\mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\_file}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00103}00103\ \ \ \ \ \mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\_file}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group___ant_logger_ga0e9196e140d1096d301f320d049c12ee}{use\_async}}\ \&\&\ \mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\_loop}})\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00105}00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{async_8c_ae9b4f6a8a99f032aab3301f145b6f4de}{async\_event\_loop\_stop}}(\mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\_loop}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00106}00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\_loop}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00107}00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_ga0e9196e140d1096d301f320d049c12ee}{use\_async}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00108}00108\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00109}00109\ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00115}\mbox{\hyperlink{group___ant_logger_gabc2800dfb26fd0b291ea7e04520328ec}{00115}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___ant_logger_gabc2800dfb26fd0b291ea7e04520328ec}{ant\_log\_set\_level}}(\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\_log\_level\_t}}\ level)\ \{\ \mbox{\hyperlink{group___ant_logger_gac2d0c8bd84c184f09bc7bd777bfcc96a}{min\_level}}\ =\ level;\ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00121}\mbox{\hyperlink{group___ant_logger_ga9a61caaff7630aa717988962a55b3452}{00121}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___ant_logger_ga9a61caaff7630aa717988962a55b3452}{ant\_log\_set\_callback}}(\mbox{\hyperlink{ant__logger_8h_a7bc4329f01da48b7bb263197d1d3e440}{ant\_log\_callback\_t}}\ cb)\ \{\ \mbox{\hyperlink{group___ant_logger_gadda969f63c963605bba1b88d35ca66f6}{user\_callback}}\ =\ cb;\ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00123}00123\ \textcolor{comment}{//\ -\/-\/-\/\ Асинхронная\ обёртка\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00127}\mbox{\hyperlink{struct_ant_log_async_msg}{00127}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00128}\mbox{\hyperlink{struct_ant_log_async_msg_a2e56b6be26f13a2f41e8d8361961daab}{00128}}\ \ \ \ \ \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\_log\_level\_t}}\ \mbox{\hyperlink{struct_ant_log_async_msg_a2e56b6be26f13a2f41e8d8361961daab}{level}};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00129}\mbox{\hyperlink{struct_ant_log_async_msg_af26936f11bde215bfcc526e45ced2832}{00129}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_ant_log_async_msg_af26936f11bde215bfcc526e45ced2832}{module}}[\mbox{\hyperlink{ant__logger_8c_ac6ec193c48cb9355806642c90365dce3}{ANT\_LOG\_MAX\_MODULE}}];}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00130}\mbox{\hyperlink{struct_ant_log_async_msg_aedf9a14773d448a9bc8762c9de4b9970}{00130}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_ant_log_async_msg_aedf9a14773d448a9bc8762c9de4b9970}{message}}[\mbox{\hyperlink{ant__logger_8c_ad5e3b63bac006a6db90510427d5921f4}{ANT\_LOG\_MAX\_MSG}}];}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00131}00131\ \}\ \mbox{\hyperlink{struct_ant_log_async_msg}{AntLogAsyncMsg}};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00136}\mbox{\hyperlink{group___ant_logger_gabc00b5c23fd4d11163bb01ea559322c4}{00136}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___ant_logger_gabc00b5c23fd4d11163bb01ea559322c4}{ant\_log\_output}}(\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\_log\_level\_t}}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ module,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ msg)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00137}00137\ \ \ \ \ pthread\_mutex\_lock(\&\mbox{\hyperlink{group___ant_logger_ga54baead9ac1aa7d2d2f886956ac57c1e}{log\_mutex}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00138}00138\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group___ant_logger_gadda969f63c963605bba1b88d35ca66f6}{user\_callback}})\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00139}00139\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_gadda969f63c963605bba1b88d35ca66f6}{user\_callback}}(level,\ module,\ msg);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00140}00140\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\_file}})\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ fputs(msg,\ \mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\_file}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ fflush(\mbox{\hyperlink{group___ant_logger_gab936051f5aaca44c6c3c41dee0d19c36}{log\_file}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00144}00144\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ fputs(msg,\ stderr);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00146}00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00147}00147\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00148}00148\ \ \ \ \ pthread\_mutex\_unlock(\&\mbox{\hyperlink{group___ant_logger_ga54baead9ac1aa7d2d2f886956ac57c1e}{log\_mutex}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00149}00149\ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00154}\mbox{\hyperlink{group___ant_logger_ga1ab70f322f8077796d3fd3fce804d789}{00154}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___ant_logger_ga1ab70f322f8077796d3fd3fce804d789}{ant\_log\_format}}(\textcolor{keywordtype}{char}*\ out,\ \textcolor{keywordtype}{size\_t}\ out\_sz,\ \mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\_log\_level\_t}}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ module,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ func,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ msg)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00155}00155\ \ \ \ \ \textcolor{keywordtype}{char}\ timebuf[32];}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00156}00156\ \ \ \ \ time\_t\ now\ =\ time(NULL);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00157}00157\ \ \ \ \ \textcolor{keyword}{struct\ }tm*\ tm\_info\ =\ localtime(\&now);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00158}00158\ \ \ \ \ strftime(timebuf,\ \textcolor{keyword}{sizeof}(timebuf),\ \textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M:\%S"{}},\ tm\_info);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00159}00159\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group___ant_logger_ga7d98e2dd1964a2c9cdb897cc63f23d0b}{use\_colors}})\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ snprintf(out,\ out\_sz,\ \textcolor{stringliteral}{"{}\%s[\%s]\ [\%s]\ [\%s]\ \%s:\%d\ (\%s):\ \%s\(\backslash\)033[0m\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_ga8a2ced25981b49f1555d16f390df6006}{level\_colors}}[level],\ timebuf,\ \mbox{\hyperlink{group___ant_logger_ga6ee99f12766d97f932da55d2232f5cf5}{level\_names}}[level],\ module,\ file,\ line,\ func,\ msg);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00162}00162\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00163}00163\ \ \ \ \ \ \ \ \ snprintf(out,\ out\_sz,\ \textcolor{stringliteral}{"{}[\%s]\ [\%s]\ [\%s]\ \%s:\%d\ (\%s):\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ timebuf,\ \mbox{\hyperlink{group___ant_logger_ga6ee99f12766d97f932da55d2232f5cf5}{level\_names}}[level],\ module,\ file,\ line,\ func,\ msg);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00165}00165\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00166}00166\ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00168}00168\ \textcolor{comment}{//\ -\/-\/-\/\ Функция\ для\ event\ loop\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00169}00169\ \textcolor{preprocessor}{\#include\ "{}../core/types.h"{}}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00170}00170\ \textcolor{preprocessor}{\#include\ "{}../core/math/mathematica.h"{}}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00174}\mbox{\hyperlink{group___ant_logger_ga88512267049455a44ecba369aa21dfa4}{00174}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_result}{Result}}\ \mbox{\hyperlink{group___ant_logger_ga88512267049455a44ecba369aa21dfa4}{ant\_log\_async\_func}}(\mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00175}00175\ \ \ \ \ \textcolor{keywordflow}{if}\ (!params\ ||\ !params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}\ ||\ params-\/>\mbox{\hyperlink{struct_function_params_abec2b9a3d56da4074bd803c48dadba8e}{argc}}\ <\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00176}00176\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}[ant\_logger]\ ERROR:\ Invalid\ async\ log\ parameters!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{struct_result}{Result}})\{\ .is\_ok\ =\ 0\ \};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00178}00178\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00179}00179\ \ \ \ \ \mbox{\hyperlink{struct_ant_log_async_msg}{AntLogAsyncMsg}}*\ logmsg\ =\ (\mbox{\hyperlink{struct_ant_log_async_msg}{AntLogAsyncMsg}}*)params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}[0].\mbox{\hyperlink{struct_generic_a1fbf56fa903c54bf08b9be9d7a11138e}{value}};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00180}00180\ \ \ \ \ \textcolor{keywordflow}{if}\ (!logmsg)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00181}00181\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}[ant\_logger]\ ERROR:\ NULL\ log\ message\ in\ async!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{struct_result}{Result}})\{\ .is\_ok\ =\ 0\ \};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00183}00183\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00184}00184\ \ \ \ \ \mbox{\hyperlink{group___ant_logger_gabc00b5c23fd4d11163bb01ea559322c4}{ant\_log\_output}}(logmsg-\/>\mbox{\hyperlink{struct_ant_log_async_msg_a2e56b6be26f13a2f41e8d8361961daab}{level}},\ logmsg-\/>\mbox{\hyperlink{struct_ant_log_async_msg_af26936f11bde215bfcc526e45ced2832}{module}},\ logmsg-\/>\mbox{\hyperlink{struct_ant_log_async_msg_aedf9a14773d448a9bc8762c9de4b9970}{message}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00185}00185\ \ \ \ \ free(logmsg);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00186}00186\ \ \ \ \ free(params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00187}00187\ \ \ \ \ free(params);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00188}00188\ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{struct_result}{Result}})\{\ .is\_ok\ =\ 1\ \};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00189}00189\ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00201}\mbox{\hyperlink{group___ant_logger_ga0aa4315bcae65fafb912aa5319c64417}{00201}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group___ant_logger_ga0aa4315bcae65fafb912aa5319c64417}{ant\_log\_write}}(\mbox{\hyperlink{ant__logger_8h_a3555fa16857447d43ca763e0b54a1eaa}{ant\_log\_level\_t}}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ module,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ file,\ \textcolor{keywordtype}{int}\ line,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ func,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fmt,\ ...)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00202}00202\ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ <\ \mbox{\hyperlink{group___ant_logger_gac2d0c8bd84c184f09bc7bd777bfcc96a}{min\_level}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00203}00203\ \ \ \ \ \textcolor{keywordflow}{if}\ (!module\ ||\ !file\ ||\ !func\ ||\ !fmt)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00204}00204\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}[ant\_logger]\ ERROR:\ Invalid\ log\ parameters!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00206}00206\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00207}00207\ \ \ \ \ \textcolor{keywordtype}{char}\ user\_msg[\mbox{\hyperlink{ant__logger_8c_ad5e3b63bac006a6db90510427d5921f4}{ANT\_LOG\_MAX\_MSG}}];}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00208}00208\ \ \ \ \ va\_list\ args;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00209}00209\ \ \ \ \ va\_start(args,\ fmt);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00210}00210\ \ \ \ \ vsnprintf(user\_msg,\ \textcolor{keyword}{sizeof}(user\_msg),\ fmt,\ args);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00211}00211\ \ \ \ \ va\_end(args);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00213}00213\ \ \ \ \ \textcolor{keywordtype}{char}\ final\_msg[\mbox{\hyperlink{ant__logger_8c_ad5e3b63bac006a6db90510427d5921f4}{ANT\_LOG\_MAX\_MSG}}];}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00214}00214\ \ \ \ \ \mbox{\hyperlink{group___ant_logger_ga1ab70f322f8077796d3fd3fce804d789}{ant\_log\_format}}(final\_msg,\ \textcolor{keyword}{sizeof}(final\_msg),\ level,\ module,\ file,\ line,\ func,\ user\_msg);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00216}00216\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group___ant_logger_ga0e9196e140d1096d301f320d049c12ee}{use\_async}}\ \&\&\ \mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\_loop}})\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00217}00217\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_ant_log_async_msg}{AntLogAsyncMsg}}*\ logmsg\ =\ (\mbox{\hyperlink{struct_ant_log_async_msg}{AntLogAsyncMsg}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_ant_log_async_msg}{AntLogAsyncMsg}}));}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00218}00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!logmsg)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}[ant\_logger]\ ERROR:\ Out\ of\ memory\ for\ async\ log!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00221}00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00222}00222\ \ \ \ \ \ \ \ \ logmsg-\/>\mbox{\hyperlink{struct_ant_log_async_msg_a2e56b6be26f13a2f41e8d8361961daab}{level}}\ =\ level;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00223}00223\ \ \ \ \ \ \ \ \ strncpy(logmsg-\/>\mbox{\hyperlink{struct_ant_log_async_msg_af26936f11bde215bfcc526e45ced2832}{module}},\ module,\ \mbox{\hyperlink{ant__logger_8c_ac6ec193c48cb9355806642c90365dce3}{ANT\_LOG\_MAX\_MODULE}}-\/1);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00224}00224\ \ \ \ \ \ \ \ \ logmsg-\/>\mbox{\hyperlink{struct_ant_log_async_msg_af26936f11bde215bfcc526e45ced2832}{module}}[\mbox{\hyperlink{ant__logger_8c_ac6ec193c48cb9355806642c90365dce3}{ANT\_LOG\_MAX\_MODULE}}-\/1]\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00225}00225\ \ \ \ \ \ \ \ \ strncpy(logmsg-\/>\mbox{\hyperlink{struct_ant_log_async_msg_aedf9a14773d448a9bc8762c9de4b9970}{message}},\ final\_msg,\ \mbox{\hyperlink{ant__logger_8c_ad5e3b63bac006a6db90510427d5921f4}{ANT\_LOG\_MAX\_MSG}}-\/1);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00226}00226\ \ \ \ \ \ \ \ \ logmsg-\/>\mbox{\hyperlink{struct_ant_log_async_msg_aedf9a14773d448a9bc8762c9de4b9970}{message}}[\mbox{\hyperlink{ant__logger_8c_ad5e3b63bac006a6db90510427d5921f4}{ANT\_LOG\_MAX\_MSG}}-\/1]\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00227}00227\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Подготовка\ параметров\ для\ event\ loop}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00228}00228\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_function_params}{FunctionParams}}*\ params\ =\ (\mbox{\hyperlink{struct_function_params}{FunctionParams}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_function_params}{FunctionParams}}));}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!params)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}[ant\_logger]\ ERROR:\ Out\ of\ memory\ for\ async\ params!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ free(logmsg);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00233}00233\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00234}00234\ \ \ \ \ \ \ \ \ params-\/>\mbox{\hyperlink{struct_function_params_abec2b9a3d56da4074bd803c48dadba8e}{argc}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00235}00235\ \ \ \ \ \ \ \ \ params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}\ =\ (\mbox{\hyperlink{struct_generic}{Generic}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_generic}{Generic}}));}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}})\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}[ant\_logger]\ ERROR:\ Out\ of\ memory\ for\ async\ argv!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ free(logmsg);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ free(params);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00241}00241\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00242}00242\ \ \ \ \ \ \ \ \ params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}[0].\mbox{\hyperlink{struct_generic_a1fbf56fa903c54bf08b9be9d7a11138e}{value}}\ =\ logmsg;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00243}00243\ \ \ \ \ \ \ \ \ params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}}[0].\mbox{\hyperlink{struct_generic_a031d63fc3caf0870abc151457255d7e2}{type}}\ =\ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a}{GENERIC\_TYPE\_PTR}};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00244}00244\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*\ fp\ =\ (\mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_function_pipeline}{FunctionPipeline}}));}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00245}00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!fp)\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}[ant\_logger]\ ERROR:\ Out\ of\ memory\ for\ async\ pipeline!\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ free(logmsg);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ free(params-\/>\mbox{\hyperlink{struct_function_params_aa928a3634843ca5a3e5469b97efb4787}{argv}});}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ free(params);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00251}00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00252}00252\ \ \ \ \ \ \ \ \ fp-\/>\mbox{\hyperlink{struct_function_pipeline_aff8419f3b667770db719552b8cad63b2}{func}}\ =\ \mbox{\hyperlink{group___ant_logger_ga88512267049455a44ecba369aa21dfa4}{ant\_log\_async\_func}};}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00253}00253\ \ \ \ \ \ \ \ \ fp-\/>\mbox{\hyperlink{struct_function_pipeline_a33af58396e5a6d72bc1e86bfe624f659}{next}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00254}00254\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{async_8c_a07b659d1096ebc8c902a9a5e63ad4925}{async\_run}}(\mbox{\hyperlink{group___ant_logger_ga3c6cd94cdc21d8d73efb8623b97da4d8}{log\_loop}},\ fp,\ params);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00255}00255\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00256}00256\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group___ant_logger_gabc00b5c23fd4d11163bb01ea559322c4}{ant\_log\_output}}(level,\ module,\ final\_msg);}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00257}00257\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ant__logger_8c_source_l00258}00258\ \}\ }
+
+\end{DoxyCode}

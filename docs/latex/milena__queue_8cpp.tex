@@ -1,0 +1,294 @@
+\doxysection{external/milenadb/src/milena\+\_\+queue.cpp File Reference}
+\hypertarget{milena__queue_8cpp}{}\label{milena__queue_8cpp}\index{external/milenadb/src/milena\_queue.cpp@{external/milenadb/src/milena\_queue.cpp}}
+{\ttfamily \#include "{}milena\+\_\+queue.\+h"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+Include dependency graph for milena\+\_\+queue.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_task_cpp}{Task\+Cpp}}
+\item 
+struct \mbox{\hyperlink{struct_queue}{Queue}}
+\begin{DoxyCompactList}\small\item\em Очередь задач (реализация скрыта в C++, opaque pointer для C). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{milena__queue_8cpp_a8839b4e99adcf7db181790759ab73251}{queue\+\_\+create}} ()
+\begin{DoxyCompactList}\small\item\em Создать новую очередь задач. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{milena__queue_8cpp_ad21ee75924298937673e2b8d66665466}{queue\+\_\+destroy}} (\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}q)
+\begin{DoxyCompactList}\small\item\em Удалить очередь и освободить всю связанную с ней память. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{milena__queue_8cpp_a25f401b84c98fcc9889d4b3d89bbe6cd}{queue\+\_\+append}} (\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}q, const \mbox{\hyperlink{struct_task}{Task}} \texorpdfstring{$\ast$}{*}task)
+\begin{DoxyCompactList}\small\item\em Добавить задачу в конец очереди. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{milena__queue_8cpp_a1478530550de22bffb8e6ec40723bf05}{queue\+\_\+remove\+\_\+by\+\_\+index}} (\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}q, int index)
+\begin{DoxyCompactList}\small\item\em Удалить задачу по индексу из очереди. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{milena__queue_8cpp_a0f252ebf0551b727232e0e252f460e35}{queue\+\_\+size}} (const \mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}q)
+\begin{DoxyCompactList}\small\item\em Получить количество задач в очереди. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct_task}{Task}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{milena__queue_8cpp_a590ad8484455a01e8da4c5e9360e0dca}{queue\+\_\+get}} (const \mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}q, int index)
+\begin{DoxyCompactList}\small\item\em Получить задачу по индексу. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{milena__queue_8cpp_a25f401b84c98fcc9889d4b3d89bbe6cd}\index{milena\_queue.cpp@{milena\_queue.cpp}!queue\_append@{queue\_append}}
+\index{queue\_append@{queue\_append}!milena\_queue.cpp@{milena\_queue.cpp}}
+\doxysubsubsection{\texorpdfstring{queue\_append()}{queue\_append()}}
+{\footnotesize\ttfamily \label{milena__queue_8cpp_a25f401b84c98fcc9889d4b3d89bbe6cd} 
+void queue\+\_\+append (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}}]{q}{, }\item[{const \mbox{\hyperlink{struct_task}{Task}} \texorpdfstring{$\ast$}{*}}]{task}{}\end{DoxyParamCaption})}
+
+
+
+Добавить задачу в конец очереди. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & Указатель на очередь \\
+\hline
+{\em task} & Указатель на структуру \doxylink{struct_task}{Task}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_task}{Task}}\ t\ =\ \{\textcolor{stringliteral}{"{}Task1"{}},\ \textcolor{stringliteral}{"{}echo\ Hello"{}},\ 1,\ \mbox{\hyperlink{milena__queue_8h_aacda182df7dba8ce63a50654d7232ba8a7c169d810155c026d36e14dbace569f8}{TASK\_PENDING}}\};}
+\DoxyCodeLine{\mbox{\hyperlink{milena__queue_8cpp_a25f401b84c98fcc9889d4b3d89bbe6cd}{queue\_append}}(q,\ \&t);}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (q\ \&\&\ task)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ q-\/>\mbox{\hyperlink{struct_queue_a67f55f0fb794d8debbd923a68648608c}{tasks}}.emplace\_back(*task);}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{milena__queue_8cpp_source_l00026}{Queue\+::tasks}}.
+
+
+
+Referenced by \mbox{\hyperlink{milena__queue__test_8cpp_source_l00004}{main()}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{milena__queue_8cpp_a8839b4e99adcf7db181790759ab73251}\index{milena\_queue.cpp@{milena\_queue.cpp}!queue\_create@{queue\_create}}
+\index{queue\_create@{queue\_create}!milena\_queue.cpp@{milena\_queue.cpp}}
+\doxysubsubsection{\texorpdfstring{queue\_create()}{queue\_create()}}
+{\footnotesize\ttfamily \label{milena__queue_8cpp_a8839b4e99adcf7db181790759ab73251} 
+\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*} queue\+\_\+create (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Создать новую очередь задач. 
+
+\begin{DoxyReturn}{Returns}
+Указатель на очередь (Queue\texorpdfstring{$\ast$}{*}) или NULL при ошибке.
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{struct_queue}{Queue}}*\ q\ =\ \mbox{\hyperlink{milena__queue_8cpp_a8839b4e99adcf7db181790759ab73251}{queue\_create}}();}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{milena__queue_8h_ad4f29a362a072ba563b41ae8e935c6fc}{Queue}}();}
+\DoxyCodeLine{00031\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{milena__queue__test_8cpp_source_l00004}{main()}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{milena__queue_8cpp_ad21ee75924298937673e2b8d66665466}\index{milena\_queue.cpp@{milena\_queue.cpp}!queue\_destroy@{queue\_destroy}}
+\index{queue\_destroy@{queue\_destroy}!milena\_queue.cpp@{milena\_queue.cpp}}
+\doxysubsubsection{\texorpdfstring{queue\_destroy()}{queue\_destroy()}}
+{\footnotesize\ttfamily \label{milena__queue_8cpp_ad21ee75924298937673e2b8d66665466} 
+void queue\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}}]{q}{}\end{DoxyParamCaption})}
+
+
+
+Удалить очередь и освободить всю связанную с ней память. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & Указатель на очередь\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{milena__queue_8cpp_ad21ee75924298937673e2b8d66665466}{queue\_destroy}}(q);}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{delete}\ q;}
+\DoxyCodeLine{00035\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{milena__queue__test_8cpp_source_l00004}{main()}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{milena__queue_8cpp_a590ad8484455a01e8da4c5e9360e0dca}\index{milena\_queue.cpp@{milena\_queue.cpp}!queue\_get@{queue\_get}}
+\index{queue\_get@{queue\_get}!milena\_queue.cpp@{milena\_queue.cpp}}
+\doxysubsubsection{\texorpdfstring{queue\_get()}{queue\_get()}}
+{\footnotesize\ttfamily \label{milena__queue_8cpp_a590ad8484455a01e8da4c5e9360e0dca} 
+const \mbox{\hyperlink{struct_task}{Task}} \texorpdfstring{$\ast$}{*} queue\+\_\+get (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}}]{q}{, }\item[{int}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Получить задачу по индексу. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & Указатель на очередь \\
+\hline
+{\em index} & Индекс задачи (начиная с 0) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Указатель на задачу (Task\texorpdfstring{$\ast$}{*}) или NULL, если индекс некорректен
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_task}{Task}}*\ t\ =\ \mbox{\hyperlink{milena__queue_8cpp_a590ad8484455a01e8da4c5e9360e0dca}{queue\_get}}(q,\ 0);}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (!q\ ||\ index\ <\ 0\ ||\ index\ >=\ (\textcolor{keywordtype}{int})q-\/>\mbox{\hyperlink{struct_queue_a67f55f0fb794d8debbd923a68648608c}{tasks}}.size())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ ВНИМАНИЕ:\ возвращаем\ временный\ Task,\ который\ живёт\ до\ конца\ функции!}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Для\ реального\ API\ лучше\ возвращать\ копию\ через\ out-\/параметр.}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{thread\_local}\ \mbox{\hyperlink{struct_task}{Task}}\ temp;}
+\DoxyCodeLine{00058\ \ \ \ \ temp\ =\ q-\/>\mbox{\hyperlink{struct_queue_a67f55f0fb794d8debbd923a68648608c}{tasks}}[index].to\_c();}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ \&temp;}
+\DoxyCodeLine{00060\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{milena__queue_8cpp_source_l00026}{Queue\+::tasks}}.
+
+
+
+Referenced by \mbox{\hyperlink{milena__queue__test_8cpp_source_l00004}{main()}}.
+
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{milena__queue_8cpp_a1478530550de22bffb8e6ec40723bf05}\index{milena\_queue.cpp@{milena\_queue.cpp}!queue\_remove\_by\_index@{queue\_remove\_by\_index}}
+\index{queue\_remove\_by\_index@{queue\_remove\_by\_index}!milena\_queue.cpp@{milena\_queue.cpp}}
+\doxysubsubsection{\texorpdfstring{queue\_remove\_by\_index()}{queue\_remove\_by\_index()}}
+{\footnotesize\ttfamily \label{milena__queue_8cpp_a1478530550de22bffb8e6ec40723bf05} 
+int queue\+\_\+remove\+\_\+by\+\_\+index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}}]{q}{, }\item[{int}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Удалить задачу по индексу из очереди. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & Указатель на очередь \\
+\hline
+{\em index} & Индекс задачи (начиная с 0) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 если задача удалена, 0 если индекс некорректен
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{milena__queue_8cpp_a1478530550de22bffb8e6ec40723bf05}{queue\_remove\_by\_index}}(q,\ 2);}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (!q\ ||\ index\ <\ 0\ ||\ index\ >=\ (\textcolor{keywordtype}{int})q-\/>\mbox{\hyperlink{struct_queue_a67f55f0fb794d8debbd923a68648608c}{tasks}}.size())\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ q-\/>\mbox{\hyperlink{struct_queue_a67f55f0fb794d8debbd923a68648608c}{tasks}}.erase(q-\/>\mbox{\hyperlink{struct_queue_a67f55f0fb794d8debbd923a68648608c}{tasks}}.begin()\ +\ index);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00047\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{milena__queue_8cpp_source_l00026}{Queue\+::tasks}}.
+
+
+
+Referenced by \mbox{\hyperlink{milena__queue__test_8cpp_source_l00004}{main()}}.
+
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{milena__queue_8cpp_a0f252ebf0551b727232e0e252f460e35}\index{milena\_queue.cpp@{milena\_queue.cpp}!queue\_size@{queue\_size}}
+\index{queue\_size@{queue\_size}!milena\_queue.cpp@{milena\_queue.cpp}}
+\doxysubsubsection{\texorpdfstring{queue\_size()}{queue\_size()}}
+{\footnotesize\ttfamily \label{milena__queue_8cpp_a0f252ebf0551b727232e0e252f460e35} 
+int queue\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}}]{q}{}\end{DoxyParamCaption})}
+
+
+
+Получить количество задач в очереди. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & Указатель на очередь \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Количество задач (\texorpdfstring{$>$}{>}=0)
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ n\ =\ \mbox{\hyperlink{milena__queue_8cpp_a0f252ebf0551b727232e0e252f460e35}{queue\_size}}(q);}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{milena__queue_8cpp_source_l00049}{49}} of file \mbox{\hyperlink{milena__queue_8cpp_source}{milena\+\_\+queue.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ q\ ?\ (int)q-\/>\mbox{\hyperlink{struct_queue_a67f55f0fb794d8debbd923a68648608c}{tasks}}.size()\ :\ 0;}
+\DoxyCodeLine{00051\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{milena__queue_8cpp_source_l00026}{Queue\+::tasks}}.
+
+
+
+Referenced by \mbox{\hyperlink{milena__queue__test_8cpp_source_l00004}{main()}}.
+
+Here is the caller graph for this function\+:
+% FIG 6

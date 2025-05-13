@@ -34,7 +34,7 @@
   <td id="projectalign">
    <div id="projectname">Koala
    </div>
-   <div id="projectbrief">Asynchronous Event Loop Implementation</div>
+   <div id="projectbrief">Asynchronous Computing</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -130,7 +130,6 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_generic.html">Generic</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a> с типизацией (C)  <a href="struct_generic.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_result.html">Result</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,6 +139,13 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_function_pipeline.html">FunctionPipeline</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Элемент цепочки функций (pipeline).  <a href="struct_function_pipeline.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_typed_generic.html">TypedGeneric</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_generic.html">Generic</a> с типизацией (C)  <a href="struct_typed_generic.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_p2_p_task.html">P2PTask</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_p2_p_network.html">P2PNetwork</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -148,10 +154,10 @@ Macros</h2></td></tr>
 <tr class="memitem:a2f0d9a4aee65152ba07520f571a68051" id="r_a2f0d9a4aee65152ba07520f571a68051"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f0d9a4aee65152ba07520f571a68051">GENERIC_GET</a>(type,  g)</td></tr>
 <tr class="separator:a2f0d9a4aee65152ba07520f571a68051"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d7090f7df18ebdd1a99e2fcde6e2902" id="r_a4d7090f7df18ebdd1a99e2fcde6e2902"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d7090f7df18ebdd1a99e2fcde6e2902">GENERIC_SET_TYPED</a>(g,  v,  t)</td></tr>
-<tr class="memdesc:a4d7090f7df18ebdd1a99e2fcde6e2902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Установить значение и тип в <a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a>.  <br /></td></tr>
+<tr class="memdesc:a4d7090f7df18ebdd1a99e2fcde6e2902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Установить значение и тип в <a class="el" href="struct_generic.html">Generic</a>.  <br /></td></tr>
 <tr class="separator:a4d7090f7df18ebdd1a99e2fcde6e2902"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fa4e00467f5aea37aff1ae5577e8e60" id="r_a8fa4e00467f5aea37aff1ae5577e8e60"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fa4e00467f5aea37aff1ae5577e8e60">GENERIC_GET_TYPED</a>(type_,  g,  expected_type)</td></tr>
-<tr class="memdesc:a8fa4e00467f5aea37aff1ae5577e8e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получить значение из <a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a> с проверкой типа  <br /></td></tr>
+<tr class="memdesc:a8fa4e00467f5aea37aff1ae5577e8e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получить значение из <a class="el" href="struct_generic.html">Generic</a> с проверкой типа  <br /></td></tr>
 <tr class="separator:a8fa4e00467f5aea37aff1ae5577e8e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4fb7d702f5247b30f8593c9e4cd1d12" id="r_ac4fb7d702f5247b30f8593c9e4cd1d12"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4fb7d702f5247b30f8593c9e4cd1d12">GENERIC_SET</a>(g,  v)</td></tr>
 <tr class="separator:ac4fb7d702f5247b30f8593c9e4cd1d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -227,7 +233,6 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a2992909b9c1ee26479af8fa433d4479f" id="r_a2992909b9c1ee26479af8fa433d4479f"><td class="memItemLeft" align="right" valign="top">typedef ptrdiff_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2992909b9c1ee26479af8fa433d4479f">isize</a></td></tr>
 <tr class="separator:a2992909b9c1ee26479af8fa433d4479f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ac639ad8f5bb96eb3bf8279cd371c9d" id="r_a5ac639ad8f5bb96eb3bf8279cd371c9d"><td class="memItemLeft" align="right" valign="top">typedef struct Generic&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ac639ad8f5bb96eb3bf8279cd371c9d">Generic</a></td></tr>
-<tr class="memdesc:a5ac639ad8f5bb96eb3bf8279cd371c9d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a> с типизацией (C)  <br /></td></tr>
 <tr class="separator:a5ac639ad8f5bb96eb3bf8279cd371c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade7e53b8ed7380705cbd1225db23cd5a" id="r_ade7e53b8ed7380705cbd1225db23cd5a"><td class="memItemLeft" align="right" valign="top">typedef struct Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade7e53b8ed7380705cbd1225db23cd5a">Result</a></td></tr>
 <tr class="separator:ade7e53b8ed7380705cbd1225db23cd5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,20 +242,24 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ab1f813247c84d8e49c51bbe73431ddf8" id="r_ab1f813247c84d8e49c51bbe73431ddf8"><td class="memItemLeft" align="right" valign="top">typedef struct FunctionPipeline&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1f813247c84d8e49c51bbe73431ddf8">FunctionPipeline</a></td></tr>
 <tr class="memdesc:ab1f813247c84d8e49c51bbe73431ddf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Элемент цепочки функций (pipeline).  <br /></td></tr>
 <tr class="separator:ab1f813247c84d8e49c51bbe73431ddf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f7073e7318753114f8aadcd61b65c60" id="r_a0f7073e7318753114f8aadcd61b65c60"><td class="memItemLeft" align="right" valign="top">typedef struct TypedGeneric&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f7073e7318753114f8aadcd61b65c60">TypedGeneric</a></td></tr>
+<tr class="memdesc:a0f7073e7318753114f8aadcd61b65c60"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_generic.html">Generic</a> с типизацией (C)  <br /></td></tr>
+<tr class="separator:a0f7073e7318753114f8aadcd61b65c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a5b49a4735004213d537a8915a2ac69a0" id="r_a5b49a4735004213d537a8915a2ac69a0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b49a4735004213d537a8915a2ac69a0">GenericType</a> { <br />
 &#160;&#160;<a class="el" href="#a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172">GENERIC_TYPE_UNKNOWN</a> = 0
+, <a class="el" href="#a5b49a4735004213d537a8915a2ac69a0a09229b15ade9dd72bd2f8c721cf440e0">GENERIC_TYPE_UINT</a>
 , <a class="el" href="#a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128">GENERIC_TYPE_INT</a>
 , <a class="el" href="#a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455">GENERIC_TYPE_FLOAT</a>
-, <a class="el" href="#a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a">GENERIC_TYPE_PTR</a>
 , <br />
-&#160;&#160;<a class="el" href="#a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481">GENERIC_TYPE_STR</a>
+&#160;&#160;<a class="el" href="#a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a">GENERIC_TYPE_PTR</a>
+, <a class="el" href="#a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481">GENERIC_TYPE_STR</a>
 , <a class="el" href="#a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e">GENERIC_TYPE_CUSTOM</a>
 <br />
  }</td></tr>
-<tr class="memdesc:a5b49a4735004213d537a8915a2ac69a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Перечисление поддерживаемых типов для <a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a> (C)  <a href="#a5b49a4735004213d537a8915a2ac69a0">More...</a><br /></td></tr>
+<tr class="memdesc:a5b49a4735004213d537a8915a2ac69a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Перечисление поддерживаемых типов для <a class="el" href="struct_generic.html">Generic</a> (C)  <a href="#a5b49a4735004213d537a8915a2ac69a0">More...</a><br /></td></tr>
 <tr class="separator:a5b49a4735004213d537a8915a2ac69a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -292,8 +301,8 @@ Functions</h2></td></tr>
 <div class="line">    if (!_cur) { (head) = (node); } \</div>
 <div class="line">    <span class="keywordflow">else</span> { <span class="keywordflow">while</span> (_cur-&gt;<a class="code hl_variable" href="struct_function_pipeline.html#a33af58396e5a6d72bc1e86bfe624f659">next</a>) _cur = _cur-&gt;<a class="code hl_variable" href="struct_function_pipeline.html#a33af58396e5a6d72bc1e86bfe624f659">next</a>; _cur-&gt;<a class="code hl_variable" href="struct_function_pipeline.html#a33af58396e5a6d72bc1e86bfe624f659">next</a> = (node); } \</div>
 <div class="line">} <span class="keywordflow">while</span>(0)</div>
-<div class="ttc" id="astruct_function_pipeline_html"><div class="ttname"><a href="struct_function_pipeline.html">FunctionPipeline</a></div><div class="ttdoc">Элемент цепочки функций (pipeline).</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00204">types.h:204</a></div></div>
-<div class="ttc" id="astruct_function_pipeline_html_a33af58396e5a6d72bc1e86bfe624f659"><div class="ttname"><a href="struct_function_pipeline.html#a33af58396e5a6d72bc1e86bfe624f659">FunctionPipeline::next</a></div><div class="ttdeci">struct FunctionPipeline * next</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00206">types.h:206</a></div></div>
+<div class="ttc" id="astruct_function_pipeline_html"><div class="ttname"><a href="struct_function_pipeline.html">FunctionPipeline</a></div><div class="ttdoc">Элемент цепочки функций (pipeline).</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00221">types.h:221</a></div></div>
+<div class="ttc" id="astruct_function_pipeline_html_a33af58396e5a6d72bc1e86bfe624f659"><div class="ttname"><a href="struct_function_pipeline.html#a33af58396e5a6d72bc1e86bfe624f659">FunctionPipeline::next</a></div><div class="ttdeci">struct FunctionPipeline * next</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00223">types.h:223</a></div></div>
 </div><!-- fragment -->
 <p>Добавить элемент в конец цепочки <a class="el" href="struct_function_pipeline.html" title="Элемент цепочки функций (pipeline).">FunctionPipeline</a> (C) </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -304,12 +313,12 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00320">320</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  320</span><span class="preprocessor">#define FUNCTION_PIPELINE_APPEND(head, node) do { \</span></div>
-<div class="line"><span class="lineno">  321</span><span class="preprocessor">    FunctionPipeline* _cur = (head); \</span></div>
-<div class="line"><span class="lineno">  322</span><span class="preprocessor">    if (!_cur) { (head) = (node); } \</span></div>
-<div class="line"><span class="lineno">  323</span><span class="preprocessor">    else { while (_cur-&gt;next) _cur = _cur-&gt;next; _cur-&gt;next = (node); } \</span></div>
-<div class="line"><span class="lineno">  324</span><span class="preprocessor">} while(0)</span></div>
+<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00325">325</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  325</span><span class="preprocessor">#define FUNCTION_PIPELINE_APPEND(head, node) do { \</span></div>
+<div class="line"><span class="lineno">  326</span><span class="preprocessor">    FunctionPipeline* _cur = (head); \</span></div>
+<div class="line"><span class="lineno">  327</span><span class="preprocessor">    if (!_cur) { (head) = (node); } \</span></div>
+<div class="line"><span class="lineno">  328</span><span class="preprocessor">    else { while (_cur-&gt;next) _cur = _cur-&gt;next; _cur-&gt;next = (node); } \</span></div>
+<div class="line"><span class="lineno">  329</span><span class="preprocessor">} while(0)</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -333,7 +342,7 @@ Functions</h2></td></tr>
 <div class="line">        _fp-&gt;<a class="code hl_variable" href="struct_function_pipeline.html#a33af58396e5a6d72bc1e86bfe624f659">next</a> = NULL; \</div>
 <div class="line">        _fp; \</div>
 <div class="line">    })</div>
-<div class="ttc" id="astruct_function_pipeline_html_aff8419f3b667770db719552b8cad63b2"><div class="ttname"><a href="struct_function_pipeline.html#aff8419f3b667770db719552b8cad63b2">FunctionPipeline::func</a></div><div class="ttdeci">Result(* func)(FunctionParams *params)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00205">types.h:205</a></div></div>
+<div class="ttc" id="astruct_function_pipeline_html_aff8419f3b667770db719552b8cad63b2"><div class="ttname"><a href="struct_function_pipeline.html#aff8419f3b667770db719552b8cad63b2">FunctionPipeline::func</a></div><div class="ttdeci">Result(* func)(FunctionParams *params)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00222">types.h:222</a></div></div>
 </div><!-- fragment -->
 <p>Создать новый элемент <a class="el" href="struct_function_pipeline.html" title="Элемент цепочки функций (pipeline).">FunctionPipeline</a> (C) </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -344,14 +353,14 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>указатель на <a class="el" href="struct_function_pipeline.html" title="Элемент цепочки функций (pipeline).">FunctionPipeline</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00307">307</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  307</span><span class="preprocessor">#define FUNCTION_PIPELINE_NEW(f) \</span></div>
-<div class="line"><span class="lineno">  308</span><span class="preprocessor">    ({ \</span></div>
-<div class="line"><span class="lineno">  309</span><span class="preprocessor">        FunctionPipeline* _fp = (FunctionPipeline*)malloc(sizeof(FunctionPipeline)); \</span></div>
-<div class="line"><span class="lineno">  310</span><span class="preprocessor">        _fp-&gt;func = (f); \</span></div>
-<div class="line"><span class="lineno">  311</span><span class="preprocessor">        _fp-&gt;next = NULL; \</span></div>
-<div class="line"><span class="lineno">  312</span><span class="preprocessor">        _fp; \</span></div>
-<div class="line"><span class="lineno">  313</span><span class="preprocessor">    })</span></div>
+<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00312">312</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  312</span><span class="preprocessor">#define FUNCTION_PIPELINE_NEW(f) \</span></div>
+<div class="line"><span class="lineno">  313</span><span class="preprocessor">    ({ \</span></div>
+<div class="line"><span class="lineno">  314</span><span class="preprocessor">        FunctionPipeline* _fp = (FunctionPipeline*)malloc(sizeof(FunctionPipeline)); \</span></div>
+<div class="line"><span class="lineno">  315</span><span class="preprocessor">        _fp-&gt;func = (f); \</span></div>
+<div class="line"><span class="lineno">  316</span><span class="preprocessor">        _fp-&gt;next = NULL; \</span></div>
+<div class="line"><span class="lineno">  317</span><span class="preprocessor">        _fp; \</span></div>
+<div class="line"><span class="lineno">  318</span><span class="preprocessor">    })</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -375,7 +384,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">((type)((g).value))</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00108">108</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00125">125</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
 
 </div>
 </div>
@@ -398,10 +407,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#a8fa4e00467f5aea37aff1ae5577e8e60">GENERIC_GET_TYPED</a>(type_, g, <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a">GENERIC_TYPE_PTR</a>)</div>
-<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a">GENERIC_TYPE_PTR</a></div><div class="ttdeci">@ GENERIC_TYPE_PTR</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00273">types.h:273</a></div></div>
-<div class="ttc" id="atypes_8h_html_a8fa4e00467f5aea37aff1ae5577e8e60"><div class="ttname"><a href="#a8fa4e00467f5aea37aff1ae5577e8e60">GENERIC_GET_TYPED</a></div><div class="ttdeci">#define GENERIC_GET_TYPED(type_, g, expected_type)</div><div class="ttdoc">Получить значение из Generic с проверкой типа</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00294">types.h:294</a></div></div>
+<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a">GENERIC_TYPE_PTR</a></div><div class="ttdeci">@ GENERIC_TYPE_PTR</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00073">types.h:73</a></div></div>
+<div class="ttc" id="atypes_8h_html_a8fa4e00467f5aea37aff1ae5577e8e60"><div class="ttname"><a href="#a8fa4e00467f5aea37aff1ae5577e8e60">GENERIC_GET_TYPED</a></div><div class="ttdeci">#define GENERIC_GET_TYPED(type_, g, expected_type)</div><div class="ttdoc">Получить значение из Generic с проверкой типа</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00299">types.h:299</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00108">108</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00125">125</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
 
 </div>
 </div>
@@ -430,11 +439,11 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    (((g).type == (expected_type)) ? (type_)((g).value) : NULL)</div>
 </div><!-- fragment -->
-<p>Получить значение из <a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a> с проверкой типа </p>
+<p>Получить значение из <a class="el" href="struct_generic.html">Generic</a> с проверкой типа </p>
 
-<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00294">294</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  294</span><span class="preprocessor">#define GENERIC_GET_TYPED(type_, g, expected_type) \</span></div>
-<div class="line"><span class="lineno">  295</span><span class="preprocessor">    (((g).type == (expected_type)) ? (type_)((g).value) : NULL)</span></div>
+<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00299">299</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  299</span><span class="preprocessor">#define GENERIC_GET_TYPED(type_, g, expected_type) \</span></div>
+<div class="line"><span class="lineno">  300</span><span class="preprocessor">    (((g).type == (expected_type)) ? (type_)((g).value) : NULL)</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -458,7 +467,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">((g).value = (<span class="keywordtype">void</span>*)(v))</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00107">107</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00124">124</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
 
 </div>
 </div>
@@ -481,9 +490,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#a4d7090f7df18ebdd1a99e2fcde6e2902">GENERIC_SET_TYPED</a>(g, v, <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a">GENERIC_TYPE_PTR</a>)</div>
-<div class="ttc" id="atypes_8h_html_a4d7090f7df18ebdd1a99e2fcde6e2902"><div class="ttname"><a href="#a4d7090f7df18ebdd1a99e2fcde6e2902">GENERIC_SET_TYPED</a></div><div class="ttdeci">#define GENERIC_SET_TYPED(g, v, t)</div><div class="ttdoc">Установить значение и тип в Generic.</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00289">types.h:289</a></div></div>
+<div class="ttc" id="atypes_8h_html_a4d7090f7df18ebdd1a99e2fcde6e2902"><div class="ttname"><a href="#a4d7090f7df18ebdd1a99e2fcde6e2902">GENERIC_SET_TYPED</a></div><div class="ttdeci">#define GENERIC_SET_TYPED(g, v, t)</div><div class="ttdoc">Установить значение и тип в Generic.</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00294">types.h:294</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00107">107</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00124">124</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
 
 </div>
 </div>
@@ -512,9 +521,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { (g).value = (<span class="keywordtype">void</span>*)(v); (g).type = (t); } <span class="keywordflow">while</span>(0)</div>
 </div><!-- fragment -->
-<p>Установить значение и тип в <a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a>. </p>
+<p>Установить значение и тип в <a class="el" href="struct_generic.html">Generic</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00289">289</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00294">294</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="async_8c_source.html#l00180">async_await_timeout()</a>.</p>
 
@@ -534,7 +543,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Структура параметров для функций в <a class="el" href="struct_function_pipeline.html" title="Элемент цепочки функций (pipeline).">FunctionPipeline</a> (C). </p>
-<p>argc: количество аргументов argv: массив аргументов типа <a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a> </p>
+<p>argc: количество аргументов argv: массив аргументов типа <a class="el" href="struct_generic.html">Generic</a> </p>
 
 </div>
 </div>
@@ -566,8 +575,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p><a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a> с типизацией (C) </p>
 
 </div>
 </div>
@@ -841,6 +848,22 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a0f7073e7318753114f8aadcd61b65c60" name="a0f7073e7318753114f8aadcd61b65c60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f7073e7318753114f8aadcd61b65c60">&#9670;&#160;</a></span>TypedGeneric</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct TypedGeneric TypedGeneric</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="struct_generic.html">Generic</a> с типизацией (C) </p>
+
+</div>
+</div>
 <a id="ace9d960e74685e2cd84b36132dbbf8aa" name="ace9d960e74685e2cd84b36132dbbf8aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ace9d960e74685e2cd84b36132dbbf8aa">&#9670;&#160;</a></span>u16</h2>
 
@@ -1078,9 +1101,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Перечисление поддерживаемых типов для <a class="el" href="struct_generic.html" title="Generic с типизацией (C)">Generic</a> (C) </p>
+<p>Перечисление поддерживаемых типов для <a class="el" href="struct_generic.html">Generic</a> (C) </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172" name="a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172"></a>GENERIC_TYPE_UNKNOWN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5b49a4735004213d537a8915a2ac69a0a09229b15ade9dd72bd2f8c721cf440e0" name="a5b49a4735004213d537a8915a2ac69a0a09229b15ade9dd72bd2f8c721cf440e0"></a>GENERIC_TYPE_UINT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128" name="a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128"></a>GENERIC_TYPE_INT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455" name="a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455"></a>GENERIC_TYPE_FLOAT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a" name="a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a"></a>GENERIC_TYPE_PTR&#160;</td><td class="fielddoc"></td></tr>
@@ -1088,21 +1112,23 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e" name="a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e"></a>GENERIC_TYPE_CUSTOM&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00269">269</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  269</span>             {</div>
-<div class="line"><span class="lineno">  270</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172">GENERIC_TYPE_UNKNOWN</a> = 0,</div>
-<div class="line"><span class="lineno">  271</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128">GENERIC_TYPE_INT</a>,</div>
-<div class="line"><span class="lineno">  272</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455">GENERIC_TYPE_FLOAT</a>,</div>
-<div class="line"><span class="lineno">  273</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a">GENERIC_TYPE_PTR</a>,</div>
-<div class="line"><span class="lineno">  274</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481">GENERIC_TYPE_STR</a>,</div>
-<div class="line"><span class="lineno">  275</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e">GENERIC_TYPE_CUSTOM</a></div>
-<div class="line"><span class="lineno">  276</span>} <a class="code hl_enumeration" href="#a5b49a4735004213d537a8915a2ac69a0">GenericType</a>;</div>
-<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0">GenericType</a></div><div class="ttdeci">GenericType</div><div class="ttdoc">Перечисление поддерживаемых типов для Generic (C)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00269">types.h:269</a></div></div>
-<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455">GENERIC_TYPE_FLOAT</a></div><div class="ttdeci">@ GENERIC_TYPE_FLOAT</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00272">types.h:272</a></div></div>
-<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128">GENERIC_TYPE_INT</a></div><div class="ttdeci">@ GENERIC_TYPE_INT</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00271">types.h:271</a></div></div>
-<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e">GENERIC_TYPE_CUSTOM</a></div><div class="ttdeci">@ GENERIC_TYPE_CUSTOM</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00275">types.h:275</a></div></div>
-<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481">GENERIC_TYPE_STR</a></div><div class="ttdeci">@ GENERIC_TYPE_STR</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00274">types.h:274</a></div></div>
-<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172">GENERIC_TYPE_UNKNOWN</a></div><div class="ttdeci">@ GENERIC_TYPE_UNKNOWN</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00270">types.h:270</a></div></div>
+<p class="definition">Definition at line <a class="el" href="types_8h_source.html#l00068">68</a> of file <a class="el" href="types_8h_source.html">types.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>             {</div>
+<div class="line"><span class="lineno">   69</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172">GENERIC_TYPE_UNKNOWN</a> = 0,</div>
+<div class="line"><span class="lineno">   70</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a09229b15ade9dd72bd2f8c721cf440e0">GENERIC_TYPE_UINT</a>,</div>
+<div class="line"><span class="lineno">   71</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128">GENERIC_TYPE_INT</a>,</div>
+<div class="line"><span class="lineno">   72</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455">GENERIC_TYPE_FLOAT</a>,</div>
+<div class="line"><span class="lineno">   73</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a497144f2c25c5ca1c40241a9bbf6f27a">GENERIC_TYPE_PTR</a>,</div>
+<div class="line"><span class="lineno">   74</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481">GENERIC_TYPE_STR</a>,</div>
+<div class="line"><span class="lineno">   75</span>    <a class="code hl_enumvalue" href="#a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e">GENERIC_TYPE_CUSTOM</a></div>
+<div class="line"><span class="lineno">   76</span>} <a class="code hl_enumeration" href="#a5b49a4735004213d537a8915a2ac69a0">GenericType</a>;</div>
+<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0">GenericType</a></div><div class="ttdeci">GenericType</div><div class="ttdoc">Перечисление поддерживаемых типов для Generic (C)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00068">types.h:68</a></div></div>
+<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0a09229b15ade9dd72bd2f8c721cf440e0"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0a09229b15ade9dd72bd2f8c721cf440e0">GENERIC_TYPE_UINT</a></div><div class="ttdeci">@ GENERIC_TYPE_UINT</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00070">types.h:70</a></div></div>
+<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0a1ee0d8b2c57bd7bdf98e1ee8930f2455">GENERIC_TYPE_FLOAT</a></div><div class="ttdeci">@ GENERIC_TYPE_FLOAT</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00072">types.h:72</a></div></div>
+<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128">GENERIC_TYPE_INT</a></div><div class="ttdeci">@ GENERIC_TYPE_INT</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00071">types.h:71</a></div></div>
+<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0a80b3ab587907ff67f994de66bd06413e">GENERIC_TYPE_CUSTOM</a></div><div class="ttdeci">@ GENERIC_TYPE_CUSTOM</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00075">types.h:75</a></div></div>
+<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0acdee523d93666feabc214f011d894481">GENERIC_TYPE_STR</a></div><div class="ttdeci">@ GENERIC_TYPE_STR</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00074">types.h:74</a></div></div>
+<div class="ttc" id="atypes_8h_html_a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172"><div class="ttname"><a href="#a5b49a4735004213d537a8915a2ac69a0ad89a744ca832b1c8114dd521d0e13172">GENERIC_TYPE_UNKNOWN</a></div><div class="ttdeci">@ GENERIC_TYPE_UNKNOWN</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00069">types.h:69</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1133,9 +1159,9 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   17</span>        p-&gt;<a class="code hl_variable" href="struct_function_params.html#aa928a3634843ca5a3e5469b97efb4787">argv</a> = NULL;</div>
 <div class="line"><span class="lineno">   18</span>    }</div>
 <div class="line"><span class="lineno">   19</span>}</div>
-<div class="ttc" id="astruct_function_params_html_aa928a3634843ca5a3e5469b97efb4787"><div class="ttname"><a href="struct_function_params.html#aa928a3634843ca5a3e5469b97efb4787">FunctionParams::argv</a></div><div class="ttdeci">Generic * argv</div><div class="ttdoc">Массив аргументов (Generic)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00194">types.h:194</a></div></div>
+<div class="ttc" id="astruct_function_params_html_aa928a3634843ca5a3e5469b97efb4787"><div class="ttname"><a href="struct_function_params.html#aa928a3634843ca5a3e5469b97efb4787">FunctionParams::argv</a></div><div class="ttdeci">Generic * argv</div><div class="ttdoc">Массив аргументов (Generic)</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00211">types.h:211</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="types_8h_source.html#l00194">FunctionParams::argv</a>.</p>
+<p class="reference">References <a class="el" href="types_8h_source.html#l00211">FunctionParams::argv</a>.</p>
 
 </div>
 </div>
@@ -1166,7 +1192,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   26</span>    }</div>
 <div class="line"><span class="lineno">   27</span>}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="types_8h_source.html#l00206">FunctionPipeline::next</a>.</p>
+<p class="reference">References <a class="el" href="types_8h_source.html#l00223">FunctionPipeline::next</a>.</p>
 
 </div>
 </div>
@@ -1213,7 +1239,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   44</span>    <span class="keywordflow">return</span> 1;</div>
 <div class="line"><span class="lineno">   45</span>}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="types_8h_source.html#l00205">FunctionPipeline::func</a>, and <a class="el" href="types_8h_source.html#l00206">FunctionPipeline::next</a>.</p>
+<p class="reference">References <a class="el" href="types_8h_source.html#l00222">FunctionPipeline::func</a>, and <a class="el" href="types_8h_source.html#l00223">FunctionPipeline::next</a>.</p>
 
 </div>
 </div>

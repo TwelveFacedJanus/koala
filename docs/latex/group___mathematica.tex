@@ -1,0 +1,72 @@
+\doxysection{Стандартная математика}
+\hypertarget{group___mathematica}{}\label{group___mathematica}\index{Стандартная математика@{Стандартная математика}}
+
+
+Модуль стандартной математики, задачи которого вычисляются на единственном процессоре.  
+
+
+Collaboration diagram for Стандартная математика\+:
+% FIG 0
+\doxysubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___vector_usage}{Примеры использования векторов}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Модуль стандартной математики, задачи которого вычисляются на единственном процессоре. 
+
+Этот модуль содержит структуру \doxylink{struct_vector}{Vector} и функции для работы с динамическими списками универсальных значений (\doxylink{struct_generic}{Generic}).\hypertarget{group___mathematica_vector_overview}{}\doxysubsection{\texorpdfstring{Обзор структуры Vector}{Обзор структуры Vector}}\label{group___mathematica_vector_overview}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_vector}{Vector}}\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic}}*\ \mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{mathematica_8h_a3feb986d187bdc63289fddab34c9cca0}{Vector}}*\ \mbox{\hyperlink{struct_vector_a2206ec1b236bc6df260f169a61faecb6}{next}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ void\ (*\mbox{\hyperlink{struct_vector_aa30ac282b9203d10c9ac19386d18a435}{push\_back}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{mathematica_8h_a3feb986d187bdc63289fddab34c9cca0}{Vector}}*,\ \mbox{\hyperlink{types_8h_a5ac639ad8f5bb96eb3bf8279cd371c9d}{Generic}}*\ \mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}});\ }
+\DoxyCodeLine{\}\ \mbox{\hyperlink{struct_vector}{Vector}};}
+
+\end{DoxyCode}
+\hypertarget{group___mathematica_vector_fields}{}\doxysubsection{\texorpdfstring{Описание полей}{Описание полей}}\label{group___mathematica_vector_fields}
+
+\begin{DoxyItemize}
+\item data\+: Указатель на объект \doxylink{struct_generic}{Generic}, хранящий данные.
+\item next\+: Указатель на следующий элемент вектора (реализован как односвязный список).
+\item push\+\_\+back\+: Указатель на функцию для добавления элемента в конец вектора.
+\end{DoxyItemize}\hypertarget{group___mathematica_vector_functions}{}\doxysubsection{\texorpdfstring{Основные функции}{Основные функции}}\label{group___mathematica_vector_functions}
+
+\begin{DoxyItemize}
+\item Vector\texorpdfstring{$\ast$}{*} \doxylink{mathematica_8h_a038b4b5cd1454b3458df2d923534bae6}{init\+\_\+vector()}\+: Инициализация нового пустого вектора.
+\item void \doxylink{mathematica_8h_a2499edf22ad5e432f6631b9a02470c18}{push(struct Vector\texorpdfstring{$\ast$}{*} vec, Generic\texorpdfstring{$\ast$}{*} data)}\+: Добавление элемента в конец вектора.
+\item void \doxylink{mathematica_8h_ad5d282e52ef0803267ac362f62ad781d}{delete(struct Vector\texorpdfstring{$\ast$}{*} vec)}\+: Удаление всех элементов вектора и освобождение памяти.
+\item void \doxylink{mathematica_8h_acc31669643b4c1e48ec174303999c367}{free\+\_\+vector(struct Vector\texorpdfstring{$\ast$}{*} vec)}\+: Синоним для delete.
+\item Vector\texorpdfstring{$\ast$}{*} \doxylink{mathematica_8h_a522d4adf059058338603f89522cdfa3f}{allocate\+\_\+memory\+\_\+for\+\_\+vector()}\+: Выделение памяти под новый вектор (обычно используется внутри init\+\_\+vector).
+\end{DoxyItemize}\hypertarget{group___mathematica_vector_usage}{}\doxysubsection{\texorpdfstring{Пример использования}{Пример использования}}\label{group___mathematica_vector_usage}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mathematica_8h}{core/math/mathematica.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{milena__queue__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}*\ vector\ =\ \mbox{\hyperlink{mathematica_8h_a038b4b5cd1454b3458df2d923534bae6}{init\_vector}}();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (vector\ ==\ NULL)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ обработка\ ошибки}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ value\ =\ 42;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_generic}{Generic}}\ g;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{types_8h_ac4fb7d702f5247b30f8593c9e4cd1d12}{GENERIC\_SET}}(g,\ \&value);\ \textcolor{comment}{//\ Сохраняем\ указатель\ на\ int}}
+\DoxyCodeLine{\ \ \ \ g.\mbox{\hyperlink{struct_generic_a031d63fc3caf0870abc151457255d7e2}{type}}\ =\ \mbox{\hyperlink{types_8h_a5b49a4735004213d537a8915a2ac69a0a6ecdb3189871725ec574c2f8642ac128}{GENERIC\_TYPE\_INT}};}
+\DoxyCodeLine{\ \ \ \ vector-\/>\mbox{\hyperlink{struct_vector_aa30ac282b9203d10c9ac19386d18a435}{push\_back}}(vector,\ \&g);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Извлечение\ значения\ из\ первого\ элемента\ вектора}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_generic}{Generic}}*\ g\_ptr\ =\ vector-\/>\mbox{\hyperlink{struct_vector_aaf5fa1c2e6abf17ac77378c461d59f96}{data}};\ \textcolor{comment}{//\ Предполагается,\ что\ data\ указывает\ на\ первый\ элемент\ Generic}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}*\ px\ =\ \mbox{\hyperlink{types_8h_a2f0d9a4aee65152ba07520f571a68051}{GENERIC\_GET}}(\textcolor{keywordtype}{int}*,\ *g\_ptr);}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}},\ *px);\ \textcolor{comment}{//\ 42}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{mathematica_8h_acc31669643b4c1e48ec174303999c367}{free\_vector}}(vector);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \input{group___vector_usage}
