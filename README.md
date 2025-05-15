@@ -10,6 +10,7 @@ Koala is a lightweight C/C++ library that provides asynchronous event loop funct
 
 ## Overview
 
+![alt text](https://github.com/TwelveFacedJanus/koala/blob/main/images/sc1.png)
 The core of Koala is an asynchronous event loop implementation that:
 
 - Manages a thread pool to execute tasks concurrently
